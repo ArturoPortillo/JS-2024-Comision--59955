@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiBar - Sistema de gestión Gastronomica</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link
+    rel="stylesheet"
+    href="https://unpkg.com/98.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nabla&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div>
+    <div class="title-bar">
+      <div class="title-bar-text">MiBar - Sistema de gestión Gastronomica</div>
+        <div class="title-bar-controls" >
+          <button aria-label="Close"></button>
+        </div>
+    </div>
+    <div class="formWindow">
+      <div class="window" style="width: 320px">
+        <div class="title-bar">
+          <div class="title-bar-text">MiBar - Sistema de gestión Gastronomica</div>
+        </div>
+        <div class="logo"><img class="logoMibar" src="img/LOGO MIBAR.png" alt=""></div>
+        <div class="window-body">
+          <div class="logingForm">
+            <div class="field-row-stacked" style="width: 200px">
+              <label>Usuario</label>
+              <input type="text" value="usuario"/>
+            </div>
+            <div class="field-row-stacked" style="width: 200px">
+              <label>Contraseña</label>
+              <input type="password" value=""/>
+            </div>
+              <div>
+                <button type="submit" onclick="logIn()">Ingresar</button>
+                <button type="submit" onclick="signUp()">Registrarse</button>
+              </div>
+          </div>
+        </div>
+        <div class="status-bar">
+          <p class="status-bar-field">Press F1 for help</p>
+          <p class="status-bar-field">Slide 1</p>
+          <p class="status-bar-field">CPU Usage: 14%</p>
+        </div>
+      </div>
+  </div>
+  </div>
+  <footer>
+    <div class="status-bar">
+      <p class="status-bar-field">Creado por Arturo Portillo</p>
+      <p class="status-bar-field">CoderHouse 2024</p>
+      <p class="status-bar-field">JavaScript Comision #59955</p>
+    </div>
+  </footer>
+    <script src="../js/main.js"></script>
+</body>
+</html>
