@@ -28,7 +28,7 @@ function Empleado(usuario, contrasena, idEmpleado, rol) {
 
 let empleado;
 
-function registrar() {
+function registroUsuario() {
 
     let nuevoUsuario = prompt("Ingresa nuevo nombre de usuario: ");
     let contrasenaUsuario = prompt("Ingresa un PIN: ");
@@ -54,7 +54,7 @@ function registrar() {
 
 /* Funcion de inicio de sesion */
 
-function ingresar() {
+function inicioSesion() {
 
     for (let i = 3; i > 0; i--){
         let campoUsuario = prompt("Ingresa nombre de usuario: ");
