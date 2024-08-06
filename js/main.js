@@ -1,10 +1,9 @@
 
-if(window.location.href = "index.html"  ){
+if (window.location.pathname === '/index.html'){
     alert("Bienvenido a MiBar! Sistema de gestion gastronomica"+ "\n\n" +"Para iniciar sesion por primera vez debes registrarte.")
 } else {
-    alert("Sistema en mantenimiento! Intenta ingresar mas tarde.")
+    /* Nada pasa. */
 }
-
 
 /* Variable usuario y contraseña */
 let usuario = "";
