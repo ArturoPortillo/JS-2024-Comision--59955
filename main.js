@@ -1,4 +1,6 @@
 
+/* Solamente un pequeño script para evitar que el mensaje "Para iniciar sesion por primera vez debes registrarte." aparezca sin importar si estamos en la pagina de inicio o dentro de la plataforma, con esto logro que aparezca solamente en index.html */
+
 const paginaActual = window.location.href;
 
 if (paginaActual.includes('/index.html')) {
@@ -26,7 +28,7 @@ function Empleado(usuario, contrasena, idEmpleado, rol) {
 
 let empleado;
 
-function signUp() {
+function registrar() {
 
     let nuevoUsuario = prompt("Ingresa nuevo nombre de usuario: ");
     let contrasenaUsuario = prompt("Ingresa un PIN: ");
@@ -52,7 +54,7 @@ function signUp() {
 
 /* Funcion de inicio de sesion */
 
-function logIn() {
+function ingresar() {
 
     for (let i = 3; i > 0; i--){
         let campoUsuario = prompt("Ingresa nombre de usuario: ");
