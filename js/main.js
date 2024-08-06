@@ -1,5 +1,5 @@
 
-if (window.location.pathname === '/index.html'){
+if (window.location.pathname == '/index.html'){
     alert("Bienvenido a MiBar! Sistema de gestion gastronomica" + "\n\n" +"Para iniciar sesion por primera vez debes registrarte.")
 } else {
     alert("Bienvenido a MiBar! Sistema de gestion gastronomica" + "\n" + "El sistema se encuentra en mantenimiento, vuelve mas tarde." )
