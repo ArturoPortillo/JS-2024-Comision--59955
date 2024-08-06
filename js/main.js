@@ -59,7 +59,7 @@ function logIn() {
 
     if (campoUsuario === empleado.usuario && campoContrasena === empleado.contrasena){
         alert("Ingresaste correctamente.")
-        window.location.href = "/html/platform.html"   
+        window.location.href = "html/platform.html"   
         console.log("Ingresaste correctamente") 
     } else if (i>1){
         alert("Usuario no encontrado."+"\n"+"Te quedan " + (i-1) + " intentos.")
