@@ -10,10 +10,13 @@ if (paginaActual.includes('/index.html')) {
 }
 
 /* Variable usuario y contraseña */
+
+
 let usuario = "";
 let contrasena = "";
 let idEmpleado = 0;
 let rol = '';
+
 
 /* Funcion constructora de usuario estableciendo su rol */
 
@@ -26,7 +29,14 @@ function Empleado(usuario, contrasena, idEmpleado, rol) {
 
 /* Funcion de registro */
 
-let empleado;
+
+
+const empleado = {
+    usuario: "",
+    contrasena: "",
+    idEmpleado: 0,
+    rol: "",
+};
 
 function registroUsuario() {
 
@@ -41,7 +51,10 @@ function registroUsuario() {
         rol = '';
         console.log("Usuario: " + usuario +  "\n" + "Contraseña: " + contrasena);
         console.log("Usuario registrado exitosamente");   
-        empleado = new Empleado(usuario, contrasena, idEmpleado, rol)     
+        empleado.usuario = usuario;
+        empleado.contrasena = contrasena;
+        empleado.idEmpleado = idEmpleado;
+        empleado.rol = rol;
     } else if (!isNaN(nuevoUsuario)){
         alert("Error al registrar usuario, usuario no debe contener valores numericos");
         console.log("Error al registrar usuario, usuario no debe contener valores numericos");
