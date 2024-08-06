@@ -1,8 +1,10 @@
 
-if (window.location.pathname == '/index.html'){
-    alert("Bienvenido a MiBar! Sistema de gestion gastronomica" + "\n\n" + "Para iniciar sesion por primera vez debes registrarte.")
+const currentUrl = window.location.href;
+
+if (currentUrl.endsWith('/') || currentUrl.endsWith('/index.html')) {
+    alert("Bienvenido a MiBar! Sistema de gestion gastronomica" + "\n\n" + "Para iniciar sesion por primera vez debes registrarte.");
 } else {
-    alert("Bienvenido a MiBar! Sistema de gestion gastronomica" + "\n\n" + "El sistema se encuentra en mantenimiento, vuelve mas tarde." )
+    alert("Bienvenido a MiBar! Sistema de gestion gastronomica" + "\n\n" + "El sistema se encuentra en mantenimiento, vuelve mas tarde.");
 }
 
 /* Variable usuario y contraseña */
