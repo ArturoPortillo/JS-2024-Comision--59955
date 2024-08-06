@@ -1,4 +1,9 @@
-alert("Bienvenido a MiBar! Sistema de gestion gastronomica"+ "\n\n" +"Para iniciar sesion por primera vez debes registrarte.")
+
+if(window.location.href = "index.html"  ){
+    alert("Bienvenido a MiBar! Sistema de gestion gastronomica"+ "\n\n" +"Para iniciar sesion por primera vez debes registrarte.")
+} else {
+    alert("Sistema en mantenimiento! Intenta ingresar mas tarde.")
+}
 
 
 /* Variable usuario y contraseña */
