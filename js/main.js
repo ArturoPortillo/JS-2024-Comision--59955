@@ -16,7 +16,6 @@ function Empleado(usuario, contrasena, idEmpleado, rol) {
     this.rol = rol;
 }
 
-
 /* Funcion de registro */
 
 let empleado;
@@ -45,9 +44,6 @@ function signUp() {
     console.log(empleado)  
 }
 
-
-
-
 /* Funcion de inicio de sesion */
 
 function logIn() {
@@ -63,20 +59,13 @@ function logIn() {
 
     if (campoUsuario === empleado.usuario && campoContrasena === empleado.contrasena){
         alert("Ingresaste correctamente.")
-        window.location.href = "platform.html"   
+        window.location.href = "../html/platform.html"   
         console.log("Ingresaste correctamente") 
     } else if (i>1){
         alert("Usuario no encontrado."+"\n"+"Te quedan " + (i-1) + " intentos.")
         console.log("Usuario no encontrado");
     } else {
         alert("Usuario no encontrado."+"\n"+"Superaste el limite de intentos, intenta mas tarde.")
-    }    
+        }    
     }
-
-    
 }
-
-
-
-
-/* for (let i = 3; i < 1; i--){ */
