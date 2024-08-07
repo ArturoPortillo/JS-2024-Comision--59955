@@ -79,11 +79,12 @@ function inicioSesion() {
             console.log("Contraseña ingresada: " + campoContrasena);
 
     if (campoUsuario === empleado.usuario && campoContrasena === empleado.contrasena){
-        alert("Ingresaste correctamente.")
-        window.location.href = "platform.html"   
-        console.log("Ingresaste correctamente") 
+        alert("Ingresaste correctamente.");
+        window.location.href = "platform.html"; 
+        console.log("Ingresaste correctamente");
+        break;
     } else if (i>1){
-        alert("Usuario no encontrado."+"\n"+"Te quedan " + (i-1) + " intentos.")
+        alert("Usuario no encontrado."+"\n"+"Te quedan " + (i-1) + " intentos.");
         console.log("Usuario no encontrado");
     } else {
         alert("Usuario no encontrado."+"\n"+"Superaste el limite de intentos, intenta mas tarde.")
