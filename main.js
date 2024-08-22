@@ -218,19 +218,10 @@ function cargarMenu() {
 /* Array de mesas */
 
     const arrMesas = [[],[],[]]
-    const nuevaMesa = [];
-
-
-/*     let seleccionaMesa = parseInt(prompt("Indica el numero de mesa: "));
-    let mesaSeleccionada = seleccionaMesa - 1;
-
-    const buscarMesa = (mesa) => mesa == seleccionaMesa;    
     
-    console.log(arrMesas.findIndex(buscarMesa))
-
- */
 
 function crearMesa() {
+    let nuevaMesa = [];
     let arrLength = arrMesas.length + 1;
     arrMesas.push(nuevaMesa)
     console.log("creaste una nueva mesa.")
@@ -249,7 +240,7 @@ function recorrerMesas() {
 
 function abrirMesa() {
 
-    let mesaSelec = parseInt(prompt("Indica el numero de mesa: "))
+    let mesaSelec = parseInt(prompt("Indica el numero de mesa que deseas abrir: "))
 
         if (isNaN(mesaSelec) || mesaSelec < 1 || mesaSelec > arrMesas.length) {
             console.log(`Ingresa un numero valido de mesa`)
