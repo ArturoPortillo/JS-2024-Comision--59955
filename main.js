@@ -5,6 +5,11 @@ const paginaActual = window.location.href;
 
 if (paginaActual.includes('/index.html')) {
     alert("Bienvenido a MiBar! Sistema de gestion gastronomica" + "\n\n" + "Para iniciar sesion por primera vez debes registrarte.");
+    console.log(`Bienvenido a MiBar Sistema de gestion gastronomica! Crea un nuevo usuario o inicia sesion como administrador:
+        
+        usuario: admin
+        clave: admin
+        `)
 } else {
     alert("Bienvenido a MiBar! Sistema de gestion gastronomica" + "\n\n" + "El sistema se encuentra en mantenimiento, vuelve mas tarde.");
 }
