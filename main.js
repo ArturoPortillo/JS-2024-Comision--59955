@@ -237,6 +237,7 @@ function recorrerMesas() {
     return arrMesas
 }
 
+/* Funcion para abrir una mesa y agregar articulos a la mesa seleccionada */
 
 function abrirMesa() {
 
