@@ -110,8 +110,9 @@ function registroUsuario() {
 
         let validarDatos = false;
         let usuarioActivo;
-        
-        console.table("Los usuarios registrados son:" + usuariosRegistrados)
+
+        console.log("Usuarios registrados: ")
+        usuariosRegistrados.map( usuariosRegistrado => console.log(usuariosRegistrado))
         
         for (let i = 0; i < 3; i++){
 
