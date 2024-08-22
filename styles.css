@@ -24,13 +24,27 @@ body  {
     margin-top: 3rem;
     max-width: 90%;
 }
+.innerFavicon {
+    max-width: 2.5%;
+    max-height: 2.5%;
+    margin-right: 8px;
+}
+
+.innerHeader {
+    margin-bottom: 3px;
+}
+
+.platformHeader {
+    display: flex;
+    justify-content: flex-end;
+}
 
 .formWindow {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;    
-    min-height: 45rem;
+    min-height: 44rem;
 }
 
 .logingForm { 
@@ -52,3 +66,1053 @@ footer {
     width: 100%;
     height: 1.2rem;  
 }
+
+.window {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+
+/* PLANO */
+
+.window-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#plano {
+    width: 34rem;
+    height: 45rem;
+    background-color: lightgray;
+/*     margin: 1rem 25vw 1rem 1rem; */
+    display: grid;
+    align-items: center;
+}
+
+/* PANEL DE MESA */
+
+.sunken-panel {
+    height: fit-content;
+    width: 25rem;
+    height: 20rem;
+}
+
+.btn {
+    margin-top: 5px;
+    font-weight: bold;
+    min-height: 2rem;
+    min-width: 45px;
+    
+}
+
+.panelMesa {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;  
+    }
+
+    .panelBtn {
+        max-width: 1.5rem;
+        padding: 2px;
+    }
+    
+    .panelBtn1 { grid-area: 1 / 1 / 2 / 2; }
+    .panelBtn2 { grid-area: 1 / 2 / 2 / 3; }
+    .panelBtn3 { grid-area: 1 / 3 / 2 / 4; }
+    .panelBtn4 { grid-area: 1 / 4 / 2 / 6;
+                margin: 0px 0px 0px 10px;
+                max-height: 1.5rem;
+/*                 padding: 1px; */
+            }
+    .panelBtn5 { grid-area: 2 / 1 / 3 / 2; }
+    .panelBtn6 { grid-area: 2 / 2 / 3 / 3; }
+    .panelBtn7 { grid-area: 2 / 3 / 3 / 4; }
+    .panelBtn8 { grid-area: 3 / 1 / 4 / 2; }
+    .panelBtn9 { grid-area: 3 / 2 / 4 / 3; }
+    .panelBtn10 { grid-area: 3 / 3 / 4 / 4; } 
+
+    .filtrar {
+        padding: 0.2rem;
+    }
+
+/* MESAS DEL PLANO */
+
+.parent {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(9, 1fr); 
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+    justify-items: center;
+    border-style: solid;
+    border-color: grey;
+    border-width: 1px;
+    margin: 0 1rem 1rem 1rem;
+
+
+    }
+
+    .div1 { 
+        grid-area: 1 / 1 / 2 / 2;
+        background-color: lightgreen;
+        border-style: solid ;
+        border-radius: 10%;
+        border-width: 1px;
+        width: 4rem;    
+        height: 4rem;
+        text-align: center;
+        display: grid;
+        align-items: center;
+        }
+
+    .div2 { 
+        grid-area: 1 / 2 / 2 / 3;
+        background-color: lightgray;
+        border-style: dashed ;
+        border-radius: 10%;
+        border-width: 1px;
+        width: 4rem;    
+        height: 4rem;
+        opacity: 0.3;
+        text-align: center;
+        display: grid;
+        align-items: center;
+    }
+    .div3 { 
+    grid-area: 1 / 3 / 2 / 4;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center;
+    }
+.div4 { 
+    grid-area: 1 / 4 / 2 / 5;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center;
+    }
+.div5 { grid-area: 1 / 5 / 2 / 6;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div6 { grid-area: 1 / 6 / 2 / 7; 
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center;}
+.div7 { grid-area: 1 / 7 / 2 / 8;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div8 { grid-area: 2 / 1 / 3 / 2;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div9 { grid-area: 2 / 2 / 3 / 3;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div10 { grid-area: 2 / 3 / 3 / 4;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div11 { grid-area: 2 / 4 / 3 / 5;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div12 { grid-area: 2 / 5 / 3 / 6;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div13 { grid-area: 2 / 6 / 3 / 7;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div14 { grid-area: 2 / 7 / 3 / 8;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div15 { grid-area: 3 / 1 / 4 / 2;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div16 { grid-area: 3 / 2 / 4 / 3;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div17 { grid-area: 3 / 3 / 4 / 4;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div18 { grid-area: 3 / 4 / 4 / 5;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div19 { grid-area: 3 / 5 / 4 / 6;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div20 { grid-area: 3 / 6 / 4 / 7;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div21 { grid-area: 3 / 7 / 4 / 8;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div22 { grid-area: 4 / 1 / 5 / 2;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div23 { grid-area: 4 / 2 / 5 / 3;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center;}
+.div24 { grid-area: 4 / 3 / 5 / 4;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div25 { grid-area: 4 / 4 / 5 / 5;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div26 { grid-area: 4 / 5 / 5 / 6;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div27 { grid-area: 4 / 6 / 5 / 7;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div28 { grid-area: 4 / 7 / 5 / 8;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div29 { grid-area: 5 / 1 / 6 / 2;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div30 { grid-area: 5 / 2 / 6 / 3;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div31 { grid-area: 5 / 3 / 6 / 4;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div32 { grid-area: 5 / 4 / 6 / 5;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div33 { grid-area: 5 / 5 / 6 / 6; 
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div34 { grid-area: 5 / 6 / 6 / 7;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div35 { grid-area: 5 / 7 / 6 / 8;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div36 { grid-area: 6 / 1 / 7 / 2;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div37 { grid-area: 6 / 2 / 7 / 3;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div38 { grid-area: 6 / 3 / 7 / 4;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div39 { grid-area: 6 / 4 / 7 / 5;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div40 { grid-area: 6 / 5 / 7 / 6;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div41 { grid-area: 6 / 6 / 7 / 7;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div42 { grid-area: 6 / 7 / 7 / 8;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div43 { grid-area: 7 / 1 / 8 / 2;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div44 { grid-area: 7 / 2 / 8 / 3;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div45 { grid-area: 7 / 3 / 8 / 4;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div46 { grid-area: 7 / 4 / 8 / 5;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div47 { grid-area: 7 / 5 / 8 / 6;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div48 { grid-area: 7 / 6 / 8 / 7;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div49 { grid-area: 7 / 7 / 8 / 8;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div50 { grid-area: 8 / 1 / 9 / 2;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div51 { grid-area: 8 / 2 / 9 / 3;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div52 { grid-area: 8 / 3 / 9 / 4;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div53 { grid-area: 8 / 4 / 9 / 5;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div54 { grid-area: 8 / 5 / 9 / 6;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div55 { grid-area: 8 / 6 / 9 / 7;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div56 { grid-area: 8 / 7 / 9 / 8;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div57 { grid-area: 9 / 1 / 10 / 2;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div58 { grid-area: 9 / 2 / 10 / 3;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div59 { grid-area: 9 / 3 / 10 / 4;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div60 { grid-area: 9 / 4 / 10 / 5;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div61 { grid-area: 9 / 5 / 10 / 6;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div62 { grid-area: 9 / 6 / 10 / 7;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; }
+.div63 { grid-area: 9 / 7 / 10 / 8;
+    background-color: lightgray;
+    border-style: dashed ;
+    border-radius: 10%;
+    border-width: 1px;
+    width: 4rem;    
+    height: 4rem;
+    opacity: 0.3;
+    text-align: center;
+    display: grid;
+    align-items: center; } 
+    
+/*     .div1 { grid-area:  1 / 1 / 2 / 2;
+            background-color: lightgreen;
+            border-style: solid ;
+            border-radius: 25%;
+            border-width: 1px;
+            width: 4rem;    
+            height: 4rem;
+            opacity: 0.3;
+            text-align: center;
+            display: grid;
+            align-items: center;
+        }
+    .div2 {
+        grid-area: 1 / 2 / 2 / 3;
+        background-color: lightgreen;
+        border-style: solid ;
+        border-radius: 25%;
+        border-width: 1px;
+        width: 4rem;    
+        height: 4rem;
+        opacity: 0.3;
+        text-align: center;
+        display: grid;
+        align-items: center;
+    }
+    .div3 {
+        grid-area: 1 / 3 / 2 / 4;
+        background-color: lightgreen;
+        border-style: solid ;
+        border-radius: 25%;
+        border-width: 1px;
+        width: 4rem;    
+        height: 4rem;
+        opacity: 0.3;
+        text-align: center;
+        display: grid;
+        align-items: center;
+    }
+    .div4 {
+        grid-area: 1 / 4 / 2 / 5;
+        background-color: lightgreen;
+        border-style: solid ;
+        border-radius: 25%;
+        border-width: 1px;
+        width: 4rem;    
+        height: 4rem;
+        opacity: 0.3;
+        text-align: center;
+        display: grid;
+        align-items: center;
+    }
+    .div5 {
+        grid-area: 2 / 1 / 3 / 2;
+        background-color: lightgreen;
+        border-style: solid ;
+        border-radius: 25%;
+        border-width: 1px;
+        width: 4rem;    
+        height: 4rem;
+        opacity: 0.3;
+        text-align: center;
+        display: grid;
+        align-items: center;
+    }
+    .div6 {
+        grid-area: 2 / 2 / 3 / 3;
+        background-color: lightgreen;
+        border-style: solid ;
+        border-radius: 25%;
+        border-width: 1px;
+        width: 4rem;    
+        height: 4rem;
+        opacity: 0.3;
+        text-align: center;
+        display: grid;
+        align-items: center;
+    }
+    .div7 {
+        grid-area: 2 / 3 / 3 / 4;
+        background-color: lightgreen;
+        border-style: solid ;
+        border-radius: 25%;
+        border-width: 1px;
+        width: 4rem;    
+        height: 4rem;
+        opacity: 0.3;
+        text-align: center;
+        display: grid;
+        align-items: center;
+    }
+    .div8 { 
+        grid-area: 2 / 4 / 3 / 5;
+        background-color: lightgreen;
+        border-style: solid ;
+        border-radius: 25%;
+        border-width: 1px;
+        width: 4rem;    
+        height: 4rem;
+        opacity: 0.3;
+        text-align: center;
+        display: grid;
+        align-items: center;
+    }
+    .div9 { 
+        grid-area:  3 / 1 / 4 / 2;
+        background-color: lightgreen;
+        border-style: solid ;
+        border-radius: 25%;
+        border-width: 1px;
+        width: 4rem;    
+        height: 4rem;
+        opacity: 0.3;
+        text-align: center;
+        display: grid;
+        align-items: center;
+    }
+    .div10 { 
+        grid-area: 3 / 2 / 4 / 3;
+        background-color: lightgreen;
+        border-style: solid ;
+        border-radius: 25%;
+        border-width: 1px;
+        width: 4rem;    
+        height: 4rem;
+        opacity: 0.3;
+        text-align: center;
+        display: grid;
+        align-items: center;
+    }
+    .div11 {
+        grid-area: 3 / 3 / 4 / 4;
+        background-color: lightgreen;
+        border-style: solid ;
+        border-radius: 25%;
+        border-width: 1px;
+        width: 4rem;    
+        height: 4rem;
+        opacity: 0.3;
+        text-align: center;
+        display: grid;
+        align-items: center;
+    }
+    .div12 {
+        grid-area: 3 / 4 / 4 / 5;
+        background-color: lightgreen;
+        border-style: solid ;
+        border-radius: 25%;
+        border-width: 1px;
+        width: 4rem;    
+        height: 4rem;
+        opacity: 0.3;
+        text-align: center;
+        display: grid;
+        align-items: center;
+    }
+    .div13 {
+        grid-area: 4 / 1 / 5 / 2;
+        background-color: lightgreen;
+        border-style: solid ;
+        border-radius: 25%;
+        border-width: 1px;
+        width: 4rem;    
+        height: 4rem;
+        opacity: 0.3;
+        text-align: center;
+        display: grid;
+        align-items: center;
+    }
+    .div14 {
+        grid-area: 4 / 2 / 5 / 3;
+        background-color: lightgreen;
+        border-style: solid ;
+        border-radius: 25%;
+        border-width: 1px;
+        width: 4rem;    
+        height: 4rem;
+        opacity: 0.3;
+        text-align: center;
+        display: grid;
+        align-items: center;
+    }
+    .div15 {
+        grid-area: 4 / 3 / 5 / 4;
+        background-color: lightgreen;
+        border-style: solid ;
+        border-radius: 25%;
+        border-width: 1px;
+        width: 4rem;    
+        height: 4rem;
+        opacity: 0.3;
+        text-align: center;
+        display: grid;
+        align-items: center;
+    }
+    .div16 {
+        grid-area:  4 / 4 / 5 / 5;
+        background-color: lightgreen;
+        border-style: solid ;
+        border-radius: 25%;
+        border-width: 1px;
+        width: 4rem;    
+        height: 4rem;
+        opacity: 0.3;
+        text-align: center;
+        display: grid;
+        align-items: center;
+    }
+    .div17 {
+        grid-area: 5 / 1 / 6 / 2;
+        background-color: lightgreen;
+        border-style: solid ;
+        border-radius: 25%;
+        border-width: 1px;
+        width: 4rem;    
+        height: 4rem;
+        opacity: 0.3;
+        text-align: center;
+        display: grid;
+        align-items: center;
+    }
+    .div18 { 
+        grid-area: 5 / 2 / 6 / 3; 
+        background-color: lightgreen;
+        border-style: solid ;
+        border-radius: 25%;
+        border-width: 1px;
+        width: 4rem;    
+        height: 4rem;
+        opacity: 0.3;
+        text-align: center;
+        display: grid;
+        align-items: center;
+    }
+    .div19 {
+        grid-area:  5 / 3 / 6 / 4;
+        background-color: lightgreen;
+        border-style: solid ;
+        border-radius: 25%;
+        border-width: 1px;
+        width: 4rem;    
+        height: 4rem;
+        opacity: 0.3;
+        text-align: center;
+        display: grid;
+        align-items: center;
+    }
+    .div20 { 
+        grid-area:  5 / 4 / 6 / 5;
+        background-color: lightgreen;
+        border-style: solid ;
+        border-radius: 25%;
+        border-width: 1px;
+        width: 4rem;    
+        height: 4rem;
+        opacity: 0.3;
+        text-align: center;
+        display: grid;
+        align-items: center;
+    }  */
