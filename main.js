@@ -208,7 +208,7 @@ function inicioSesion() {
 		} else {
 			alert("No existe")
 			let errorLogin = document.querySelector('.errorLogin')
-			let mensajeError = `<div><img src="exclIcon.png" alt="!!" class="iconErrorlog"><p>Usuario no encontrado</p></div>`
+			let mensajeError = `<img src="exclIcon.png" alt="!!" class="iconErrorlog"><p>Usuario no encontrado</p>`
 			errorLogin.innerHTML = mensajeError;
 		}
 	});
