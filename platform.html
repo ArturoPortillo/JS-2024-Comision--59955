@@ -29,218 +29,182 @@
         </menu>
         <!-- Pestaña activa -->
         <div class="window" role="tabpanel">
-          <!-- PLANO DE MESAS -->
+        <!-- PLANO DE MESAS -->
           <div class="window-body">
-            <div class="tree-view parent" ID="plano">
-              <!-- MESAS EN EL PLANO -->
-              <div class="div1">MESA 1</div>
-              <div class="div2"> </div>
-              <div class="div3"> </div>
-              <div class="div4"> </div>
-              <div class="div5"> </div>
-              <div class="div6"> </div>
-              <div class="div7"> </div>
-              <div class="div8"> </div>
-              <div class="div9"> </div>
-              <div class="div10"> </div>
-              <div class="div11"> </div>
-              <div class="div12"> </div>
-              <div class="div13"> </div>
-              <div class="div14"> </div>
-              <div class="div15"> </div>
-              <div class="div16"> </div>
-              <div class="div17"> </div>
-              <div class="div18"> </div>
-              <div class="div19"> </div>
-              <div class="div20"> </div>
-              <div class="div21"> </div>
-              <div class="div22"> </div>
-              <div class="div23"> </div>
-              <div class="div24"> </div>
-              <div class="div25"> </div>
-              <div class="div26"> </div>
-              <div class="div27"> </div>
-              <div class="div28"> </div>
-              <div class="div29"> </div>
-              <div class="div30"> </div>
-              <div class="div31"> </div>
-              <div class="div32"> </div>
-              <div class="div33"> </div>
-              <div class="div34"> </div>
-              <div class="div35"> </div>
-              <div class="div36"> </div>
-              <div class="div37"> </div>
-              <div class="div38"> </div>
-              <div class="div39"> </div>
-              <div class="div40"> </div>
-              <div class="div41"> </div>
-              <div class="div42"> </div>
-              <div class="div43"> </div>
-              <div class="div44"> </div>
-              <div class="div45"> </div>
-              <div class="div46"> </div>
-              <div class="div47"> </div>
-              <div class="div48"> </div>
-              <div class="div49"> </div>
-              <div class="div50"> </div>
-              <div class="div51"> </div>
-              <div class="div52"> </div>
-              <div class="div53"> </div>
-              <div class="div54"> </div>
-              <div class="div55"> </div>
-              <div class="div56"> </div>
-              <div class="div57"> </div>
-              <div class="div58"> </div>
-              <div class="div59"> </div>
-              <div class="div60"> </div>
-              <div class="div61"> </div>
-              <div class="div62"> </div>
-              <div class="div63"> </div> 
-<!--            <div class="div1">MESA</div>
-                <div class="div2">MESA</div>
-                <div class="div3">MESA  </div>
-                <div class="div4">MESA  </div>
-                <div class="div5">MESA  </div>
-                <div class="div6">MESA  </div>
-                <div class="div7">MESA  </div>
-                <div class="div8">MESA  </div>
-                <div class="div9">MESA  </div>
-                <div class="div10">MESA  </div>
-                <div class="div11">MESA  </div>
-                <div class="div12">MESA  </div>
-                <div class="div13">MESA  </div>
-                <div class="div14">MESA  </div>
-                <div class="div15">MESA  </div>
-                <div class="div16">MESA </div>
-                <div class="div17">MESA  </div>
-                <div class="div18">MESA  </div>
-                <div class="div19">MESA  </div>
-                <div class="div20">MESA  </div>
-                </div>  -->
+            <img src="Close.png" class="lock" alt="" onclick="cambiarCandado()">
+            <img src="plusIconPixel.png" class="addTable" alt="" onclick="crearMesa()">
+            <div class="tree-view parent" id="plano">
+              <!-- Dinamico a traves de JS -->   
+              <div class="grilla1" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla2" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla3" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla4" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla5" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla6" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla7" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla8" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla9" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla10" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla11" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla12" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla13" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla14" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla15" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla16" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla17" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla18" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla19" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla20" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla21" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla22" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla23" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla24" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla25" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla26" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla27" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla28" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla29" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla30" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla31" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla32" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla33" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla34" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla35" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla36" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla37" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla38" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla39" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla40" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla41" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla42" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla43" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla44" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla45" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla46" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla47" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla48" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla49" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla50" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla51" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla52" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla53" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla54" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla55" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla56" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla57" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla58" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla59" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla60" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla61" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla62" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+              <div class="grilla63" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>       
             </div>
             <!-- PANEL DE MESA ABIERTA -->
           <div>
-            <div class="sunken-panel">
-              <table class="interactive">
-                <thead>
-                  <div class="title-bar">
-                    <div class="title-bar-text">SALON</div>
-                    <div class="title-bar-text">MESA #</div>
-                    <div class="title-bar-text">MOZO: </div>
-                    <div class="title-bar-controls">
-                      <button aria-label="Close"></button>
+            <fieldset class="contenidoArr">
+
+              <div class="sunken-panel">
+                <table class="interactive">
+                  <thead>
+                  
+                    <div class="title-bar">
+                      <div class="title-bar-text">SALON</div>
+                      <div class="title-bar-text">MESA #${mesa.id}</div>
+                      <div class="title-bar-text">MOZO: ${nombreUsuario}</div>
+                      <div class="title-bar-controls">
+                        <button aria-label="Close" class="escMesa"></button>
+                      </div>
+                    </div>
+                    <div>
+                      <tr>
+                        <th>Articulo</th>
+                        <th>cantidad</th>
+                        <th>precio</th>
+                        <th style="width: 100vw;">total</th>
+                      </tr>
+                    </div>
+                  </thead>
+                  <tbody class="contenidoMesa"> 
+                    <!-- Contenido dinamico  -->
+
+                  </tbody>
+                </table>
+              </div>
+              <div>
+                <fieldset class="contenedorMesa">
+                  <div>
+                    <div>
+                      <ul class="tree-view">
+                        <li style="color: grey;">Resultados de la busqueda</li>
+                      </ul>
                     </div>
                   </div>
-                  <tr>
-                    <th>Articulo</th>
-                    <th>cantidad</th>
-                    <th>precio</th>
-                    <th style="width: 100vw;">total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>${articulo}</td>
-                    <td>${cantidad}</td>
-                    <td>${precio}</td>                  
-                    <td >${total}</td>
-                  </tr>
-                  <tr>
-                    <td>${articulo}</td>
-                    <td>${cantidad}</td>
-                    <td>${precio}</td>
-                    <td >${total}</td>
-                  </tr>
-                  <tr>
-                    <td>${articulo}</td>
-                    <td>${cantidad}</td>
-                    <td>${precio}</td>
-                    <td >${total}</td>
-                  </tr>
-                  <tr>
-                    <td>${articulo}</td>
-                    <td>${cantidad}</td>
-                    <td>${precio}</td>
-                    <td >${total}</td>
-                  </tr>
-                  <tr>
-                    <td>${articulo}</td>
-                    <td>${cantidad}</td>
-                    <td>${precio}</td>
-                    <td >${total}</td>
-                  </tr>
-                  <tr>
-                    <td>${articulo}</td>
-                    <td>${cantidad}</td>
-                    <td>${precio}</td>
-                    <td >${total}</td>
-                  </tr>
-                  <tr>
-                    <td>${articulo}</td>
-                    <td>${cantidad}</td>
-                    <td>${precio}</td>
-                    <td >${total}</td>
-                  </tr>
-                  <tr>
-                    <td>${articulo}</td>
-                    <td>${cantidad}</td>
-                    <td>${precio}</td>
-                    <td >${total}</td>
-                  </tr>
-                  <tr>
-                    <td>${articulo}</td>
-                    <td>${cantidad}</td>
-                    <td>${precio}</td>
-                    <td >${total}</td>
-                  </tr>
-                  <tr>
-                    <td>${articulo}</td>
-                    <td>${cantidad}</td>
-                    <td>${precio}</td>
-                    <td >${total}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <fieldset>
-              <div>
-                <div>
-                  <ul class="tree-view">
-                    <li style="color: grey;">Resultados de la busqueda</li>
-                  </ul>
+                  <div class="field-row filtrar">
+                    <label for="text17"> Buscar</label>
+                    <input id="text17" type="text" />
+                  </div>    
+                  <div class="panelMesa">                
+                    <div class="panelBtn1"><button class="panelBtn">+</button> </div>
+                    <div class="panelBtn2"><button class="panelBtn">-</button> </div>
+                    <div class="panelBtn3"><button class="panelBtn">borrar</button> </div>
+                    <div class="panelBtn4"> <ul class="tree-view">
+                      <li>Total</li>
+                    </ul></div>
+                    <div class="panelBtn5"><button class="panelBtn">Anular</button> </div>
+                    <div class="panelBtn6"><button class="panelBtn">Descuento</button> </div>
+                    <div class="panelBtn7"><button class="panelBtn">Transferir</button> </div>
+                    <div class="panelBtn8"><button class="panelBtn">Mozo</button> </div>
+                    <div class="panelBtn9"><button class="panelBtn">Fact B</button> </div> 
+                    <div class="panelBtn10"><button class="panelBtn">Ticket Fiscal</button> </div> 
+                  </div> 
+                  <div class="logo2"><img class="logoMibar2" src="LOGO MIBAR.png" alt=""></div>
+        <div class="window-body">          
+                  </fieldset>
                 </div>
-              </div>
-              <div class="field-row filtrar">
-                <label for="text17"> Buscar</label>
-                <input id="text17" type="text" />
-              </div>    
-              <div class="panelMesa">                
-                <div class="panelBtn1"><button class="panelBtn">+</button> </div>
-                <div class="panelBtn2"><button class="panelBtn">-</button> </div>
-                <div class="panelBtn3"><button class="panelBtn">borrar</button> </div>
-                <div class="panelBtn4"> <ul class="tree-view">
-                  <li>Total</li>
-                </ul></div>
-                <div class="panelBtn5"><button class="panelBtn">Anular</button> </div>
-                <div class="panelBtn6"><button class="panelBtn">Descuento</button> </div>
-                <div class="panelBtn7"><button class="panelBtn">Transferir</button> </div>
-                <div class="panelBtn8"><button class="panelBtn">Mozo</button> </div>
-                <div class="panelBtn9"><button class="panelBtn">Fact B</button> </div> 
-                <div class="panelBtn10"><button class="panelBtn">Ticket Fiscal</button> </div> 
-              </div>           
               </fieldset>
-            </div>
+              </div>
+              <!-- Panel menu -->   
+              <div>
+                <fieldset class="menuWindow">
+                  <fieldset class="menuWindow panelPadding">
+                    <div class="title-bar">
+                      <div class="title-bar-text">MENU DISPONIBLE</div>
+                      <div class="title-bar-controls">
+                        <button aria-label="Close"></button>
+                      </div>
+                    </div>
+                    <div>
+                      <menu role="tablist">
+                        <li role="tab" aria-selected="true"><a href="#tabs">Rubro #1</a></li>
+                        <li role="tab"><a href="#tabs">Rubro #2</a></li>
+                        <li role="tab"><a href="#tabs">Rubro #3</a></li>
+                        <li role="tab"><a href="#tabs">Rubro #4</a></li>
+                        <li role="tab"><a href="#tabs">Rubro #5</a></li>
+                        <li role="tab"><a href="#tabs">Rubro #6</a></li>
+                      </menu>
+                    </div>
+                    <div>
+                      <div class="panelMenu">
+                        <!-- Botones de articulos dinamicos -->    
+                      </div>
+                      <img src="plusIconPixel.png" alt="+" class="addMenu">
+                    </div>
+
+
+                  </fieldset>
+                </fieldset>
+              </div>
         </div>
-            <!-- Pie de pestaña-->
               <div>
                 <div class="status-bar">
-                  <p class="status-bar-field">Usuario: </p> 
+                  <p class="status-bar-field usuarioActivo">Usuario: </p> 
                   <p class="status-bar-field fecha">Fecha</p></p>
                   <p class="status-bar-field">JavaScript Comision #59955</p>
                 </div>      
               </div>
           </div>
-        </div>                  
+          
+        </div>   
     </div>
     <footer>
       <div class="status-bar">
@@ -249,6 +213,6 @@
         <p class="status-bar-field">JavaScript Comision #59955</p>
       </div>
     </footer>
-    <script src="main.js"></script>
+    <script src="plano.js"></script>
 </body>
 </html>

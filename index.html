@@ -8,34 +8,48 @@
     <link
     rel="stylesheet"
     href="https://unpkg.com/98.css">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
 </head>
 <body>
   <div>
+    
     <div class="title-bar">            
       <div class="title-bar-text innerHeader"> <img src="favicon2.png" alt="" class="innerFavicon">MiBar - Sistema de gestión Gastronomica</div>
       <div class="title-bar-controls">
         <button aria-label="Close" onclick="location.href='./index.html'";></button>
       </div>          
     </div>
+    
     <div class="formWindow">
+      <div class="popUpfunc">
+        <!-- Pop up dinamico -->
+    
+      </div>
+
       <div class="window" style="width: 320px">
         <div class="title-bar">
           <div class="title-bar-text">MiBar - Sistema de gestión Gastronomica</div>
         </div>
-        <div class="logo"><img class="logoMibar" src="LOGO MIBAR.png" alt=""></div>
+        <div class="logo">
+          <img class="logoMibar" src="LOGO MIBAR.png" alt="">
+        </div>
         <div class="window-body">
           <div class="logingForm">
             <div class="field-row-stacked" style="width: 200px">
               <label>Usuario</label>
-              <input type="text" value="usuario"/>
+              <input type="text" placeholder="Usuario" class="userField"/>
             </div>
             <div class="field-row-stacked" style="width: 200px">
               <label>Contraseña</label>
-              <input type="password" value="contrasena"/>
+              <input type="password" placeholder="Contraseña" class="inputPass"/>
             </div>
               <div>
-                <button type="submit" onclick="inicioSesion()">Ingresar</button>
-                <button type="submit" onclick="registroUsuario()">Registrarse</button>
+                <button type="button" class="iniciarSesion">Ingresar</button>
+                <button type="button" onclick="popUp()">Registrarse</button>
+                <button type="button" onclick="location.href = 'doom-main/doom.html';">Play Doom instead</button>
               </div>
           </div>
         </div>
@@ -43,10 +57,11 @@
           <p class="status-bar-field">Press F1 for help</p>
           <p class="status-bar-field">Slide 1</p>
           <p class="status-bar-field">CPU Usage: 14%</p>
-        </div>
-      </div>
+        </div>        
+      </div>     
+      
   </div>
-  </div>
+  </div>  
   <footer>
     <div class="status-bar">
       <p class="status-bar-field">Creado por Arturo Portillo</p>
@@ -55,5 +70,6 @@
     </div>
   </footer>
     <script src="main.js"></script>
+    <script src="test.js"></script>
 </body>
 </html>
