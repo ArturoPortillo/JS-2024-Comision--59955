@@ -158,6 +158,18 @@ footer {
     display: block;
 }
 
+.errorLogin {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: blue;
+}
+
+.iconErrorlog {
+    margin: auto;
+  display: block;
+}
+
 /* PLANO */
 
 .window-body {

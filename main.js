@@ -23,6 +23,7 @@
 
 /* Variable usuario y contraseña */
 
+
 let usuario = "";
 let contrasena = "";
 let idEmpleado = 0;
@@ -45,7 +46,7 @@ const usuariosRegistrados = [
 
 /* Funcion popUp */
 
-let btnCerrar = document.querySelector('.cancelarRegistro')
+let btnCerrar = "null" ?? document.querySelector('.cancelarRegistro')
 
 function popUp() {
 	
@@ -104,7 +105,7 @@ function toggleVis() {
     }
 	};
 
-btnCerrar.addEventListener("click", toggleVis)
+/* btnCerrar.addEventListener("click", toggleVis) */
 
 
 /* Funcion registrar usuario */
@@ -204,11 +205,19 @@ function inicioSesion() {
 			console.log("el usuario activo es: " + usuarioActivo);
 			window.location.href = "platform.html";
 			validarDatos = true;
+		} else {
+			alert("No existe")
+			let errorLogin = document.querySelector('.errorLogin')
+			let mensajeError = `<div><img src="exclIcon.png" alt="!!" class="iconErrorlog"><p>Usuario no encontrado</p></div>`
+			errorLogin.innerHTML = mensajeError;
 		}
 	});
 }
 
+
 const btnInicio = document.querySelector(".iniciarSesion");
+console.log(btnInicio);
+
 btnInicio.addEventListener("click", inicioSesion);
 console.log(btnInicio);
 
