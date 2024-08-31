@@ -1,6 +1,6 @@
 /* Solamente un pequeño script para evitar que el mensaje "Para iniciar sesion por primera vez debes registrarte." aparezca sin importar si estamos en la pagina de inicio o dentro de la plataforma, con esto logro que aparezca solamente en index.html */
 
-const paginaActual = window.location.href;
+/* const paginaActual = window.location.href; */
 
 /* if (paginaActual.includes("/index.html")) {
 	alert(
@@ -91,9 +91,6 @@ function popUp() {
 	toggleVis()
 }
 
-
-
-
 function toggleVis() {
 
 	
@@ -108,9 +105,6 @@ function toggleVis() {
 	};
 
 btnCerrar.addEventListener("click", toggleVis)
-
-
-
 
 
 /* Funcion registrar usuario */
