@@ -162,12 +162,19 @@ footer {
     display: flex;
     flex-direction: row;
     align-items: center;
-    color: blue;
+    margin: 5px 0px 0px 0px;
+}
+.errorLogin p {
+    margin: 8px 0px 0px 5px;
+    font-size: 0.8rem;
 }
 
+
 .iconErrorlog {
-    margin: auto;
-  display: block;
+margin: auto;
+display: block;
+width: 1.8rem;
+height: 1.8rem;
 }
 
 /* PLANO */

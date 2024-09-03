@@ -321,16 +321,28 @@ document.querySelectorAll("table.interactive").forEach((element) => {
 
 /* TEST */
 
+const paginaActual = window.location.href; 
+
+setInterval(fechaSistema, 1000)
+
+function fechaSistema() {
+	const date = new Date();
+
+	if (paginaActual.includes("platform.html")) {
+		usuarioIniciado();
+		document.querySelector(".fecha").textContent = `Fecha: ${date.toLocaleDateString()} | Hora: ${date.toLocaleTimeString()};`;
+		usuarioIniciado();
+	}
+}
+
 const date = new Date();
 
-if (paginaActual.includes("platform.html")) {
-	usuarioIniciado();
-	document.querySelector(
-		".fecha"
-	).textContent = `Fecha: ${date.toLocaleDateString()} | Hora: ${date.toLocaleTimeString()};`;
-	usuarioIniciado();
 
-	alert("Abre la consola para acceder a las opciones disponibles");
+
+
+
+
+/* 	alert("Abre la consola para acceder a las opciones disponibles");
 
 	console.log(`
             
@@ -343,5 +355,4 @@ if (paginaActual.includes("platform.html")) {
             3. crearMesa(): nos permite agregar una mesa vacia a nuestro array de mesas.
 
             4. abrirMesa(): nos permite abrir una mesa y cargar articulos a una mesa.
-            `);
-}
+            `); */

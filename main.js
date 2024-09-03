@@ -46,11 +46,23 @@ const usuariosRegistrados = [
 
 /* Funcion popUp */
 
-let btnCerrar = "null" ?? document.querySelector('.cancelarRegistro')
+function toggleVis() {
+
+	let popUp = document.querySelector('.popUpfunc')
+
+    if (popUp.classList.contains('vis')) {
+        popUp.classList.remove('vis');
+        popUp.classList.add('invis');
+    } else {
+        popUp.classList.remove('invis');
+        popUp.classList.add('vis');
+    } 
+	};
+
 
 function popUp() {
 	
-	let btnCerrar = document.querySelector('.cancelarRegistro')
+
 	let popUp = document.querySelector('.popUpfunc')
 	/* Se generaba un bug que nos hacia "draggear" un div dentro de nuestro Input por error al tratar de sombrear el texto, lo solucione con el atributo: ondragstart="return false;" ondrop="return false;"
 	Sin embargo, no se puede sombrear con el Mouse dentro del Input, solo se puede sombrear con el atajo Shift + flecha Izquierda
@@ -61,7 +73,7 @@ function popUp() {
 			<div class="title-bar" id="mydivheader">            
 				<div class="title-bar-text innerHeader" style="margin:0 12rem 0 0;padding:0;"> <img src="favicon2.png" alt="" class="innerFavicon">MiBar - Sistema de gestión Gastronomica</div>
 							<div class="title-bar-controls">
-				<button type="button" aria-label="Close" class="cancelarRegistro" style="height:16px;width;14px;margin-top:3px;" onclick="toggleVis()"></button>
+				<button type="button" aria-label="Close" class="cancelarRegistro" style="height:16px;width;14px;margin-top:3px;" ></button>
 			</div> 
 			</div>
 
@@ -78,9 +90,12 @@ function popUp() {
 					<label>Ingrese contraseña:</label>
 					<input type="password" placeholder="Ingrese contraseña" class="newPass"  ondragstart="return false;" ondrop="return false;"/>
 					</div>
+					<div class="signupSucess">
+					TEST
+					</div>
 					<div>
 					<button type="button" onclick="registroUsuario()">Registrarse</button>
-					<button type="button" class="cancelarRegistro" onclick="toggleVis()">Cancelar</button>
+					<button type="button" class="cancelarRegistro">Cancelar</button>
 					</div>                 
 			</div>
 		</fieldset>
@@ -88,24 +103,16 @@ function popUp() {
 		`
 	/* Fuente de funcion: https://www.w3schools.com/HOWTO/howto_js_draggable.asp */
 	dragElement(document.getElementById("mydiv"));
-	btnCerrar.addEventListener("click", toggleVis)
+
+	let btnCerrar = document.querySelectorAll('.cancelarRegistro')
+	btnCerrar.forEach(btn => {
+		btn.addEventListener("click", toggleVis);
+	});
+	console.log(btnCerrar)
+
 	toggleVis()
 }
 
-function toggleVis() {
-
-	
-	let popUp = document.querySelector('.popUpfunc')
-    if (popUp.classList.contains('vis')) {
-        popUp.classList.remove('vis');
-        popUp.classList.add('invis');
-    } else {
-        popUp.classList.remove('invis');
-        popUp.classList.add('vis');
-    }
-	};
-
-/* btnCerrar.addEventListener("click", toggleVis) */
 
 
 /* Funcion registrar usuario */
@@ -178,11 +185,12 @@ function registroUsuario() {
 
 /* Funcion inicio de sesion */
 
+
 function inicioSesion() {
 	const btnInicio = document.querySelector(".userField");
 	console.log(btnInicio);
 
-	let validarDatos = false;
+/* 	let validarDatos = false; */
 	let usuarioActivo;
 
 	console.log("Usuarios registrados: ");
@@ -197,18 +205,29 @@ function inicioSesion() {
 	const campoContrasena = document.querySelector(".inputPass");
 	let inputPass = campoContrasena.value.toLowerCase().replace(/\s+/g, "");
 
+	let validarExistencia = usuariosRegistrados.find((el) => el.usuario == inputUsuario)
+	console.log(validarExistencia)
+
 	usuariosRegistrados.forEach((usuario) => {
 		if (usuario.usuario == inputUsuario && usuario.contrasena == inputPass) {
-			alert("Ingresaste correctamente");
 			usuarioActivo = inputUsuario;
 			localStorage.setItem("usuarioActivo", inputUsuario);
 			console.log("el usuario activo es: " + usuarioActivo);
 			window.location.href = "platform.html";
-			validarDatos = true;
-		} else {
-			alert("No existe")
+/* 			validarDatos = true; */
+			return;
+		} if(validarExistencia) {
 			let errorLogin = document.querySelector('.errorLogin')
-			let mensajeError = `<img src="exclIcon.png" alt="!!" class="iconErrorlog"><p>Usuario no encontrado</p>`
+			let mensajeError = `<div class="errorLogin"><img src="exclIcon.png" alt="!!" class="iconErrorlog"><p>Datos de usuario incorrecto.</p></div>`
+			errorLogin.innerHTML = mensajeError;
+			return;
+		}  else if (inputUsuario == '' && inputPass == '') {
+			let errorLogin = document.querySelector('.errorLogin')
+			let mensajeError = `<div class="errorLogin"><img src="exclIcon.png" alt="!!" class="iconErrorlog"><p>Ingresa un usuario.</p></div>`
+			errorLogin.innerHTML = mensajeError;
+		} else {
+			let errorLogin = document.querySelector('.errorLogin')
+			let mensajeError = `<div class="errorLogin"><img src="exclIcon.png" alt="!!" class="iconErrorlog"><p>Usuario no encontrado</p></div>`
 			errorLogin.innerHTML = mensajeError;
 		}
 	});

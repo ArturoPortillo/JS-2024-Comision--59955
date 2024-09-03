@@ -1,3 +1,21 @@
+
+/* % CPU random */
+
+function usoCPU() {
+
+	let CpuUsage = Math.floor(Math.random() * 101)
+	let randomCPU = document.querySelector('.cpu')
+
+	randomCPU.innerHTML = `CPU Usage: ${CpuUsage}%`
+	/* randomCPU.forEach((cpu) =>{
+		
+	})
+ */
+
+}
+setInterval(usoCPU, 2000)
+
+/* Draggear ventana */
 //Make the DIV element draggagle:
 dragElement(document.getElementById("mydiv"));
 
@@ -44,3 +62,12 @@ function dragElement(elmnt) {
 		document.onmousemove = null;
 	}
 }
+
+document.querySelectorAll('table.interactive').forEach(element => {
+    element.addEventListener('click', (event) => {
+      const row = event.path.find(element => element.tagName === 'TR' && element.parentElement.tagName === 'TBODY');
+      if (row) {
+        row.classList.toggle('highlighted');
+      }
+    })
+  });
