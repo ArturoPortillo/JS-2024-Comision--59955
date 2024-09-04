@@ -232,7 +232,7 @@ function inicioSesion() {
 			localStorage.setItem("usuarioActivo", inputUsuario);
 			console.log("el usuario activo es: " + usuarioActivo);
 			let errorLogin = document.querySelector('.errorLogin')
-			let mensajeError = `<div class="errorLogin"><img src="Check-0.png" alt="!!" class="iconErrorlog"><p>Ingresaste correctamente.</p></div>`
+			let mensajeError = `<div class="errorLogin"><img src="/check-0.png" alt="!!" class="iconErrorlog"><p>Ingresaste correctamente.</p></div>`
 			errorLogin.innerHTML = mensajeError;
 			window.location.href = "platform.html";
 /* 			validarDatos = true; */
