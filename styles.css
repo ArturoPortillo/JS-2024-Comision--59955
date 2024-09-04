@@ -1,12 +1,14 @@
 * {
     margin: 0;
     padding: 0;
+    cursor:url(/Test2.png), -moz-zoom-in;
 }
 
 body  {
     margin: 0;
     padding: 0;
     background: #c0c0c0;
+
 }
 
 .main {
@@ -70,19 +72,6 @@ body  {
     margin: 0 auto;
 }
 
-.logingForm { 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 200px;
-}
-
-.logingForm button {
-    margin-top: 8px;
-    flex-direction: row;    
-}
-
 footer {
     position: absolute;
     bottom: 0;
@@ -96,20 +85,52 @@ footer {
     width: fit-content;
 }
 
-/* Pop up */
+/* Formulario de loggeo */
+
+.logingForm { 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+}
+
+.logingForm button {
+    margin-top: 8px;
+    flex-direction: row;    
+}
+
+.errorLogin {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 5px 0px 0px 0px;
+}
+.errorLogin p {
+    margin: 8px 0px 0px 5px;
+    font-size: 0.8rem;
+}
+
+.iconErrorlog {
+margin: auto;
+display: block;
+width: 1.8rem;
+height: 1.8rem;
+}
+
+/* Formulario de registro (PopUp) */
 
 .popUpfunc {
     display: flex;   
     flex-direction: column;
     align-content: center;
-    margin-right: 30rem;
-
+    margin-right: 36rem;
 }
 
 .popUpform {
     background-color: #c0c0c0;
     align-items: center;
-    width: 30rem;
+    width: 35rem;
     position: relative;
     top: 35%;    
     z-index: 9;
@@ -118,19 +139,62 @@ footer {
 /*     transform: translateX(0%); */
 }
 
+/* Estilo interno PopUp */
+
+
+.newUserfield {
+    max-width: 200px;
+    max-height: 21px;
+}
+
+.newPass {
+    max-width: 200px;
+    max-height: 21px;
+}
+
 .popUp {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
     flex-direction: row;
-    padding: 1rem;
+    height:10rem;
+}
+
+.popForm {
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .logoMibarpop {    
-    margin: 0;
+    min-width: 40%;
+    max-width: 42%;
+    margin: 0rem 2rem 1rem 3rem;
     padding: 0;
-    max-width: 40%;
 }
+
+.signupMsg {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 4px 0px 4px 0px;
+    justify-content: center;
+}
+
+.signupMsg p {
+    margin: 4px 40px 4px 0px;
+    font-size: 0.8rem;
+}
+
+.signUpicon {
+    display: flex;
+    margin: 4px 0px 0px 40px;
+}
+
+
+/* Estilos de funciones */
 
 #mydiv {
     position: absolute;
@@ -158,24 +222,6 @@ footer {
     display: block;
 }
 
-.errorLogin {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: 5px 0px 0px 0px;
-}
-.errorLogin p {
-    margin: 8px 0px 0px 5px;
-    font-size: 0.8rem;
-}
-
-
-.iconErrorlog {
-margin: auto;
-display: block;
-width: 1.8rem;
-height: 1.8rem;
-}
 
 /* PLANO */
 

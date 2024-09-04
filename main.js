@@ -67,48 +67,51 @@ function popUp() {
 	/* Se generaba un bug que nos hacia "draggear" un div dentro de nuestro Input por error al tratar de sombrear el texto, lo solucione con el atributo: ondragstart="return false;" ondrop="return false;"
 	Sin embargo, no se puede sombrear con el Mouse dentro del Input, solo se puede sombrear con el atajo Shift + flecha Izquierda
 	Fuente: https://stackoverflow.com/questions/704564/disable-drag-and-drop-on-html-elements */
-	popUp.innerHTML = `
-		<div class="popUpform animate__animated animate__zoomIn" draggable="true" ondragstart="drag(event)" id="mydiv">
-			<div style="display: flex; flex-direction: row;">
-			<div class="title-bar" id="mydivheader">            
-				<div class="title-bar-text innerHeader" style="margin:0 12rem 0 0;padding:0;"> <img src="favicon2.png" alt="" class="innerFavicon">MiBar - Sistema de gestión Gastronomica</div>
-							<div class="title-bar-controls">
-				<button type="button" aria-label="Close" class="cancelarRegistro" style="height:16px;width;14px;margin-top:3px;" ></button>
-			</div> 
-			</div>
 
-			</div>
-		<fieldset class="popUpset" >
-			<div class="popUp">
-				<img src="LOGO MIBAR.png" alt="" class="logoMibarpop">
-				<div class="popForm">
-					<div class="field-row-stacked">
-					<label>Nuevo usuario:</label>
-					<input type="text" placeholder="Nuevo usuario" class="newUserfield"  ondragstart="return false;" ondrop="return false;"/>
-					</div>
-					<div class="field-row-stacked">
-					<label>Ingrese contraseña:</label>
-					<input type="password" placeholder="Ingrese contraseña" class="newPass"  ondragstart="return false;" ondrop="return false;"/>
-					</div>
-					<div class="signupSucess">
-					TEST
-					</div>
-					<div>
-					<button type="button" onclick="registroUsuario()">Registrarse</button>
-					<button type="button" class="cancelarRegistro">Cancelar</button>
-					</div>                 
-			</div>
-		</fieldset>
-		</div>
+	/* Para evitar bugs en el campo de inputs limpiamos el input al darle click con  onfocus="this.value=''" para vaciarlo al darle click
+	Fuente: https://www.w3schools.com/howto/howto_html_clear_input.asp
+	*/
+	popUp.innerHTML = `
+		      <div class="popUpform animate__animated animate__zoomIn" draggable="true" ondragstart="drag(event)" id="mydiv">
+        <div style="display: flex; flex-direction: row;">
+        <div class="title-bar" id="mydivheader">            
+          <div class="title-bar-text innerHeader" style="margin:0 12rem 0 0;padding:0;"> <img src="favicon2.png" alt="" class="innerFavicon">MiBar - Sistema de gestión Gastronomica</div>
+                <div class="title-bar-controls">
+          <button type="button" aria-label="Close" class="cancelarRegistro" style="height:16px;width:14px;margin-top:3px;"></button>
+        </div> 
+        </div>
+  
+        </div>
+      <fieldset class="popUpset" >
+        <div class="popUp">
+          <img src="LOGO MIBAR.png" alt="" class="logoMibarpop">
+          <div class="popForm">
+            <div class="field-row-stacked">
+            <label>Nuevo usuario:</label>
+            <input type="text" placeholder="Nuevo usuario" class="newUserfield"  ondragstart="return false;" ondrop="return false;" onfocus="this.value=''"/>
+            </div>
+            <div class="field-row-stacked">
+            <label>Ingrese contraseña:</label>
+            <input type="password" placeholder="Ingrese contraseña" class="newPass"  ondragstart="return false;" ondrop="return false;" onfocus="this.value=''"/>
+            </div>
+            <div class="signupMsg">
+			
+            </div>
+            <div>
+            <button type="button" onclick="registroUsuario()">Registrarse</button>
+            <button type="button" class="cancelarRegistro">Cancelar</button>
+            </div>                 
+        </div>
+      </fieldset>
+      </div>
 		`
 	/* Fuente de funcion: https://www.w3schools.com/HOWTO/howto_js_draggable.asp */
 	dragElement(document.getElementById("mydiv"));
 
-	let btnCerrar = document.querySelectorAll('.cancelarRegistro')
-	btnCerrar.forEach(btn => {
-		btn.addEventListener("click", toggleVis);
-	});
-	console.log(btnCerrar)
+		let btnCerrar = document.querySelectorAll('.cancelarRegistro')
+		btnCerrar.forEach(btn => {
+			btn.addEventListener("click", toggleVis);
+		});
 
 	toggleVis()
 }
@@ -144,13 +147,24 @@ function registroUsuario() {
 	let inputNuevousuario = document.querySelector(".newUserfield");
 	console.log(inputNuevousuario.value)
 	let nuevoUsuario = inputNuevousuario.value.toLowerCase().replace(/\s+/g, "");
+	console.log(typeof nuevoUsuario)	
 
-	let inputNuevapass = document.querySelector(".newPass");
-	console.log(inputNuevapass.value);
-	
-	let contrasenaUsuario = inputNuevapass.value.toLowerCase().replace(/\s+/g, "");
+	let inputNuevapass = document.querySelector(".newPass");	
+	let contrasenaUsuario = parseInt(inputNuevapass.value.toLowerCase().replace(/\s+/g, ""));
+	console.log(typeof contrasenaUsuario.value);
+	console.log(typeof contrasenaUsuario);
 
-	if (isNaN(nuevoUsuario) && !isNaN(contrasenaUsuario)) {
+	let contieneNumeros = /\d/.test(nuevoUsuario);
+
+	if (nuevoUsuario === "" || contrasenaUsuario === "")  {
+		let errorSignup = document.querySelector('.signupMsg')
+		console.log(errorSignup)
+		let registroError = `<div class="signUpicon"><img src="exclIcon.png" alt="!!" class="iconErrorlog"><p>Campo vacio.</p></div>`
+		errorSignup.innerHTML = registroError;
+		return
+	}
+
+	if (!contieneNumeros && !isNaN(contrasenaUsuario)) {
 		console.log(
 			"Usuario no contiene valores numericos." +
 				"\n\n" +
@@ -169,17 +183,27 @@ function registroUsuario() {
 		usuariosRegistrados.push(nuevoEmpleado);
 		console.log(nuevoEmpleado);
 		console.table(usuariosRegistrados);
-	} else if (!isNaN(inputNuevousuario)) {
-		alert(
-			"Error al registrar usuario, usuario no debe contener valores numericos"
-		);
-		console.log(
-			"Error al registrar usuario, usuario no debe contener valores numericos"
-		);
+		let errorSignup = document.querySelector('.signupMsg')
+		console.log(errorSignup)
+		let registroError = `<div class="signUpicon"><img src="Check-0.png" alt="!!" class="iconErrorlog"><p>Usuario registrado con exito</p></div>`
+		errorSignup.innerHTML = registroError;
+
+		let interval = setInterval(toggleVis, 1500);
+		
+		setTimeout(() => clearInterval(interval),1500)
+		return;
+	} else if (contieneNumeros) {
+		let errorSignup = document.querySelector('.signupMsg')
+		console.log(errorSignup)
+		let registroError = `<div class="signUpicon"><img src="exclIcon.png" alt="!!" class="iconErrorlog"><p>Usuario no debe contener numeros.</p></div>`
+		errorSignup.innerHTML = registroError;
+		return;
 	} else if (isNaN(inputNuevapass)) {
-		alert("Error al registrar usuario, PIN debe ser un valor numerico.");
-		console.log("Error al registrar usuario, PIN debe ser un valor numerico.");
-	}
+		let errorSignup = document.querySelector('.signupMsg')
+		console.log(errorSignup)
+		let registroError = `<div class="signUpicon"><img src="exclIcon.png" alt="!!" class="iconErrorlog"><p>PIN debe ser un valor numerico.</p></div>`
+		errorSignup.innerHTML = registroError;
+	} 
 }
 
 
@@ -190,13 +214,7 @@ function inicioSesion() {
 	const btnInicio = document.querySelector(".userField");
 	console.log(btnInicio);
 
-/* 	let validarDatos = false; */
 	let usuarioActivo;
-
-	console.log("Usuarios registrados: ");
-	usuariosRegistrados.map((usuariosRegistrado) =>
-		console.log(usuariosRegistrado)
-	);
 
 	const campoUsuario = document.querySelector(".userField");
 	let inputUsuario = campoUsuario.value.toLowerCase().replace(/\s+/g, "");
@@ -213,6 +231,9 @@ function inicioSesion() {
 			usuarioActivo = inputUsuario;
 			localStorage.setItem("usuarioActivo", inputUsuario);
 			console.log("el usuario activo es: " + usuarioActivo);
+			let errorLogin = document.querySelector('.errorLogin')
+			let mensajeError = `<div class="errorLogin"><img src="Check-0.png" alt="!!" class="iconErrorlog"><p>Ingresaste correctamente.</p></div>`
+			errorLogin.innerHTML = mensajeError;
 			window.location.href = "platform.html";
 /* 			validarDatos = true; */
 			return;
