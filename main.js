@@ -1,6 +1,5 @@
 /* Variable usuario y contraseña */
 
-
 let usuario = "";
 let contrasena = "";
 let idEmpleado = 0;
@@ -15,13 +14,28 @@ function Empleado(usuario, contrasena, idEmpleado, rol) {
 	this.rol = rol;
 }
 
+/*****************************************************************************************************************************************/
+
 /* Base de datos de usuarios registrados */
 
 const usuariosRegistrados = [
 	{ usuario: "admin", contrasena: "admin", idEmpleado: 0, rol: "admin" },
 ];
 
+/* Traer Usuarios registrados */
+function cargarUsuarios() {
+
+	let user = localStorage.getItem("usuario");
+	user = JSON.parse(user);
+	usuariosRegistrados.splice(0, usuariosRegistrados.length, ...user);
+}
+cargarUsuarios() 
+
+/*****************************************************************************************************************************************/
+
 /* Funcion popUp */
+
+/* Hacer visible/invisible nuestra ventana de registro */
 
 function toggleVis() {
 
@@ -36,10 +50,8 @@ function toggleVis() {
     } 
 	};
 
-
 function popUp() {
 	
-
 	let popUp = document.querySelector('.popUpfunc')
 	/* Se generaba un bug que nos hacia "draggear" un div dentro de nuestro Input por error al tratar de sombrear el texto, lo solucione con el atributo: ondragstart="return false;" ondrop="return false;"
 	Sin embargo, no se puede sombrear con el Mouse dentro del Input, solo se puede sombrear con el atajo Shift + flecha Izquierda
@@ -92,9 +104,23 @@ function popUp() {
 	toggleVis()
 }
 
-
-
 /* Funcion registrar usuario */
+
+function test(valor) {
+/* 	let testing = prompt("Ingresa un usuario repetido: ").toLowerCase().replace(/\s+/g, ""); */
+	const validarNombre = usuariosRegistrados.find((usuario) => usuario.usuario === valor);
+
+	if (validarNombre)  {
+		alert("REPETIDO! REPETIDO!")
+		let errorSignup = document.querySelector('.signupMsg')
+		console.log(errorSignup)
+		let registroError = `<div class="signUpicon"><img src="exclIcon.png" alt="!!" class="iconErrorlog"><p>Usuario ya registrado.</p></div>`
+		errorSignup.innerHTML = registroError;
+		return
+	} else {
+		console("Esto no funca")
+	}
+}
 
 function registroUsuario() {
 	/*  COMENTARIO SOBRE VALIDACIONES:  
@@ -119,7 +145,7 @@ function registroUsuario() {
         Dejando nuestra RegEx asi (/\s+/g) luego usando el metodo de string .replace declaramos que reemplazamos todos los espacios en blanco por un espacio vacio: (/\s+/g, '') como en el ejemplo anterior los reemplazabamos por un # ahora lo reemplazamos por un espacio vacio << '' >>, recortando nuestro texto totalmente, evitando que el usuario agregue espacios en blanco al campo de usuario o contraseña.
     */
 
-
+	/* Obtenemos los datos de usuario */
 	let inputNuevousuario = document.querySelector(".newUserfield");
 	console.log(inputNuevousuario.value)
 	let nuevoUsuario = inputNuevousuario.value.toLowerCase().replace(/\s+/g, "");
@@ -130,8 +156,10 @@ function registroUsuario() {
 	console.log(typeof contrasenaUsuario.value);
 	console.log(typeof contrasenaUsuario);
 
+	/* Validamos que el usuario no tenga numeros. */
 	let contieneNumeros = /\d/.test(nuevoUsuario);
 
+	/* Validamos que el campo no este vacio */
 	if (nuevoUsuario === "" || contrasenaUsuario === "")  {
 		let errorSignup = document.querySelector('.signupMsg')
 		console.log(errorSignup)
@@ -140,6 +168,18 @@ function registroUsuario() {
 		return
 	}
 
+	/* Validamos que el nombre de usuario no este registrado */
+	const validarNombre = usuariosRegistrados.find((usuario) => usuario.usuario === nuevoUsuario);
+
+	if (validarNombre)  {
+		let errorSignup = document.querySelector('.signupMsg')
+		console.log(errorSignup)
+		let registroError = `<div class="signUpicon"><img src="exclIcon.png" alt="!!" class="iconErrorlog"><p>Usuario ya registrado!</p></div>`
+		errorSignup.innerHTML = registroError;
+		return
+	}
+
+	/* Si esta todo OK, continuamos. */	
 	if (!contieneNumeros && !isNaN(contrasenaUsuario)) {
 		usuario = nuevoUsuario;
 		contrasena = contrasenaUsuario;
@@ -157,7 +197,10 @@ function registroUsuario() {
 		let registroError = `<div class="signUpicon"><img src="check-0.png" alt="!!" class="iconErrorlog"><p>Usuario registrado con exito</p></div>`
 		errorSignup.innerHTML = registroError;
 
-			const userJson = JSON.stringify(nuevoEmpleado)
+			/* Registramos y guardamos no solo el usuario nuevo sino la base completa ya que la vamos a necesitar dentro de nuestra plataforma. */
+			/* El usuario que inicia sesion lo registramos dentro de la funcion inicioSesion */
+/* 			let recortarArr = usuariosRegistrados.slice(-usuariosRegistrados) */
+			const userJson = JSON.stringify(usuariosRegistrados)
 			localStorage.setItem("usuario", userJson);
 
 		let interval = setInterval(toggleVis, 2000);
@@ -177,6 +220,8 @@ function registroUsuario() {
 		errorSignup.innerHTML = registroError;
 	} 
 }
+
+/*****************************************************************************************************************************************/
 
 /* Funcion inicio de sesion */
 
@@ -224,7 +269,6 @@ function inicioSesion() {
 		}
 	});
 }
-
 
 const btnInicio = document.querySelector(".iniciarSesion");
 console.log(btnInicio);

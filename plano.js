@@ -2,7 +2,7 @@
 
 let user = localStorage.getItem("usuario");
 user = JSON.parse(user);
-console.log(user.nombre);
+console.log(user.usuario);
 
 /* Funcion para recordar usuario en sesion */
 
@@ -14,6 +14,8 @@ function usuarioIniciado() {
 	).textContent = `Usuario: ${nombreUsuario}`;
 	return nombreUsuario;
 }
+
+usuarioIniciado()
 
 /* Funcion constructora del menu*/
 
@@ -43,11 +45,14 @@ console.log(btnMenu);
 let contenidoLog;
 
 function menuDisponible() {
+	
 	console.log(`Articulos disponibles: `);
 	artMenu.innerHTML = "";
 	datosMenu.forEach((menu) => {
-		contenidoLog = `ID: ${menu.id}\nArticulo: ${menu.articulo}\nPrecio: $${menu.precio}`;
-		let contenido = `<button class="btnaddArt">${menu.articulo}</button>`;
+		/* Destructuring */
+		const {id, articulo, precio} = menu
+		contenidoLog = `ID: ${id}\nArticulo: ${articulo}\nPrecio: $${precio}`;
+		let contenido = `<button class="btnaddArt">${articulo}</button>`;
 		console.log(contenidoLog);
 		artMenu.innerHTML += contenido;
 	});
@@ -91,8 +96,10 @@ function cargarMenu() {
 			};
 
 			datosMenu.forEach((menu) => {
-				contenidoLog = `ID: ${menu.id}\nArticulo: ${menu.articulo}\nPrecio: $${menu.precio}`;
-				let contenido = `<button class="btnaddArt">${menu.articulo}</button>`;
+				/* Destructuring */
+				const {id, articulo, precio} = menu
+				contenidoLog = `ID: ${id}\nArticulo: ${articulo}\nPrecio: $${precio}`;
+				let contenido = `<button class="btnaddArt">${articulo}</button>`;
 				console.log(contenidoLog);
 				artMenu.innerHTML += contenido;
 			});
@@ -192,10 +199,12 @@ function abrirMesa(mesa) {
 	}
 
 	const artIngresado = menu.find((producto) => producto.id === idArticulo);
+	/* Destructuring 🤷‍♂️ */
+	const {articulo, precio} = artIngresado
 
 	if (artIngresado) {
 		console.log(
-			`El ID ingresado es ${idArticulo}. Artículo: ${artIngresado.articulo}, Precio: $${artIngresado.precio}`
+			`El ID ingresado es ${idArticulo}. Artículo: ${articulo}, Precio: $${precio}`
 		);
 		arrMesas[eleccion].push(artIngresado);
 		console.log(`El contenido de la mesa es:
@@ -329,20 +338,16 @@ document.querySelectorAll("table.interactive").forEach((element) => {
 
 const paginaActual = window.location.href; 
 
-setInterval(fechaSistema, 1000)
+
 
 function fechaSistema() {
 	const date = new Date();
-
 	if (paginaActual.includes("platform.html")) {
-		usuarioIniciado();
 		document.querySelector(".fecha").textContent = `Fecha: ${date.toLocaleDateString()} | Hora: ${date.toLocaleTimeString()};`;
-		usuarioIniciado();
 	}
 }
 
-const date = new Date();
-
+setInterval(fechaSistema, 1000)
 
 
 

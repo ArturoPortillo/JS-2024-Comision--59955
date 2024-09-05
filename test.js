@@ -3,7 +3,7 @@
 /* Fuente: https://stackoverflow.com/questions/4564251/change-the-mouse-pointer-using-javascript */
 
 let elementToChange = document.getElementsByTagName("body")[0];
-elementToChange.style.cursor = "url('./test2.png'), default";
+elementToChange.style.cursor = "url('test2.png'), default";
 
 let style = document.createElement('style');
 style.innerHTML = `
@@ -17,14 +17,11 @@ document.head.appendChild(style);
 function usoCPU() {
 
 	let CpuUsage = Math.floor(Math.random() * 101)
-	let randomCPU = document.querySelector('.cpu')
+	let randomCPU = document.querySelectorAll('.cpu')
 
-	randomCPU.innerHTML = `CPU Usage: ${CpuUsage}%`
-	/* randomCPU.forEach((cpu) =>{
-		
+	randomCPU.forEach((cpu) => {
+			cpu.innerHTML = `CPU Usage: ${CpuUsage}%`
 	})
- */
-
 }
 setInterval(usoCPU, 2000)
 
