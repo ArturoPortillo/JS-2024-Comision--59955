@@ -275,7 +275,7 @@ function cambiarCandado() {
 
 		if (estadoCandado.includes("Close")) {
 /* 			console.log("Esta cerrado"); */
-			candadoPlano = document.querySelector(".lock").src = "/Open.png";
+			candadoPlano = document.querySelector(".lock").src = "Open.png";
 			sumarMesa.style.visibility = "visible";
 			mesasVisibles.forEach((mesa) => {
 				mesa.style.visibility = "visible";
@@ -283,7 +283,7 @@ function cambiarCandado() {
 /* 			console.log("asi que lo abrimos."); */
 		} else if (estadoCandado.includes("Open")) {
 		/* 	console.log("Esta unlocked"); */
-			candadoPlano = document.querySelector(".lock").src = "/Close.png";
+			candadoPlano = document.querySelector(".lock").src = "Close.png";
 			sumarMesa.style.visibility = "hidden";
 			mesasVisibles.forEach((mesa) => {
 				mesa.style.visibility = "hidden";
