@@ -347,10 +347,8 @@ const paginaActual = window.location.href;
 
 
 function fechaSistema() {
-	const date = new Date();
-	if (paginaActual.includes("platform.html")) {
-		document.querySelector(".fecha").textContent = `Fecha: ${date.toLocaleDateString()} | Hora: ${date.toLocaleTimeString()};`;
-	}
+	const date = new Date();	
+		document.querySelector(".fecha").textContent = `Fecha: ${date.toLocaleDateString()} | Hora: ${date.toLocaleTimeString()};`;	
 }
 
 setInterval(fechaSistema, 1000)
