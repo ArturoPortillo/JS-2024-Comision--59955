@@ -1,8 +1,6 @@
 /* Traer Usuarios registrados desde index.html */
 
-/* let user = localStorage.getItem("usuario");
-user = JSON.parse(user);
-console.log(user.usuario); */
+cargarUsuarios() 
 
 /* Funcion para recordar usuario en sesion */
 
@@ -59,9 +57,9 @@ function Producto(id, articulo, precio) {
 }
 
 const datosMenu = [
-	{ articulo: "Café con leche", precio: 3100, id: 1 },
-	{ articulo: "Tostado de miga", precio: 5200, id: 2 },
-	{ articulo: "Licuado", precio: 3600, id: 3 },
+	{ articulo: "Café con leche", precio: 3100, id: 1},
+	{ articulo: "Tostado de miga", precio: 5200, id: 2},
+	{ articulo: "Licuado", precio: 3600, id: 3},
 ];
 
 let articulo;
@@ -125,6 +123,7 @@ function cargarMenu() {
 				articulo: nuevoArticulo,
 				precio: nuevoPrecio,
 				id: id,
+				/* cantidad: cantidad */
 			};
 
 			datosMenu.forEach((menu) => {
@@ -195,33 +194,39 @@ function recorrerMesas() {
 
 /* Funcion para abrir una mesa y agregar articulos a la mesa seleccionada */
 
-function abrirMesa(mesa) {
-
-	console.log(mesa);
+function abrirMesa(mesa) {	
 
 	let mesaSelec = parseInt(mesa.id);
 	let eleccion = mesaSelec - 1;
-	console.log("Ingresaste a la mesa " + (eleccion + 1));
-	
-	const menu = menuDisponible();
-	menuDisponible();
-	
+	console.log("Ingresaste a la mesa " + (eleccion + 1));	
 	
 	let coleccion = document.querySelectorAll('.btnaddArt')
 
 	coleccion.forEach(btn => {	
 		btn.addEventListener('click', function(){
-			let getBtnid = parseInt(btn.id - 1);
-			let artIngresado = menu.find((producto) => producto.id === getBtnid.id);
-			console.log(artIngresado)
+			let getBtnid = parseInt(btn.id);
+			let artIngresado = datosMenu.find((producto) => producto.id === getBtnid);	
 
-			arrMesas[eleccion].push(datosMenu[getBtnid]) 
-		renderMesa(eleccion)		
-	});	
-});
-renderMesa(eleccion)	
-return eleccion;
-}
+			if (artIngresado) {
+                let articuloExistente = arrMesas[eleccion].find(articulo => articulo.id === artIngresado.id);
+                
+                if (articuloExistente) {
+                    articuloExistente.cantidad += 1;
+					console.log(articuloExistente.cantidad);
+					
+                } else {
+                    arrMesas[eleccion].push({ ...artIngresado, cantidad: 1 });
+                }
+
+                console.log(`Artículo ${artIngresado.articulo} agregado a la mesa ${eleccion + 1}`);
+                renderMesa(eleccion);
+            }
+        }/* ,{once: true} */);
+		
+    });
+
+    renderMesa(eleccion); 
+}	
 
 /* Func. para renderizar el contenido de las mesas */
 
@@ -245,10 +250,11 @@ function renderMesa(eleccion) {
 	getData.forEach((obj) => {
 		contenidoMesa += `
 					<tr>
+						<td>${obj.id}</td>
 						<td>${obj.articulo}</td>
-						<td>cantidad</td>
+						<td>${obj.cantidad}</td>
 						<td>${obj.precio}</td>                  
-						<td>${obj.precio}</td>     
+						<td>${obj.precio * obj.cantidad}</td>     
 					</tr>
 		`;
 	});

@@ -12,7 +12,7 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
     <!-- Link local a la libreria de estilos de win98 para cubrirme en caso que se caiga el CDN. -->
-    <link rel="stylesheet" href="local98css.css">
+    <!-- <link rel="stylesheet" href="local98css.css"> -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -120,9 +120,10 @@
                     </div>
                     <div>
                       <tr>
-                        <th>Articulo</th>
-                        <th>cantidad</th>
-                        <th>precio</th>
+                        <th style="min-width:0.1rem;">ID</th>
+                        <th style="min-width:10rem;">Articulo</th>
+                        <th style="min-width:2rem;">cantidad</th>
+                        <th style="min-width:5rem;">precio</th>
                         <th style="width: 100vw;">total</th>
                       </tr>
                     </div>
@@ -130,8 +131,9 @@
                   <tbody class="contenidoMesa"> 
                     <!-- Contenido dinamico de articulos en la mesa. -->
                     <tr>
+                      <td>${obj.id}</td>
                       <td>${obj.articulo}</td>
-                      <td>cantidad</td>
+                      <td>${cantidad}</td>
                       <td>${obj.precio}</td>                  
                       <td>Total</td>     
                     </tr>           
@@ -220,6 +222,7 @@
         <p class="status-bar-field">JavaScript Comision #59955</p>
       </div>
     </footer>
+    <script src="main.js"></script>
     <script src="plano.js"></script>
     <script src="test.js"></script>
 </body>
