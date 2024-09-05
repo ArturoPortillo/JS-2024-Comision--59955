@@ -25,9 +25,11 @@ const usuariosRegistrados = [
 /* Traer Usuarios registrados */
 function cargarUsuarios() {
 
+	if (localStorage.hasOwnProperty('usuario')) {
 	let user = localStorage.getItem("usuario");
 	user = JSON.parse(user);
 	usuariosRegistrados.splice(0, usuariosRegistrados.length, ...user);
+}
 }
 cargarUsuarios() 
 
