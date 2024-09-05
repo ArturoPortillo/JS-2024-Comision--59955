@@ -1,4 +1,10 @@
 
+/* Tests del cursor */
+/* Fuente: https://stackoverflow.com/questions/4564251/change-the-mouse-pointer-using-javascript */
+
+let elementToChange = document.getElementsByTagName("body")[0];
+elementToChange.style.cursor = "url('http://www.rw-designer.com/cursor-extern.php?id=156052'), auto";
+
 /* % CPU random */
 
 function usoCPU() {
