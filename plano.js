@@ -230,7 +230,7 @@ function renderMesa(eleccion) {
 	mesaHeader.innerHTML = `
 	 <div class="title-bar-text">SALON</div>
                       <div class="title-bar-text">MESA #${eleccion + 1}</div>
-                      <div class="title-bar-text">MOZO: }</div>
+                      <div class="title-bar-text">MOZO: </div>
                       <div class="title-bar-controls">
                         <button aria-label="Close" class="escMesa"></button>
                       </div>
@@ -253,7 +253,7 @@ function renderMesa(eleccion) {
 		`;
 	});
 	contenidoArr.innerHTML = contenidoMesa;
-}
+};
 
 /* Funcion para bloquear y desbloquear el plano */
 

@@ -24,6 +24,23 @@ function usoCPU() {
 }
 setInterval(usoCPU, 2000)
 
+function test(valor) {
+	/* 	let testing = prompt("Ingresa un usuario repetido: ").toLowerCase().replace(/\s+/g, ""); */
+		const validarNombre = usuariosRegistrados.find((usuario) => usuario.usuario === valor);
+	
+		if (validarNombre)  {
+			alert("REPETIDO! REPETIDO!")
+			let errorSignup = document.querySelector('.signupMsg')
+			console.log(errorSignup)
+			let registroError = `<div class="signUpicon"><img src="exclIcon.png" alt="!!" class="iconErrorlog"><p>Usuario ya registrado.</p></div>`
+			errorSignup.innerHTML = registroError;
+			return
+		} else {
+			console("Esto no funca")
+		}
+	}
+	
+
 
 /* Funcion popUp */
 
