@@ -185,7 +185,7 @@ function registroUsuario() {
 		console.table(usuariosRegistrados);
 		let errorSignup = document.querySelector('.signupMsg')
 		console.log(errorSignup)
-		let registroError = `<div class="signUpicon"><img src="Check-0.png" alt="!!" class="iconErrorlog"><p>Usuario registrado con exito</p></div>`
+		let registroError = `<div class="signUpicon"><img src="check-0.png" alt="!!" class="iconErrorlog"><p>Usuario registrado con exito</p></div>`
 		errorSignup.innerHTML = registroError;
 
 		let interval = setInterval(toggleVis, 1500);
