@@ -1,14 +1,13 @@
-
 /* Tests del cursor */
 /* Fuente: https://stackoverflow.com/questions/4564251/change-the-mouse-pointer-using-javascript */
 
-let elementToChange = document.getElementsByTagName("body")[0];
-elementToChange.style.cursor = "url('http://www.rw-designer.com/cursor-extern.php?id=156052'), default";
+/* let elementToChange = document.getElementsByTagName("body")[0];
+elementToChange.style.cursor = "url('http://www.rw-designer.com/cursor-extern.php?id=156052'), default"; */
 
 let style = document.createElement('style');
 style.innerHTML = `
     body, button {
-        cursor: url('http://www.rw-designer.com/cursor-extern.php?id=156052'), default;
+        cursor: url('windows98.cur'), default;
     }
 `;
 document.head.appendChild(style);
@@ -24,6 +23,33 @@ function usoCPU() {
 	})
 }
 setInterval(usoCPU, 2000)
+
+
+/* Funcion popUp */
+
+/* Hacer visible/invisible nuestra ventana de registro */
+
+function toggleVis(clase) {
+
+	let popUp = document.querySelector(`.${clase}`)
+
+    if (popUp) {
+		if (popUp.classList.contains('vis')) {
+        popUp.classList.remove('vis');
+        popUp.classList.add('invis');
+    } else {
+        popUp.classList.remove('invis');
+        popUp.classList.add('vis');
+    }  
+	}else {
+        console.error(`Element with class '${clase}' not found!`);
+    }
+};
+
+function intervalo(clase) {
+	setTimeout(() => toggleVis(clase), 2000);
+}
+
 
 /* Draggear ventana */
 //Make the DIV element draggagle:

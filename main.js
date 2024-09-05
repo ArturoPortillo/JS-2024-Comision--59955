@@ -33,23 +33,6 @@ cargarUsuarios()
 
 /*****************************************************************************************************************************************/
 
-/* Funcion popUp */
-
-/* Hacer visible/invisible nuestra ventana de registro */
-
-function toggleVis() {
-
-	let popUp = document.querySelector('.popUpfunc')
-
-    if (popUp.classList.contains('vis')) {
-        popUp.classList.remove('vis');
-        popUp.classList.add('invis');
-    } else {
-        popUp.classList.remove('invis');
-        popUp.classList.add('vis');
-    } 
-	};
-
 function popUp() {
 	
 	let popUp = document.querySelector('.popUpfunc')
@@ -95,13 +78,14 @@ function popUp() {
 		`
 	/* Fuente de funcion: https://www.w3schools.com/HOWTO/howto_js_draggable.asp */
 	dragElement(document.getElementById("mydiv"));
-
-		let btnCerrar = document.querySelectorAll('.cancelarRegistro')
-		btnCerrar.forEach(btn => {
-			btn.addEventListener("click", toggleVis);
-		});
-
-	toggleVis()
+	
+	toggleVis("popUpform")
+	let btnCerrar = document.querySelectorAll('.cancelarRegistro');
+    btnCerrar.forEach(btn => {
+        btn.addEventListener("click", function() {
+            toggleVis('popUpform');
+        });
+    });
 }
 
 /* Funcion registrar usuario */
@@ -203,9 +187,8 @@ function registroUsuario() {
 			const userJson = JSON.stringify(usuariosRegistrados)
 			localStorage.setItem("usuario", userJson);
 
-		let interval = setInterval(toggleVis, 2000);
-		
-		setTimeout(() => clearInterval(interval),2000)
+		intervalo("popUpform")
+
 		return;
 	} else if (contieneNumeros) {
 		let errorSignup = document.querySelector('.signupMsg')

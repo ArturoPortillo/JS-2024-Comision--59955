@@ -110,7 +110,7 @@
               <div class="sunken-panel">
                 <table class="interactive">
                   <thead>                  
-                    <div class="title-bar">
+                    <div class="title-bar mesaHeader">
                       <div class="title-bar-text">SALON</div>
                       <div class="title-bar-text">MESA #${mesa.id}</div>
                       <div class="title-bar-text">MOZO: ${nombreUsuario}</div>
@@ -129,6 +129,12 @@
                   </thead>
                   <tbody class="contenidoMesa"> 
                     <!-- Contenido dinamico de articulos en la mesa. -->
+                    <tr>
+                      <td>${obj.articulo}</td>
+                      <td>cantidad</td>
+                      <td>${obj.precio}</td>                  
+                      <td>Total</td>     
+                    </tr>           
                   </tbody>
                 </table>
               </div>
@@ -191,8 +197,6 @@
                       </div>
                       <img src="plusIconPixel.png" alt="+" class="addMenu">
                     </div>
-
-
                   </fieldset>
                 </fieldset>
               </div>
@@ -205,9 +209,10 @@
                 </div>      
               </div>
           </div>
-          
-        </div>   
-    </div>
+        </div> 
+        <div class="popupDinamico">
+          <!-- Pop up dinamico -->    
+
     <footer>
       <div class="status-bar">
         <p class="status-bar-field">Creado por Arturo Portillo</p>
