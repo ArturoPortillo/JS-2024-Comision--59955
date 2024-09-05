@@ -59,7 +59,7 @@ function toggleVis(clase) {
         popUp.classList.add('vis');
     }  
 	}else {
-        console.error(`Element with class '${clase}' not found!`);
+        console.log(`No se encontro la clase: '${clase}'`);
     }
 };
 
