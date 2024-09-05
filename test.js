@@ -3,12 +3,12 @@
 /* Fuente: https://stackoverflow.com/questions/4564251/change-the-mouse-pointer-using-javascript */
 
 let elementToChange = document.getElementsByTagName("body")[0];
-elementToChange.style.cursor = "url('test2.png'), default";
+elementToChange.style.cursor = "url('./test2.png'), default";
 
 let style = document.createElement('style');
 style.innerHTML = `
     body, button {
-        cursor: url('test2.png'), default;
+        cursor: url('./test2.png'), default;
     }
 `;
 document.head.appendChild(style);

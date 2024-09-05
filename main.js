@@ -1,26 +1,3 @@
-/* Solamente un pequeño script para evitar que el mensaje "Para iniciar sesion por primera vez debes registrarte." aparezca sin importar si estamos en la pagina de inicio o dentro de la plataforma, con esto logro que aparezca solamente en index.html */
-
-/* const paginaActual = window.location.href; */
-
-/* if (paginaActual.includes("/index.html")) {
-	alert(
-		"Bienvenido a MiBar! Sistema de gestion gastronomica" +
-			"\n\n" +
-			"Para iniciar sesion por primera vez debes registrarte."
-	);
-	console.log(`Bienvenido a MiBar Sistema de gestion gastronomica! Crea un nuevo usuario o inicia sesion como administrador:
-        
-        usuario: admin
-        clave: admin
-        `);
-} else {
-	alert(
-		"Bienvenido a MiBar! Sistema de gestion gastronomica" +
-			"\n\n" +
-			"El sistema se encuentra en mantenimiento, vuelve mas tarde."
-	);
-} */
-
 /* Variable usuario y contraseña */
 
 
@@ -72,38 +49,37 @@ function popUp() {
 	Fuente: https://www.w3schools.com/howto/howto_html_clear_input.asp
 	*/
 	popUp.innerHTML = `
-		      <div class="popUpform animate__animated animate__zoomIn" draggable="true" ondragstart="drag(event)" id="mydiv">
+	<div class="popUpform animate__animated animate__zoomIn" draggable="true" ondragstart="drag(event)" id="mydiv">
         <div style="display: flex; flex-direction: row;">
-        <div class="title-bar" id="mydivheader">            
-          <div class="title-bar-text innerHeader" style="margin:0 12rem 0 0;padding:0;"> <img src="favicon2.png" alt="" class="innerFavicon">MiBar - Sistema de gestión Gastronomica</div>
-                <div class="title-bar-controls">
-          <button type="button" aria-label="Close" class="cancelarRegistro" style="height:16px;width:14px;margin-top:3px;"></button>
-        </div> 
-        </div>
-  
-        </div>
-      <fieldset class="popUpset" >
+				<div class="title-bar" id="mydivheader">            
+					<div class="title-bar-text innerHeader" style="margin:0 12rem 0 0;padding:0;"> <img src="favicon2.png" alt="" class="innerFavicon">MiBar - Sistema de gestión Gastronomica</div>
+				<div class="title-bar-controls">
+					<button type="button" aria-label="Close" class="cancelarRegistro" style="height:16px;width:14px;margin-top:3px;"></button>
+				</div> 
+		</div>  
+    </div>
+	<fieldset class="popUpset" >
         <div class="popUp">
-          <img src="LOGO MIBAR.png" alt="" class="logoMibarpop">
-          <div class="popForm">
+        <img src="LOGO MIBAR.png" alt="" class="logoMibarpop">
+        <div class="popForm">
             <div class="field-row-stacked">
-            <label>Nuevo usuario:</label>
-            <input type="text" placeholder="Nuevo usuario" class="newUserfield"  ondragstart="return false;" ondrop="return false;" onfocus="this.value=''"/>
+				<label>Nuevo usuario:</label>
+				<input type="text" placeholder="Nuevo usuario" class="newUserfield"  ondragstart="return false;" ondrop="return false;" onfocus="this.value=''"/>
             </div>
             <div class="field-row-stacked">
-            <label>Ingrese contraseña:</label>
-            <input type="password" placeholder="Ingrese contraseña" class="newPass"  ondragstart="return false;" ondrop="return false;" onfocus="this.value=''"/>
+				<label>Ingrese contraseña:</label>
+				<input type="password" placeholder="Ingrese contraseña" class="newPass"  ondragstart="return false;" ondrop="return false;" onfocus="this.value=''"/>
             </div>
             <div class="signupMsg">
 			
             </div>
             <div>
-            <button type="button" onclick="registroUsuario()">Registrarse</button>
-            <button type="button" class="cancelarRegistro">Cancelar</button>
+				<button type="button" onclick="registroUsuario()">Registrarse</button>
+				<button type="button" class="cancelarRegistro">Cancelar</button>
             </div>                 
         </div>
-      </fieldset>
-      </div>
+    </fieldset>
+</div>
 		`
 	/* Fuente de funcion: https://www.w3schools.com/HOWTO/howto_js_draggable.asp */
 	dragElement(document.getElementById("mydiv"));
@@ -165,12 +141,6 @@ function registroUsuario() {
 	}
 
 	if (!contieneNumeros && !isNaN(contrasenaUsuario)) {
-		console.log(
-			"Usuario no contiene valores numericos." +
-				"\n\n" +
-				"La contraseña es un valor numerico, no contiene letras."
-		);
-
 		usuario = nuevoUsuario;
 		contrasena = contrasenaUsuario;
 		idEmpleado = +idEmpleado + 1;
@@ -184,13 +154,15 @@ function registroUsuario() {
 		console.log(nuevoEmpleado);
 		console.table(usuariosRegistrados);
 		let errorSignup = document.querySelector('.signupMsg')
-		console.log(errorSignup)
 		let registroError = `<div class="signUpicon"><img src="check-0.png" alt="!!" class="iconErrorlog"><p>Usuario registrado con exito</p></div>`
 		errorSignup.innerHTML = registroError;
 
-		let interval = setInterval(toggleVis, 1500);
+			const userJson = JSON.stringify(nuevoEmpleado)
+			localStorage.setItem("usuario", userJson);
+
+		let interval = setInterval(toggleVis, 2000);
 		
-		setTimeout(() => clearInterval(interval),1500)
+		setTimeout(() => clearInterval(interval),2000)
 		return;
 	} else if (contieneNumeros) {
 		let errorSignup = document.querySelector('.signupMsg')
@@ -205,7 +177,6 @@ function registroUsuario() {
 		errorSignup.innerHTML = registroError;
 	} 
 }
-
 
 /* Funcion inicio de sesion */
 

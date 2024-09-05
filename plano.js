@@ -1,3 +1,9 @@
+/* Traer Usuarios registrados desde index.html */
+
+let user = localStorage.getItem("usuario");
+user = JSON.parse(user);
+console.log(user.nombre);
+
 /* Funcion para recordar usuario en sesion */
 
 function usuarioIniciado() {
