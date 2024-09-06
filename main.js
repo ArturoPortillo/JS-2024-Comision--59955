@@ -245,5 +245,3 @@ console.log(btnInicio);
 
 btnInicio.addEventListener("click", inicioSesion);
 console.log(btnInicio);
-
-

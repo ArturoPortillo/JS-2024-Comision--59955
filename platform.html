@@ -26,16 +26,16 @@
         </div>
         <!-- Pestañas -->
         <menu role="tablist">
-          <li role="tab" aria-selected="true" id="salon"><a href="#tabs">Plano de salon</a></li>
+          <li role="tab" aria-selected="true" id="salon" onclick="estructuraSalon()"><a href="#tabs">Plano de salon</a></li>
           <li role="tab" ><a href="#tabs">Facturacion</a></li>
           <li role="tab"><a href="#tabs">Edicion de comprobantes</a></li>
-          <li role="tab"><a href="#tabs">Menú</a></li>
+          <li role="tab"><a href="#tabs" onclick="estructuraMenu()">Menú</a></li>
           <li role="tab"><a href="#tabs">Empleados</a></li>
         </menu>
         <!-- Pestaña activa -->
-        <div class="window" role="tabpanel"><!-- Principio body -->
+        <div class="window" role="tabpanel">
         <!-- PLANO DE MESAS -->
-          <div class="window-body">
+          <div class="window-body"><!-- Principio body -->
             <img src="Close.png" class="lock" alt="LOCK" onclick="cambiarCandado()">
             <img src="plusIconPixel.png" class="addTable" alt="" onclick="crearMesa()">
             <div class="tree-view parent" id="plano">
@@ -115,7 +115,7 @@
                       <div class="title-bar-text">MESA #${mesa.id}</div>
                       <div class="title-bar-text">MOZO: ${nombreUsuario}</div>
                       <div class="title-bar-controls">
-                        <button aria-label="Close" class="escMesa"></button>
+                        <button aria-label="Close" class="escMesa" onclick="toggleVis()"></button>
                       </div>
                     </div>
                     <div>
@@ -187,16 +187,17 @@
                     </div>
                     <div>
                       <menu role="tablist">
-                        <li role="tab" aria-selected="true"><a href="#tabs">Rubro #1</a></li>
-                        <li role="tab"><a href="#tabs">Rubro #2</a></li>
-                        <li role="tab"><a href="#tabs">Rubro #3</a></li>
-                        <li role="tab"><a href="#tabs">Rubro #4</a></li>
-                        <li role="tab"><a href="#tabs">Rubro #5</a></li>
-                        <li role="tab"><a href="#tabs">Rubro #6</a></li>
+                        <li role="tab" aria-selected="true"><a href="#tabs" data-rubro="Cafeteria">Cafeteria</a></li>
+                        <li role="tab"><a href="#tabs" data-rubro="Bebidas">Bebidas</a></li>
+                        <li role="tab"><a href="#tabs" data-rubro="Comida">Comidas</a></li>
+                        <li role="tab"><a href="#tabs" data-rubro="Tortas">Tortas</a></li>
+                        <li role="tab"><a href="#tabs" data-rubro="Entradas">Entradas</a></li>
+                        <li role="tab"><a href="#tabs" data-rubro="Cervezas">Cervezas</a></li>
+                        <li role="tab"><a href="#tabs" data-rubro="Tragos">Tragos</a></li>
                       </menu>
                     </div>
                     <div>
-                      <div class="panelMenu">
+                      <div class="panelMenu" id="artMenu">
                         <!-- Botones de articulos dinamicos -->    
                       </div>
                       <img src="plusIconPixel.png" alt="+" class="addMenu">
@@ -204,28 +205,28 @@
                   </fieldset>
                 </fieldset>
               </div>
+
         </div>
-              <div>
-                <div class="status-bar">
-                  <p class="status-bar-field usuarioActivo">Usuario: </p> 
-                  <p class="status-bar-field fecha">Fecha</p></p>
-                  <p class="status-bar-field">JavaScript Comision #59955</p>
-                </div>      
-              </div>
-            </div><!-- Fin body -->            
-        </div> <!-- Contenedor pricipal -->
+        <div class="status-bar">
+          <p class="status-bar-field usuarioActivo">Usuario: </p> 
+          <p class="status-bar-field fecha">Fecha</p></p>
+          <p class="status-bar-field">JavaScript Comision #59955</p>
+        </div> 
+        </div>
+<!-- Contenedor pricipal -->
         <!-- Pop up dinamico -->  
-        <div class="popupDinamico">
-          <div class="window animate__animated animate__zoomIn" draggable="true" ondragstart="drag(event)" id="mydiv"><!-- Head -->
-            <div class="title-bar" id="mydivheader">
+<!--         <div class="popupDinamico"> -->
+<!--           <div class="window animate__animated animate__zoomIn" draggable="true" ondragstart="drag(event)" id="mydiv"> --><!-- Head -->
+<!--             <div class="title-bar" id="mydivheader">
               <div class="title-bar-text"><img src="favicon2.png" alt="" class="innerFavicon">MiBar - Cargar Articulos a menú</div>
               <div class="title-bar-controls">
                 <button aria-label="Minimize"></button>
                 <button aria-label="Maximize"></button>
                 <button aria-label="Close"></button>
               </div>
-            </div><!-- Head content -->
-            <div class="window-body">
+            </div> -->
+            <!-- Head content -->
+<!--             <div class="window-body">
               <div class="campoArticulos">
                 <div>
                   <label for="text17"><p>Articulo</p></label>
@@ -257,7 +258,7 @@
                <input type="reset" value="Cancelar"/>
              </div>
           </div>
-				</div>  
+				</div>   -->
         <!-- Fin popUp dinamico -->
     <footer>
       <div class="status-bar">
@@ -266,8 +267,10 @@
         <p class="status-bar-field">JavaScript Comision #59955</p>
       </div>
     </footer>
+    <script src="estructuras.js"></script>
     <script src="main.js"></script>
     <script src="plano.js"></script>
     <script src="test.js"></script>
+
 </body>
 </html>

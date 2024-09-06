@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    
 /*     cursor: url(/Test2.png), default; */
 }
 
@@ -78,6 +79,7 @@ footer {
     display: flex;
     flex-direction: column;
     width: fit-content;
+    
 }
 
 /* Formulario de loggeo */
@@ -188,15 +190,8 @@ height: 1.8rem;
     margin: 4px 0px 0px 40px;
 }
 
-.campoArticulos {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 .selRubro {
-    margin: 0px 0px 33px 10px;
+    margin: 10px 0px 33px 20px;
 }
 
 
@@ -212,6 +207,7 @@ height: 1.8rem;
   cursor: move;
   z-index: 10;
   color: #fff;
+  width: 100%;
 }
 
 #mydivheader.title-bar-text.innerHeader {
@@ -242,6 +238,7 @@ height: 1.8rem;
     display: flex;
     flex-direction: row;
     justify-content: center;
+    
 }
 
 #plano {
@@ -263,7 +260,6 @@ height: 1.8rem;
 
 .btn {
     margin-top: 5px;
-    font-weight: bold;
     min-height: 2rem;
     min-width: 45px;
     
@@ -338,7 +334,10 @@ height: 1.8rem;
 }
 
 .panelMenu {
-    margin: 1rem
+    min-height: 40rem;
+    max-height: 41rem;
+    min-width: 35em;
+    margin: 1rem;
 }
 
 /* Popup menu */
@@ -416,23 +415,57 @@ height: 1.8rem;
 
 /* Panel Menu */
 
+.gridMenu {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    height: 75vh;
+    
+    }
 
+.gridMenu1 { grid-area: 1 / 1 / 3 / 2; }
+.gridMenu2 { grid-area: 1 / 2 / 2 / 3;}
+.gridMenu3  { grid-area: 2 / 2 / 3 / 3; }
+.gridMenu4 { grid-area: 3 / 1 / 4 / 3; }
 
-/*  .agregarArticulo {
-    color:black;
-    background-color: white;
-    min-width: 0.2rem;
-    min-height: 0.3rem;
-    border-style: none;
-    border-radius: 25%;
-    display: flex;   
+.treeSize {
+    height: 70vh;
+    width: 13rem;
+    overflow: scroll;
+}
+
+.campoArticulos {
+    display: flex;
+    flex-direction: row;
     justify-content: center;
-    align-content: center;
     align-items: center;
-    vertical-align: baseline;
-    text-align: center;
-} */
- 
+    margin-top: 50px;
+    place-items: center;
+    place-self: center;    
+}
+
+.campoArticulos .inputContainer {
+    margin: 10px 0px 0px 25px;
+}
+
+.cargarTitle p {
+    margin: 8px 0 4px 10px;    
+}
+
+.cargarTitle img {
+    margin: 0px 0 8px 4px;  
+    width: 15%;
+}
+
+.cargarTitle div {
+    display: flex;
+    margin-left: 20px;
+}
+
+
+
 /* GRID Y Estilo de mesas */
 
 .parent {
