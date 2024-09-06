@@ -332,6 +332,56 @@ height: 1.8rem;
     margin: 1rem
 }
 
+/* Popup menu */
+
+.menuForm {
+    display: flex;
+    flex-direction: row;
+    justify-self: center;
+    align-items: center;
+    width: 18.5rem;
+}
+
+.newProductfield {
+    width: 10rem;
+}
+
+.newProductprice {
+    width: 10rem;
+}
+
+.popUpmenu {
+    width: fit-content;
+}
+
+.popUpformenu {
+    background-color: #c0c0c0;
+    align-items: center;
+    width: 20rem;
+    position: relative;
+    top: 35%;    
+    z-index: 9;
+    box-shadow: -4px 2px 38px 18px rgba(192,192,192,0.75);
+    --animate-duration: 0.1s;
+/*     transform: translateX(0%); */
+}
+
+.logoMibarmenu {  
+    max-width: 90%;
+}
+
+.popHeader {
+    width: 40px;
+    height: 2rem;
+}
+
+.title-bar-text.innerHeadermenu {
+    width: fit-content;
+    max-height: 1rem;
+    font-size: 0.5rem;
+    
+}
+
 /* Extras del plano */
 
 .lock {

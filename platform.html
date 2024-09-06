@@ -157,9 +157,11 @@
                     <div class="panelBtn1"><button class="panelBtn">+</button> </div>
                     <div class="panelBtn2"><button class="panelBtn">-</button> </div>
                     <div class="panelBtn3"><button class="panelBtn">borrar</button> </div>
-                    <div class="panelBtn4"> <ul class="tree-view">
-                      <li>Total</li>
-                    </ul></div>
+                      <div class="panelBtn4">
+                         <ul class="tree-view mesaTotal">
+                          <li>Total</li>
+                         </ul>
+                      </div>
                     <div class="panelBtn5"><button class="panelBtn">Anular</button> </div>
                     <div class="panelBtn6"><button class="panelBtn">Descuento</button> </div>
                     <div class="panelBtn7"><button class="panelBtn">Transferir</button> </div>
@@ -213,7 +215,41 @@
           </div>
         </div> 
         <div class="popupDinamico">
-          <!-- Pop up dinamico -->    
+          <!-- Pop up dinamico -->  
+          <div class="popUpformenu animate__animated animate__zoomIn" draggable="true" ondragstart="drag(event)" id="mydiv">
+						<div style="display: flex; flex-direction: row;">
+						<div class="title-bar" class="popHeader" id="mydivheader">            
+						<div class="title-bar-text innerHeadermenu" style="margin:0 12rem 0 0;padding:0;"> <img src="favicon2.png" alt="" class="innerFavicon">MiBar - Sistema de gestión Gastronomica</div>
+						<div class="title-bar-controls">
+						<button type="button" aria-label="Close" class="cancelarRegistro" style="height:16px;width:14px;margin-top:3px;"></button>
+						</div> 
+					</div>  	
+					</div>
+				<fieldset class="popUpmenu" >
+					<div class="menuForm">
+            <div>
+              <img src="LOGO MIBAR.png" alt="" class="logoMibarmenu">
+            </div>
+            <div>
+              <div class="field-row-stacked">
+                <label>Nuevo producto:</label>
+                <input type="text" placeholder="nombre producto" class="newProductfield"  ondragstart="return false;" ondrop="return false;" onfocus="this.value=''"/>
+            </div>
+            <div class="field-row-stacked">
+                <label>Precio producto:</label>
+                <input type="password" placeholder="precio producto" class="newProductprice"  ondragstart="return false;" ondrop="return false;" onfocus="this.value=''"/>
+                <div style="display: flex;flex-direction: row ;">
+                  <button type="button" class="panelBtn1">Cargar articulo</button>
+                  <button type="button" class="panelBtn1">cancelarRegistro</button>                  
+                </div>
+            </div>
+            </div>
+            
+          </div>
+        </fieldset>  
+
+          </div>
+				</div>  
 
     <footer>
       <div class="status-bar">

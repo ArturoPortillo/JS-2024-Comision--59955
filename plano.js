@@ -93,7 +93,7 @@ menuDisponible()
 /* Funcion para cargar Articulos al array de menu */
 
 function cargarMenu() {
-	while (true) {
+	/* while (true) {
 		let nuevoArticulo = prompt(
 			"Ingresa un nuevo articulo: " + "\n\n" + "Ingresa '0' para salir."
 		).trim();
@@ -117,20 +117,54 @@ function cargarMenu() {
 		if (!isNaN(nuevoArticulo) || isNaN(nuevoPrecio)) {
 			console.log("Ingresa datos validos");
 			break;
-		} else {
-			id += 1;
-			const producto = {
+		} else { */
+			/* id += 1; */
+		/* 	const producto = {
 				articulo: nuevoArticulo,
 				precio: nuevoPrecio,
 				id: id,
-				/* cantidad: cantidad */
-			};
+				cantidad: cantidad
+			}; */
+
+			let popupDinamico = document.querySelector('.popupDinamico')
+				popupDinamico.innerHTML = `
+						<div class="popUpformenu animate__animated animate__zoomIn" draggable="true" ondragstart="drag(event)" id="mydiv">
+						<div style="display: flex; flex-direction: row;">
+						<div class="title-bar" id="mydivheader">            
+						<div class="title-bar-text innerHeader" style="margin:0 12rem 0 0;padding:0;"> <img src="favicon2.png" alt="" class="innerFavicon">MiBar - Sistema de gestión Gastronomica</div>
+						<div class="title-bar-controls">
+						<button type="button" aria-label="Close" class="cancelarRegistro" style="height:16px;width:14px;margin-top:3px;"></button>
+						</div> 
+					</div>  	
+					</div>
+				<fieldset class="popUpmenu" >
+				        
+						 <div class="field-row-stacked">
+							<label>Nuevo producto:</label>
+							<input type="text" placeholder="nombre producto" class="newProductfield"  ondragstart="return false;" ondrop="return false;" onfocus="this.value=''"/>
+            			</div>
+					<div class="field-row-stacked">
+						<label>Precio producto:</label>
+						<input type="password" placeholder="precio producto" class="newPass"  ondragstart="return false;" ondrop="return false;" onfocus="this.value=''"/>
+					</div>
+					</div>  
+				</div>
+				`
+				dragElement(document.getElementById("mydiv"));
+
+			
+			let btnCerrar = document.querySelectorAll('.cancelarRegistro');
+			btnCerrar.forEach(btn => {
+				btn.addEventListener("click", function() {
+					toggleVis('popUpform');
+				});
+			});
 
 			datosMenu.forEach((menu) => {
 				/* Destructuring */
 				const {id, articulo, precio} = menu
 				contenidoLog = `ID: ${id}\nArticulo: ${articulo}\nPrecio: $${precio}`;
-				let contenido = `<button class="btnaddArt" id="${id}">${articulo}</button>`;
+				let contenido = `<button class="btnaddArt" id="${id}" onclick="abrirMesa(mesa)">${articulo}</button>`;
 				console.log(contenidoLog);
 				artMenu.innerHTML += contenido;
 			});
@@ -139,8 +173,7 @@ function cargarMenu() {
 			console.table(datosMenu);
 			menuDisponible();
 		}
-	}
-}
+		
 
 btnMenu.addEventListener("click", cargarMenu);
 
@@ -200,20 +233,23 @@ function abrirMesa(mesa) {
 	let eleccion = mesaSelec - 1;
 	console.log("Ingresaste a la mesa " + (eleccion + 1));	
 	
-	let coleccion = document.querySelectorAll('.btnaddArt')
+	let coleccion =  document.querySelectorAll('.btnaddArt')
 
-	coleccion.forEach(btn => {	
-		btn.addEventListener('click', function(){
-			let getBtnid = parseInt(btn.id);
-			let artIngresado = datosMenu.find((producto) => producto.id === getBtnid);	
+	/* coleccion.forEach(btn => {	
+		btn.addEventListener('click', function(){.... */
 
-			if (artIngresado) {
+
+    coleccion.forEach(btn => {	
+        btn.onclick = function() {
+            let getBtnid = parseInt(btn.id);
+            let artIngresado = datosMenu.find((producto) => producto.id === getBtnid);	
+
+            if (artIngresado) {
                 let articuloExistente = arrMesas[eleccion].find(articulo => articulo.id === artIngresado.id);
                 
                 if (articuloExistente) {
                     articuloExistente.cantidad += 1;
-					console.log(articuloExistente.cantidad);
-					
+                    console.log(articuloExistente.cantidad);
                 } else {
                     arrMesas[eleccion].push({ ...artIngresado, cantidad: 1 });
                 }
@@ -221,12 +257,14 @@ function abrirMesa(mesa) {
                 console.log(`Artículo ${artIngresado.articulo} agregado a la mesa ${eleccion + 1}`);
                 renderMesa(eleccion);
             }
-        }/* ,{once: true} */);
-		
+        };
     });
 
     renderMesa(eleccion); 
-}	
+}
+
+
+	
 
 /* Func. para renderizar el contenido de las mesas */
 
@@ -259,6 +297,18 @@ function renderMesa(eleccion) {
 		`;
 	});
 	contenidoArr.innerHTML = contenidoMesa;
+
+	let precioArt = 0;
+	arrMesas[eleccion].forEach((articulo) => {
+		precioArt += articulo.precio * articulo.cantidad		
+	})
+	console.log(precioArt)
+
+	let mesaTotal =  document.querySelector('.mesaTotal')
+	console.log(mesaTotal)
+
+	mesaTotal.innerHTML = `<li><b>$${precioArt}</b></li>`;
+	/* contenidoArr.forEach((total) =>) */
 };
 
 /* Funcion para bloquear y desbloquear el plano */
