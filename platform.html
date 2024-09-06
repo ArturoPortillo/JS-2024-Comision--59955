@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div>
+    <div><!-- Contenedor principal -->
       <!-- Barra superior -->
         <div class="title-bar">            
           <div class="title-bar-text innerHeader"> <img src="favicon2.png" alt="" class="innerFavicon">MiBar - Sistema de gestión Gastronomica</div>
@@ -26,14 +26,14 @@
         </div>
         <!-- Pestañas -->
         <menu role="tablist">
-          <li role="tab" aria-selected="true"><a href="#tabs">Plano de salon</a></li>
+          <li role="tab" aria-selected="true" id="salon"><a href="#tabs">Plano de salon</a></li>
           <li role="tab" ><a href="#tabs">Facturacion</a></li>
           <li role="tab"><a href="#tabs">Edicion de comprobantes</a></li>
           <li role="tab"><a href="#tabs">Menú</a></li>
           <li role="tab"><a href="#tabs">Empleados</a></li>
         </menu>
         <!-- Pestaña activa -->
-        <div class="window" role="tabpanel">
+        <div class="window" role="tabpanel"><!-- Principio body -->
         <!-- PLANO DE MESAS -->
           <div class="window-body">
             <img src="Close.png" class="lock" alt="LOCK" onclick="cambiarCandado()">
@@ -212,13 +212,13 @@
                   <p class="status-bar-field">JavaScript Comision #59955</p>
                 </div>      
               </div>
-          </div>
-        </div> 
+            </div><!-- Fin body -->            
+        </div> <!-- Contenedor pricipal -->
+        <!-- Pop up dinamico -->  
         <div class="popupDinamico">
-          <!-- Pop up dinamico -->  
           <div class="window animate__animated animate__zoomIn" draggable="true" ondragstart="drag(event)" id="mydiv"><!-- Head -->
             <div class="title-bar" id="mydivheader">
-              <div class="title-bar-text"><img src="favicon2.png" alt="" class="innerFavicon">MiBar - Sistema de gestión Gastronomica</div>
+              <div class="title-bar-text"><img src="favicon2.png" alt="" class="innerFavicon">MiBar - Cargar Articulos a menú</div>
               <div class="title-bar-controls">
                 <button aria-label="Minimize"></button>
                 <button aria-label="Maximize"></button>
@@ -252,47 +252,13 @@
 
               </div>
             </div>
-<!--             <button>Click me</button> -->
              <div>
                <input type="submit" value="Cargar"/>
                <input type="reset" value="Cancelar"/>
              </div>
           </div>
-<!--           <div class="popUpformenu animate__animated animate__zoomIn" draggable="true" ondragstart="drag(event)" id="mydiv">
-						<div style="display: flex; flex-direction: row;">
-						<div class="title-bar" class="popHeader" id="mydivheader">            
-						<div class="title-bar-text innerHeadermenu" style="margin:0 12rem 0 0;padding:0;"> <img src="favicon2.png" alt="" class="innerFavicon">MiBar - Sistema de gestión Gastronomica</div>
-						<div class="title-bar-controls">
-						<button type="button" aria-label="Close" class="cancelarRegistro" style="height:16px;width:14px;margin-top:3px;"></button>
-						</div> 
-					</div>  	
-					</div>
-				<fieldset class="popUpmenu" >
-					<div class="menuForm">
-            <div>
-              <img src="LOGO MIBAR.png" alt="" class="logoMibarmenu">
-            </div>
-            <div>
-              <div class="field-row-stacked">
-                <label>Nuevo producto:</label>
-                <input type="text" placeholder="nombre producto" class="newProductfield"  ondragstart="return false;" ondrop="return false;" onfocus="this.value=''"/>
-            </div>
-            <div class="field-row-stacked">
-                <label>Precio producto:</label>
-                <input type="password" placeholder="precio producto" class="newProductprice"  ondragstart="return false;" ondrop="return false;" onfocus="this.value=''"/>
-                <div style="display: flex;flex-direction: row ;">
-                  <button type="button" class="panelBtn1">Cargar articulo</button>
-                  <button type="button" class="panelBtn1">cancelarRegistro</button>                  
-                </div>
-            </div>
-            </div>
-            
-          </div>
-        </fieldset>  
-
-          </div> -->
 				</div>  
-
+        <!-- Fin popUp dinamico -->
     <footer>
       <div class="status-bar">
         <p class="status-bar-field">Creado por Arturo Portillo</p>
