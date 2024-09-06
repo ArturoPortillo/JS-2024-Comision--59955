@@ -44,7 +44,7 @@ body  {
     max-width: 90%;
 }
 .innerFavicon {
-    max-width: 2.5%;
+    max-width: 1rem;
     max-height: 2.5%;
     margin-right: 8px;
 }
@@ -188,20 +188,29 @@ height: 1.8rem;
     margin: 4px 0px 0px 40px;
 }
 
+.campoArticulos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.selRubro {
+    margin: 0px 0px 33px 10px;
+}
+
 
 /* Estilos de funciones */
 
 #mydiv {
     position: absolute;
     z-index: 9;
-    border: 1px solid;
     text-align: center;
   }
 
   #mydivheader {
   cursor: move;
   z-index: 10;
-
   color: #fff;
 }
 

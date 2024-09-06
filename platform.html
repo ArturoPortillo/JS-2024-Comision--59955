@@ -216,7 +216,49 @@
         </div> 
         <div class="popupDinamico">
           <!-- Pop up dinamico -->  
-          <div class="popUpformenu animate__animated animate__zoomIn" draggable="true" ondragstart="drag(event)" id="mydiv">
+          <div class="window animate__animated animate__zoomIn" draggable="true" ondragstart="drag(event)" id="mydiv"><!-- Head -->
+            <div class="title-bar" id="mydivheader">
+              <div class="title-bar-text"><img src="favicon2.png" alt="" class="innerFavicon">MiBar - Sistema de gestión Gastronomica</div>
+              <div class="title-bar-controls">
+                <button aria-label="Minimize"></button>
+                <button aria-label="Maximize"></button>
+                <button aria-label="Close"></button>
+              </div>
+            </div><!-- Head content -->
+            <div class="window-body">
+              <div class="campoArticulos">
+                <div>
+                  <label for="text17"><p>Articulo</p></label>
+                  <input id="text17" type="text" style="margin-right: 5px;" class="nuevoArticulo"/>
+                </div>
+                <div>
+                  <label for="text17"><p>Precio</p></label>
+                  <input id="text17" type="text" class="nuevoPrecio"/>
+                </div>
+              </div>
+              <div>
+                <div class="selRubro">
+                  <p>Selecciona rubro:</p>
+                  <select>
+                    <option>7 - Tragos</option>
+                    <option>6 - Cervezas</option>
+                    <option>5 - Entradas</option>
+                    <option>4 - Tortas</option>
+                    <option>3 - Comida</option>
+                    <option>2 - Bebidas</option>
+                    <option selected>1 - Cafeteria</option>
+                  </select>
+                </div>
+
+              </div>
+            </div>
+<!--             <button>Click me</button> -->
+             <div>
+               <input type="submit" value="Cargar"/>
+               <input type="reset" value="Cancelar"/>
+             </div>
+          </div>
+<!--           <div class="popUpformenu animate__animated animate__zoomIn" draggable="true" ondragstart="drag(event)" id="mydiv">
 						<div style="display: flex; flex-direction: row;">
 						<div class="title-bar" class="popHeader" id="mydivheader">            
 						<div class="title-bar-text innerHeadermenu" style="margin:0 12rem 0 0;padding:0;"> <img src="favicon2.png" alt="" class="innerFavicon">MiBar - Sistema de gestión Gastronomica</div>
@@ -248,7 +290,7 @@
           </div>
         </fieldset>  
 
-          </div>
+          </div> -->
 				</div>  
 
     <footer>
