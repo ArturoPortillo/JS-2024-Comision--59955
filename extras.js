@@ -1,8 +1,31 @@
-/* Tests del cursor */
-/* Fuente: https://stackoverflow.com/questions/4564251/change-the-mouse-pointer-using-javascript */
+/* #############  PopUp dinamico ############# */
 
-/* let elementToChange = document.getElementsByTagName("body")[0];
-elementToChange.style.cursor = "url('http://www.rw-designer.com/cursor-extern.php?id=156052'), default"; */
+function popDinamico(texto) {
+	let popupDinamico = document.querySelector('.popupDinamico')
+	popupDinamico.innerHTML = `
+	          <div class="popUpform animate__animated animate__zoomIn" draggable="true" ondragstart="drag(event)" id="mydiv">
+            <div style="display: flex; flex-direction: row;">
+            <div class="title-bar" id="mydivheader">            
+              <div class="title-bar-text innerHeader" style="margin:0 12rem 0 0;padding:0;"> <img src="favicon2.png" alt="" class="innerFavicon">MiBar - Sistema de gestión Gastronomica</div>
+            <div class="title-bar-controls">
+              <button type="button" aria-label="Close" class="cancelarRegistro" style="height:16px;width:14px;margin-top:3px;"></button>
+            </div> 
+        </div>  
+        </div>
+      <fieldset class="popUpset" >
+            <div class="popUp">
+            <img src="LOGO MIBAR.png" alt="" class="logoMibarpop">
+            <div class="popForm">
+              <p class="popupText">${texto}</p>
+            </div>
+        </div>  
+    </div>
+	`
+	dragElement(document.getElementById("mydiv"));
+}
+
+
+/* Tests del cursor */
 
 let style = document.createElement('style');
 style.innerHTML = `
@@ -11,6 +34,26 @@ style.innerHTML = `
     }
 `;
 document.head.appendChild(style);
+
+
+/* Ocultar mesa del plano */
+
+const btnCerrar = document.querySelector('.ocultarMesa');
+btnCerrar.style.display = "none";
+
+
+function ocultarMesa() {
+	const btnCerrar = document.querySelector('.ocultarMesa');	
+
+    if (btnCerrar.style.display === "none") {
+        btnCerrar.style.display = "flex";
+        btnCerrar.style.visibility = "visible";
+    } else {
+        btnCerrar.style.display = "none";
+        btnCerrar.style.visibility = "hidden";
+    }
+}
+
 /* % CPU random */
 
 function usoCPU() {
@@ -24,31 +67,15 @@ function usoCPU() {
 }
 setInterval(usoCPU, 2000)
 
-function test(valor) {
-	/* 	let testing = prompt("Ingresa un usuario repetido: ").toLowerCase().replace(/\s+/g, ""); */
-		const validarNombre = usuariosRegistrados.find((usuario) => usuario.usuario === valor);
-	
-		if (validarNombre)  {
-			alert("REPETIDO! REPETIDO!")
-			let errorSignup = document.querySelector('.signupMsg')
-			console.log(errorSignup)
-			let registroError = `<div class="signUpicon"><img src="exclIcon.png" alt="!!" class="iconErrorlog"><p>Usuario ya registrado.</p></div>`
-			errorSignup.innerHTML = registroError;
-			return
-		} else {
-			console("Esto no funca")
-		}
-	}
-	
-
 
 /* Funcion popUp */
 
-/* Hacer visible/invisible nuestra ventana de registro */
+/* Hacer visible/invisible nuestra ventana de registro(codigo reciclable) */
 
 function toggleVis(clase) {
 
 	let popUp = document.querySelector(`.${clase}`)
+	console.log(popUp)
 
     if (popUp) {
 		if (popUp.classList.contains('vis')) {
@@ -69,6 +96,7 @@ function intervalo(clase) {
 
 
 /* Draggear ventana */
+/* Fuente: https://www.w3schools.com/HOWTO/tryit.asp?filename=tryhow_js_draggable */
 //Make the DIV element draggagle:
 dragElement(document.getElementById("mydiv"));
 
@@ -115,12 +143,3 @@ function dragElement(elmnt) {
 		document.onmousemove = null;
 	}
 }
-
-document.querySelectorAll('table.interactive').forEach(element => {
-    element.addEventListener('click', (event) => {
-      const row = event.path.find(element => element.tagName === 'TR' && element.parentElement.tagName === 'TBODY');
-      if (row) {
-        row.classList.toggle('highlighted');
-      }
-    })
-  });

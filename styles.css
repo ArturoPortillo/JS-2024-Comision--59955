@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    
+    list-style: none;    
 /*     cursor: url(/Test2.png), default; */
 }
 
@@ -79,6 +79,7 @@ footer {
     display: flex;
     flex-direction: column;
     width: fit-content;
+    height: fit-content;    
     
 }
 
@@ -190,7 +191,7 @@ height: 1.8rem;
     margin: 4px 0px 0px 40px;
 }
 
-.selRubro {
+.rubroDropdown {
     margin: 10px 0px 33px 20px;
 }
 
@@ -222,6 +223,14 @@ height: 1.8rem;
     display: block;
 }
 
+.tab-content {
+    display: none;  /* Hide all tab content by default */
+}
+
+#salon-tab {
+    display: block; /* Show the Salon tab by default */        
+    }
+
 /* Pop dinamico en PLANO */
 
 .popupDinamico {
@@ -237,11 +246,23 @@ height: 1.8rem;
 .window-body {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    
+    justify-content: center;    
+}
+
+.salon-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;    
+}
+
+.ocultarMesa {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;    
 }
 
 #plano {
+
     width: 34rem;
     height: 45rem;
     background-color: lightgray;
@@ -249,6 +270,7 @@ height: 1.8rem;
     display: grid;
     align-items: center;
 }
+
 
 /* PANEL DE MESA */
 
@@ -295,6 +317,7 @@ height: 1.8rem;
 
     .filtrar {
         padding: 0.2rem;
+        margin-left: 2.2rem;
     }
 
 /* Panel de menu */
@@ -371,7 +394,6 @@ height: 1.8rem;
     z-index: 9;
     box-shadow: -4px 2px 38px 18px rgba(192,192,192,0.75);
     --animate-duration: 0.1s;
-/*     transform: translateX(0%); */
 }
 
 .logoMibarmenu {  
@@ -392,22 +414,70 @@ height: 1.8rem;
 
 /* Extras del plano */
 
-.lock {
-    position: absolute;
-    margin-top: 43rem;
-    margin-right: 26.5rem;
-    width: 25px;    
-    z-index: 9;
+.planoFooter .estadoPlano {
+    margin-right: 0.2rem;
+    line-height: 24px;
+    font-weight: bold;
 }
 
-.addTable {
-    position: absolute;
-    margin-top: 0.5rem;
-    margin-right: 26.5rem;
-    width: 25px;    
-    z-index: 9;
-    visibility: hidden;
+.planoFooter {
+display: flex;
+flex-direction: row;
+width: 34rem;
+max-height: 27px;
+justify-content: space-between;
+margin-left: 1rem;
+transform: translateY(-65%);
+background-color: #c0c0c0;
+border: solid 1px gray;
+box-shadow: inset -1px -1px 3px rgba(111,116,117,1);
 }
+
+.btnPlus {  
+    display: flex;
+    flex-direction: row;
+    margin-left: 0.2rem;
+    max-width: 10rem;
+    }
+
+    .btnPlus p {
+        line-height: 22px;
+        font-weight: bold;
+        visibility: hidden;
+    }
+
+    .addTable {   
+        width: 25px;    
+        z-index: 9;
+        visibility: hidden;
+    }
+        .addTable:active {
+            filter: drop-shadow(-1px -1px 5px rgb(45, 228, 252))
+        }
+
+.btnLock {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-evenly;
+    margin-right: 0.2rem; 
+    max-width: 10rem;
+}
+    .btnLock p {
+        line-height: 23px;
+        transform: translateX(-5%);
+        font-weight: bold;
+    }
+
+        .lock {
+            width: 19px;    
+            height: 23px;
+        }
+
+            .lock:active {
+                filter: drop-shadow(-1px -1px 5px rgb(220, 243, 116))
+            }
+
+
 
 .contenedorMesa {
     height: 22.35rem;
@@ -430,12 +500,6 @@ height: 1.8rem;
 .gridMenu3  { grid-area: 2 / 2 / 3 / 3; }
 .gridMenu4 { grid-area: 3 / 1 / 4 / 3; }
 
-.treeSize {
-    height: 70vh;
-    width: 13rem;
-    overflow: scroll;
-}
-
 .campoArticulos {
     display: flex;
     flex-direction: row;
@@ -449,6 +513,10 @@ height: 1.8rem;
 .campoArticulos .inputContainer {
     margin: 10px 0px 0px 25px;
 }
+
+.borrar { 
+    margin: 15px;
+} 
 
 .cargarTitle p {
     margin: 8px 0 4px 10px;    
@@ -464,6 +532,35 @@ height: 1.8rem;
     margin-left: 20px;
 }
 
+.highlighted {
+    color: #dfdfdf;
+    background-color: rgb(18, 18, 138);
+    font-weight: lighter;
+    border: dotted white;
+    border-width: 1.5px;    
+    list-style: none;
+}
+
+ul {
+    user-select: none;
+}
+
+details {
+    user-select: none;
+}
+
+.treeSize {
+    max-width: 17rem;
+    height: 42rem;
+    max-height: 42rem;
+    overflow: scroll;
+}
+
+.resultado {
+    min-height: 7rem;
+    max-height: 7rem;
+    overflow: scroll;
+}
 
 
 /* GRID Y Estilo de mesas */
@@ -479,14 +576,12 @@ height: 1.8rem;
     border-style: solid;
     border-color: grey;
     border-width: 1px;
-    margin: 0 1rem 1rem 1rem;
+    margin: 1rem 1rem 1rem 1rem;
     
     }
 
 
     .modeloMesa{ 
-/*         background: rgb(0,0,128);
-        background: linear-gradient(310deg, rgba(0,0,128,1) 25%, rgba(16,132,208,1) 75%); */
         background-color: rgb(111, 212, 111);
         color: black;
         font-weight: bold;
