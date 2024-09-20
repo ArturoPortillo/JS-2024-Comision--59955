@@ -297,8 +297,6 @@ function editarArticulo() {
     }
 }
 
-
-
 /* ############ Habilitar borrar articulos ############# */
 
 function habilitarDel() { 

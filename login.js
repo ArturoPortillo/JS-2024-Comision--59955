@@ -191,10 +191,7 @@ function registroUsuario() {
 		let errorSignup = document.querySelector('.signupMsg')
 		let registroError = `<div class="signUpicon"><img src="check-0.png" alt="!!" class="iconErrorlog"><p>Usuario registrado con exito</p></div>`
 		errorSignup.innerHTML = registroError;
-
-			/* Registramos y guardamos no solo el usuario nuevo sino la base completa ya que la vamos a necesitar dentro de nuestra plataforma. */
-			/* El usuario que inicia sesion lo registramos dentro de la funcion inicioSesion */
-/* 			let recortarArr = usuariosRegistrados.slice(-usuariosRegistrados) */
+		
 			const userJson = JSON.stringify(usuariosRegistrados)
 			localStorage.setItem("usuario", userJson);
 

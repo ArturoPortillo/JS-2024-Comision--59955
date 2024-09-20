@@ -335,9 +335,8 @@ async function modCantidades(action, eleccion, mesa) {
     const mesas = Array.from(document.querySelectorAll('.modeloMesa'));
 
     mesas.sort((a, b) => {
-        
-        return parseInt(a.id) - parseInt(b.id);
-    });
+                return parseInt(a.id) - parseInt(b.id);
+            });
 
     const mesaDiv = mesas[eleccion];
 
