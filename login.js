@@ -18,9 +18,31 @@ function Empleado(usuario, contrasena, idEmpleado, rol) {
 
 /* Base de datos de usuarios registrados */
 
+let usuariosExternos;
 const usuariosRegistrados = [
 	{ usuario: "admin", contrasena: "admin", idEmpleado: 0, rol: "admin" },
 ];
+
+async function fetchData() {
+	fetch('https://66ebf35e2b6cf2b89c5c91f8.mockapi.io/UsuariosAPI')
+  .then((response) => response.json())
+  .then((data) => {
+    usuariosExternos = data	
+
+	const containsAdmin = usuariosRegistrados.some(user => user.usuario === "admin");
+
+	if (usuariosRegistrados.length === 0 || !containsAdmin) {
+		usuariosRegistrados.push(usuariosExternos[0]);
+		console.log("El admin siempre presente.");
+		arbolEmpleados(); 
+	  } else {
+		console.log("Test");
+	  }
+	}).catch ((error) => {
+		console.error('No se pudo conectar a la base de datos.', error);
+	});
+}
+
 
 /* Traer Usuarios registrados */
 function cargarUsuarios() {
@@ -176,7 +198,50 @@ function registroUsuario() {
 			const userJson = JSON.stringify(usuariosRegistrados)
 			localStorage.setItem("usuario", userJson);
 
-		intervalo("popUpform")
+		intervalo("popUpform").then(()=>{
+			Swal.fire({
+		
+				customClass: {
+					container: '...',
+					popup: 'swal2pop',
+					header: '...',
+					title: '...',
+					closeButton: '...',
+					icon: '...',
+					image: '...',
+					htmlContainer: '...',
+					input: '...',
+					inputLabel: '...',
+					validationMessage: '...',
+					actions: '...',
+					confirmButton: 'swalconfirm',
+					denyButton: '...',
+					cancelButton: '...',
+					loader: '...',
+					footer: '....',
+					timerProgressBar: '....',
+				},
+				
+				
+				title: "Usuario registrado con exito!",
+		/* 		text: "That thing is still around?", */
+		/* 		imageUrl: "/LOGO MIBAR.png", */
+				imageUrl: "/check-0.png",
+				imageWidth: 60,	
+				imageHeight: 40,
+				imageAlt: "Custom image",
+				position: "bottom-end",
+				toast: true,
+				timer: 3000,
+				showClass: {
+					popup: `
+					animate__animated
+					animate__zoomIn
+					animate__faster
+					`
+				}
+			});
+		})
 
 		return;
 	} else if (contieneNumeros) {
@@ -191,6 +256,8 @@ function registroUsuario() {
 		let registroError = `<div class="signUpicon"><img src="exclIcon.png" alt="!!" class="iconErrorlog"><p>PIN debe ser un valor numerico.</p></div>`
 		errorSignup.innerHTML = registroError;
 	} 
+
+
 }
 
 /*****************************************************************************************************************************************/
@@ -248,5 +315,9 @@ console.log(btnInicio);
 btnInicio.addEventListener("click", inicioSesion);
 console.log(btnInicio);
 
+let header = document.querySelector('#mydiv')
 
 
+
+console.log(header);
+header.style.visibility = "hidden"

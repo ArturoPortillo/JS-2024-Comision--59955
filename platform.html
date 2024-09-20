@@ -11,9 +11,11 @@
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
+    <link rel="icon" type="image/x-icon" href="faviconMiBar.png"> 
     <!-- Link local a la libreria de estilos de win98 para cubrirme en caso que se caiga el CDN. -->
-    <!-- <link rel="stylesheet" href="local98css.css"> -->
+    <link rel="stylesheet" href="local98css.css">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <div><!-- Contenedor principal -->
@@ -21,7 +23,7 @@
         <div class="title-bar">            
           <div class="title-bar-text innerHeader"> <img src="favicon2.png" alt="" class="innerFavicon">MiBar - Sistema de gestión Gastronomica</div>
           <div class="title-bar-controls">
-            <button aria-label="Close" onclick="location.href='./index.html'";></button>
+            <button aria-label="Close" onclick="location.href='./index.html'"; id="closeButton"></button>
           </div>          
         </div>
         <!-- Pestañas -->
@@ -112,11 +114,18 @@
                             <p>Agregar mesa</p>
                             <img src="compstui.dll_14_64006.ico" class="addTable" alt="" onclick="crearMesa()">
                           </div>
-                          <div class="btnLock">
-                            <p class="estadoCandadotxt">Desbloquear plano</p>
-                            <img src="Close.png" class="lock" alt="LOCK" onclick="cambiarCandado()">               
-                          </div> 
-                </div>
+<!--                           <div class="tooltip"> -->
+<!--                             <span class="tooltiptext">TEST</span> -->
+                            <div class="btnLock">
+                              <p class="estadoCandadotxt">Desbloquear plano</p>
+                              <img src="Close.png" class="lock" alt="LOCK" onclick="cambiarCandado()">               
+                            </div> 
+   <!--                        </div> -->
+  </div>
+      <div class="tooltip">
+    <span class="tooltiptext">RESTAURAR PLANO</span>
+      <img src="restorePlane.png" alt="" class="restorePlane" onclick="resetPlano()">
+    </div>
                         
               </div>
               <!-- PANEL DE MESA ABIERTA -->
@@ -170,8 +179,8 @@
                         <div class="panelBtn5"><button class="panelBtn" value="anular">Anular</button> </div>
                         <div class="panelBtn6"><button class="panelBtn" value="desc">Descuento</button> </div>
                         <div class="panelBtn7"><button class="panelBtn" value="trans">Transferir</button> </div>
-                        <div class="panelBtn8"><button class="panelBtn" value="mozo">Mozo</button> </div>
-                        <div class="panelBtn9"><button class="panelBtn" value="factB">Fact B</button> </div> 
+                        <div class="panelBtn8"><button class="panelBtn" value="mozo" >Mozo</button> </div>
+                        <div class="panelBtn9"><button class="panelBtn" value="factB">Factura B</button></div> 
                         <div class="panelBtn10"><button class="panelBtn" value="fiscal">Ticket Fiscal</button> </div> 
                       </div> 
                       <div class="logo2"><img class="logoMibar2" src="LOGO MIBAR.png" alt=""></div>
@@ -218,7 +227,38 @@
         <!-- Fin contenido salon -->
         <!-- Inicio contenido "Facturacion" -->                        
         <div id="facturacion-tab" class="tab-content">
-          TEST FACTURACION
+          <h1 class="facturacion-title">RESUMEN DE VENTAS</h1>
+          
+          <p class="facturacion-header">Ventas por comprobante</p>
+          <hr class="solid">
+          <div class="facturacionContainer">
+            <div class="facturacion">
+              <p>Fact B: <span>$</span>0</p>
+              <p>Ticket Fiscal: <span>$</span>0</p>
+
+            </div>
+            <div class="facturacion">
+              <p><span class="hash">#</span>0</p>
+              <p><span class="hash">#</span>0</p>
+
+            </div>
+          </div>
+          <p class="facturacion-header">Resumen ventas:</p>
+          <hr class="solid">
+          <div class="facturacionContainer">
+            <div class="facturacion">
+              <p>Total operaciones:</p>
+              <p>Promedio por operacion:</p>
+              <p>Total cobrado:</p>
+            </div>
+            <div class="facturacion">
+              <p><span class="hash">#</span>0</p>
+              <p><span>$</span>0</p>
+              <p><span>$</span>0</p>
+            </div>
+          </div>
+
+
         </div>
         <!-- Fin contenido "Facturacion" -->    
         <!-- Inicio edicion de comprobantes -->                    
@@ -375,7 +415,7 @@
           </ul>
             </div>
             <!-- Cargar Articulos -->
-            <div>
+            <div class="centerMenuart">
               <div class="gridMenu2">
                 <div class="campoArticulos">
                   <div>
@@ -395,13 +435,16 @@
                     </div>
                     <label for="text17"><p>Precio</p></label>
                     <input id="text17" type="text" class="nuevoPrecio"/>
+                    <span class="cargarErrcontainer">
+                      <!-- Mensaje dinamico -->
+                    </span>
                     <div class="inputContainer">
                       <input type="submit" value="Cargar" onclick="cargarMenu()"/>
                       <input type="reset" value="reset"/>
                     </div>
                   </form>
                   </div>
-                  <div>
+                  <div class="fix">
                     <div class="rubroDropdown">
                       <p>Selecciona rubro:</p>
                       <!-- Dato: Firefox ignora la opcion default marcada con "Selected" si la cambiamos y recargamos la ventana, para evitar esto usamos el atributo  autocomplete="off"
@@ -445,13 +488,16 @@
                       <input type="reset" value="reset"/>
                     </div>
                     <div class="borrar">
+                      <span class="labelContainer">
+                        <img src="recBin.png" alt="" srcset="" class="icoSize">
                         <input unchecked type="checkbox" id="example2" class="check" onclick="habilitarDel()"/>
                         <label for="example2"><b>BORRAR ARTICULO</b></label>
+                      </span>
                         <input id="delete" type="submit" value="Borrar Articulo" class="habilitarDel" disabled onclick="borrarArt()"/>
                     </div>
                   </form>
                   </div>
-                  <div>
+                  <div class="fix">
                     <div class="rubroDropdown">
                 
                         <p>Cambiar rubro:</p>
@@ -478,18 +524,126 @@
                 </div>
               </div>
               <div class="field-row filtrar" style="margin-top: 4px;">
-                <label for="text17"> Buscar</label>
+                <span class="labelContainer">
+                  <img src="searchArt.png" alt="" class="icoSize">
+                  <label for="text17">Buscar Articulo:</label>
+                </span>
                 <input id="text17" type="text" class="barraBuscar" autocomplete="off" onfocus="this.value=''"/>
-              </div>     
+              </div>   
             </div>
-          </div>
-          <img src="LOGO MIBAR.png" style="width:220px;height:110px;z-index:1;position:absolute;margin-top:36rem;margin-left:24rem;opacity:0.4;" alt="">
-          </div>
+            <div class="restoreDB">
+              <fieldset class="restoreField">
+              <span class="labelContainer">
+                <img src="restoreDB.png" alt="">
+                <label for="text19">Restaurar Menú</label>
+              </span>
+              <input type="submit" value="Restaurar" class="restaurarDBinput" onclick="restaurarDB()"/>
+            </fieldset>
+            </div>
+          </div>  
+            </div>
+
         </div>         
           <!-- Fin pestaña "Menú" -->
           <!-- Inicio pestaña "Empleados" -->
           <div id="empleados-tab" class="tab-content">
-           TEST EMPLEADOS
+            <div>
+              <fieldset>
+                <div class="empleadosContent">
+                  <div>
+                    <ul class="tree-view arbolEmpleados">
+                      <details open>
+                        <summary class="listaEmp">Lista de empleados</summary>
+                        <ul>
+                            <details id="listaEmpleados">
+                                <summary>Empleados</summary>
+                                  <ul>
+                                      <li>${usuario.usuario}</li>
+                                  </ul>
+                            </details>
+                        </ul>
+                      </details>
+                    </ul>
+                  </div>
+                  <div>
+                    <form action="" class="formcargarEmpleado">
+                      <!-- editar Empleado -->
+                       <fieldset class="fieldEmp">
+                      <div class="editarEmpleado">
+                        <div class="field-row-stacked editField" style="width: 200px">
+                          <span class="labelContainer">
+                            <img src="editEmp.ico" alt="" class="icoSize">
+                            <label for="text18">Editar nombre</label>
+                          </span>
+                          <input id="text18" type="text" class="editEmpleado"/>
+                        </div>
+                        <div class="field-row-stacked" style="width: 200px">
+                          <span class="labelContainer">
+                            <img src="editLock.ico" alt="" srcset="" class="icoSize">
+                            <label for="text19">Editar contraseña</label>
+                          </span>
+                          <input id="text19" type="text" class="editContrasena"/>
+                        </div>
+                        <span class="labelContainer">
+                          <img src="Questionmark.png" alt="" class="icoSize">
+                          <label for="text20">Editar rol asignado</label>                        
+                        </span>
+                        <select id="editarRolSelect" for="text20" class="editRol">
+                          <option selected disabled value> -- Nivel de acceso -- </option>
+                          <option>Admin</option>
+                          <option>Mozo</option>
+                        </select>
+                        <div class="inputContainer">
+                          <input type="submit" value="Actualizar" class="actualizarEmpleado" onclick="editarEmpleado()"/>
+                          <input type="reset" value="reset"/>
+                        </div>
+                        <div class="borrarEmpleado">
+                          <span class="labelContainer">
+                            <img src="recBin.png" alt="" class="icoSize">
+                            <input unchecked type="checkbox" id="example4" class="checkEmp" onclick="habilitarDeleteEmpleado()"/>
+                            <label for="example4"><b>BORRAR EMPLEADO</b></label>
+                          </span>
+                          <input id="delete" type="submit" value="Borrar empleado" class="habilitarDeleteEmp" disabled onclick="borrarEmpleado()"/>
+                      </div>
+                      </div>
+                    </fieldset>
+                    <!-- Cargar empleado -->
+                    <fieldset class="fieldEmp">
+                    <div class="cargarEmpleado">
+                      <div class="field-row-stacked editField" style="width: 200px">
+                        <span class="labelContainer">
+                          <img src="newUser.ico" alt="" class="icoSize">
+                          <label for="text18">Nuevo nombre</label>
+                        </span>
+                        <input id="text18" type="text" class="nuevoEmpleado"/>
+                      </div>
+                      <div class="field-row-stacked" style="width: 200px">
+                        <span class="labelContainer">
+                          <img src="editLock.ico" alt="" srcset="" class="icoSize">
+                          <label for="text19">Nueva contraseña</label>
+                        </span>
+                        <input id="text19" type="text" class="nuevaPass"/>
+                      </div>
+                      <span class="labelContainer">
+                        <img src="Questionmark.png" alt="" class="icoSize">
+                        <label for="text20">Asignar Rol:</label>                        
+                      </span>
+                      <select for="text20" class="asignarRol" autocomplete="off">
+                        <option selected disabled value> -- Nivel de acceso -- </option>
+                        <option>Admin</option>
+                        <option>Mozo</option>
+                      </select>
+                      <div class="inputContainer">
+                        <input type="submit" value="Cargar" onclick="cargarEmpleado()"/>
+                        <input type="reset" value="reset"/>
+                      </div>
+                    </div>
+                  </fieldset>
+                    </form>
+                  </div>                 
+                </div>
+              </fieldset>
+            </div>        
           </div>
           <!-- Fin pestaña "Empleados"  -->
             </div><!-- Fin Window-body #No colocar contenido fuera de este contenedor.-->  
@@ -503,15 +657,45 @@
           
 </div><!-- Fin contenido principal -->
         <!-- Pop up dinamico -->  
-        <div class="popupDinamico">
-
-        </div>
+        <div class="popupDinamico" style="display: none;">
+          <div class="popUpclose">
+              <div class="title-bar">
+                  <div class="title-bar-text">
+                      <img src="favicon2.png" alt="" class="innerFavicon"> MiBar - Sistema de gestión Gastronomica
+                  </div>
+                  <div class="title-bar-controls">
+                      <button type="button" class="closePopup" onclick="closeModal()">&times;</button>
+                  </div>
+              </div>
+              <fieldset class="popUpset">
+                  <div class="popUp">
+                    <img src="LOGO MIBAR.png" alt="" class="logoMibarpop">
+                    <div class="closeEvent">
+                      <span>
+                        <img src="exclIcon.png" alt="" style="display: flex;margin: 0 auto 0.5rem auto;">
+                        <fieldset>
+                          <p>Seguro que quieres cerrar la ventana?</p>
+                          <p>Se perderan los datos de las mesas y de facturación.</p>                          
+                        </fieldset>
+                      </span>
+                      <div class="closeeventBtn">
+                        <button id="okButton" class="closeBtn">OK</button>
+                        <button id="cancelButton" onclick="closeModal()" class="closeBtn">Cancel</button>
+                      </div>
+                    </div>
+                  </div>
+              </fieldset>
+          </div>
+      </div>
+      
         <!-- Fin popUp dinamico -->
     <footer>
       <div class="status-bar">
         <p class="status-bar-field">Creado por Arturo Portillo</p>
         <p class="status-bar-field">  CoderHouse 2024</p>
         <p class="status-bar-field">JavaScript Comision #59955</p>
+        <p class="status-bar-field cpu"><span><img src="0.0.ico" alt=""></span>CPU Usage: 14%</p>
+        <p class="status-bar-field">Press <a href="">F1</a> for help</p>  
       </div>
     </footer>
     <script src="extras.js"></script>
@@ -519,5 +703,8 @@
     <script src="main.js"></script>
     <script src="menu.js"></script>
     <script src="plano.js"></script>
-</body>
+    <script src="facturacion.js"></script>
+    <script src="empleados.js"></script>
+    <script src="tutorial.js"></script>  
+  </body>
 </html>

@@ -6,6 +6,27 @@ function Producto(id, articulo, precio) {
 	this.precio = precio;
 }
 
+
+function restaurarDB() {
+	fetch('https://66ebf35e2b6cf2b89c5c91f8.mockapi.io/dataBaseapi')
+    .then((response) => response.json())
+    .then((data) => {
+    
+        datosMenu.length = 0;
+        datosMenu.push(...data)
+        console.log("Listado de menú recuperado.");
+        arbolMenu()
+        renderMenu()
+
+	}).catch ((error) => {
+		console.error('No se pudo conectar a la base de datos.', error);
+	});
+}
+
+
+
+
+
 const datosMenu = [
     { articulo: "Café con leche", precio: 3100, id: 1, rubro: "Cafeteria" },
     { articulo: "Capuchino", precio: 3500, id: 2, rubro: "Cafeteria" },
@@ -94,7 +115,6 @@ let id = datosMenu.length;
 /* ############ Funcion para cargar Articulos al array de menu  ############# */
 
 function cargarMenu() {
-
 		let nuevoArtinput = document.querySelector('.nuevoArticulo')
 		let nuevoPrecioinput = document.querySelector('.nuevoPrecio');
 		let nuevoRubro = document.querySelector('.selectedRubro')
@@ -106,12 +126,17 @@ function cargarMenu() {
 		let nuevoPrecio = parseInt(nuevoPrecioinput.value);
 		console.log(nuevoPrecio)
 
-
 		let asignarRubro = document.querySelector('.selectedRubro').selectedOptions[0].value;
 		console.log(asignarRubro)
 
+        let cargarErr = document.querySelector('.cargarErrcontainer');
+
 		if (nuevoArticulo == ""  || isNaN(nuevoPrecio) || asignarRubro == "") {
-			alert("Ingresa datos validos");
+            cargarErr.innerHTML = `
+                    <div class="cargarErr">
+                        <img src="exclIcon.png" alt="" srcset="" class="icoSize">Ingresa datos válidos.
+                    </div>
+            `
 			return;
 		} else { 
 			id += 1; 
@@ -124,7 +149,11 @@ function cargarMenu() {
 			
 			datosMenu.push(producto);
 			console.table(datosMenu);
-			alert("Producto agregado con exito!")
+			cargarErr.innerHTML = `
+                    <div class="cargarErr">
+                        <img src="check-0.png" alt="" srcset="" class="icoSize">Producto cargado con exito.
+                    </div>
+            `
 			arbolMenu()
 			
 			document.querySelector('.cargarForm').onsubmit = e => {
@@ -139,7 +168,8 @@ function cargarMenu() {
 
 /* ############ Actualizar datos Arbol menu ############# */
 
-function arbolMenu() {
+async function arbolMenu() {
+    
     let arbolMenu = document.querySelector('#arbolMenu');
     arbolMenu.innerHTML = "<summary>Lista de rubros</summary>";
 
@@ -178,7 +208,7 @@ actualizarArticulo.addEventListener('click',editarArticulo)
 /* ############ Editar Articulos  ############# */
 
 function editarArticulo() {
-    
+
     let buscar = document.querySelector('.barraBuscar');
     let resultado = document.querySelector('.resultado');
     let editarArt = document.querySelector('.editarArticulo');
@@ -186,93 +216,76 @@ function editarArticulo() {
     let editarRubro = document.querySelector('.editRubro');
     let resForm = document.querySelector('.formularioEdit');
 
-    function updateEditFields(itemText) {
+
+    function actualizarInputs(itemText) {
         const item = datosMenu.find(target => target.articulo.trim() === itemText.trim());
         if (item) {
             editarArt.value = item.articulo;
             editarPrecio.value = item.precio;
             editarRubro.value = item.rubro;
 
+
             editarArt.dataset.originalArticulo = item.articulo;
             editarPrecio.dataset.originalPrecio = item.precio;
             editarRubro.dataset.originalRubro = item.rubro;
         }
     }
+    
 
-
-    const index = datosMenu.findIndex((target) => target.articulo.trim() === event.currentTarget.textContent.trim());
+    const index = datosMenu.findIndex(target => target.articulo.trim() === event.currentTarget.textContent.trim());
 
     if (index !== -1) {
+        
 
-            buscar.addEventListener('keyup', function() {
-                let buscarArt = buscar.value.toLowerCase();
-                let artBuscado = datosMenu.filter((producto) => producto.articulo.toLowerCase().includes(buscarArt));
-        
-                let artEncontrado = artBuscado.map((producto) =>
-                    `<ul><li>${producto.articulo}</li></ul>`
-                ).join('');
-        
-                resultado.innerHTML = artEncontrado;
-        
-                document.querySelectorAll('.resultado li').forEach(item => {
-                    item.addEventListener('click', function () {
-                        updateEditFields(this.textContent);
-                    });
-                });
-                resaltar()
-            });
+        buscar.addEventListener('keyup', function() {
+            let buscarArt = buscar.value.toLowerCase();
+            let artBuscado = datosMenu.filter(producto => producto.articulo.toLowerCase().includes(buscarArt));
 
-            document.querySelectorAll('#arbolMenu li').forEach(item => {
+            let artEncontrado = artBuscado.map(producto => 
+                `<ul><li>${producto.articulo}</li></ul>`
+            ).join('');
+
+            resultado.innerHTML = artEncontrado;
+
+
+            document.querySelectorAll('.resultado li').forEach(item => {
                 item.addEventListener('click', function () {
-                    updateEditFields(this.textContent);
+                    actualizarInputs(this.textContent);
                 });
             });
+            resaltar(); 
+        });
 
-        console.log("Match encontrado: ");
-        console.log(datosMenu[index]);
+        document.querySelectorAll('#arbolMenu li').forEach(item => {
+            item.addEventListener('click', function () {
+                actualizarInputs(this.textContent);
+            });
+        });
 
-        editarArt.value = datosMenu[index].articulo;
-        editarPrecio.value = datosMenu[index].precio;
-        editarRubro.value = datosMenu[index].rubro;
 
-        editarArt.dataset.originalArticulo = datosMenu[index].articulo;
-        editarPrecio.dataset.originalPrecio = datosMenu[index].precio;
-        editarRubro.dataset.originalRubro = datosMenu[index].rubro;
+        actualizarInputs(datosMenu[index].articulo);
 
-        const actualizarNombre = function () {
-            const index = datosMenu.findIndex((target) => target.articulo.trim() === editarArt.dataset.originalArticulo.trim());
-            if (index !== -1) {
-                datosMenu[index].articulo = editarArt.value;
-            }
-        };
-        const actualizarPrecio = function (e) {
-            const index = datosMenu.findIndex((target) => target.precio === parseFloat(editarPrecio.dataset.originalPrecio));
-            if (index !== -1) {
-                datosMenu[index].precio = parseFloat(editarPrecio.value) || 0;
-            }
-            e.stopPropagation();
-            e.preventDefault();
-        };
 
-        const actualizarRubro = function (e) {
-            const index = datosMenu.findIndex((target) => target.rubro.trim() === editarRubro.dataset.originalRubro.trim());
-            if (index !== -1) {
-                datosMenu[index].rubro = editarRubro.value;
-            }
-            e.stopPropagation();
-            e.preventDefault();
-        };
+        editarArt.removeEventListener('input', editarArt);
+        editarPrecio.removeEventListener('input', editarPrecio);
+        editarRubro.removeEventListener('input', editarRubro);
 
-        editarArt.removeEventListener('input', actualizarNombre);
-        editarPrecio.removeEventListener('input', actualizarPrecio);
-        editarRubro.removeEventListener('input', actualizarRubro);
-
-        editarArt.addEventListener('input', actualizarNombre, { once: true });
-        editarPrecio.addEventListener('input', actualizarPrecio, { once: true });
-        editarRubro.addEventListener('input', actualizarRubro, { once: true });
 
         resForm.onsubmit = function (e) {
-            e.preventDefault();
+            e.preventDefault(); 
+
+
+            const itemIndex = datosMenu.findIndex(target => target.articulo.trim() === editarArt.dataset.originalArticulo.trim());
+            
+            if (itemIndex !== -1) {
+
+                datosMenu[itemIndex].articulo = editarArt.value;
+                datosMenu[itemIndex].precio = parseFloat(editarPrecio.value) || 0;
+                datosMenu[itemIndex].rubro = editarRubro.value;
+
+                console.log("Artículo actualizado:");
+                console.table(datosMenu);
+            }
 
 
             editarArt.value = '';
@@ -283,6 +296,7 @@ function editarArticulo() {
         };
     }
 }
+
 
 
 /* ############ Habilitar borrar articulos ############# */
@@ -312,6 +326,7 @@ function borrarArt(){
 
     let editarArt = document.querySelector('.editarArticulo')
     let checkStats = document.querySelector('.check')
+    let habilitarDel = document.querySelector('.habilitarDel')
     console.log(checkStats);
 
     const index = datosMenu.findIndex((target) => target.articulo.trim() === editarArt.value.trim());
@@ -326,7 +341,8 @@ function borrarArt(){
 
         datosMenu.splice(index, 1); 
         console.log("Articulo borrado.");
-        checkStats.checked = false;
+        checkStats.checked = false;    
+        habilitarDel.disabled = true;
         arbolMenu()
         renderMenu()
     }

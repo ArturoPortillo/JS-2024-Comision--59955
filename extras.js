@@ -36,24 +36,6 @@ style.innerHTML = `
 document.head.appendChild(style);
 
 
-/* Ocultar mesa del plano */
-
-const btnCerrar = document.querySelector('.ocultarMesa');
-btnCerrar.style.display = "none";
-
-
-function ocultarMesa() {
-	const btnCerrar = document.querySelector('.ocultarMesa');	
-
-    if (btnCerrar.style.display === "none") {
-        btnCerrar.style.display = "flex";
-        btnCerrar.style.visibility = "visible";
-    } else {
-        btnCerrar.style.display = "none";
-        btnCerrar.style.visibility = "hidden";
-    }
-}
-
 /* % CPU random */
 
 function usoCPU() {
@@ -61,11 +43,14 @@ function usoCPU() {
 	let CpuUsage = Math.floor(Math.random() * 101)
 	let randomCPU = document.querySelectorAll('.cpu')
 
-	randomCPU.forEach((cpu) => {
-			cpu.innerHTML = `CPU Usage: ${CpuUsage}%`
-	})
+    let imageIndex = Math.floor(CpuUsage / 10);
+	
+    randomCPU.forEach((cpu) => {		
+		cpu.innerHTML = `<img src="${imageIndex}.0.ico" alt=""> CPU Usage: ${CpuUsage}%`;
+
+    });
 }
-setInterval(usoCPU, 2000)
+setInterval(usoCPU, 3000)
 
 
 /* Funcion popUp */
@@ -91,7 +76,61 @@ function toggleVis(clase) {
 };
 
 function intervalo(clase) {
-	setTimeout(() => toggleVis(clase), 2000);
+	setTimeout(() => toggleVis(clase), 1000);
+}
+
+function closeWindow() {
+        showModal();
+    };
+
+
+function showModal() {
+    document.querySelector('.popupDinamico').style.display = 'flex';
+}
+
+function closeModal() {
+    document.querySelector('.popupDinamico').style.display = 'none';
+}
+
+document.getElementById("okButton").addEventListener("click", function() {
+
+ window.onbeforeunload = null;  
+    window.close();
+});
+
+
+document.getElementById("closeButton").addEventListener("click", function(e) {
+    e.preventDefault();
+    closeWindow(); 
+});
+
+const btnCerrar = document.querySelector('.ocultarMesa');
+btnCerrar.style.display = "none";
+
+
+function ocultarMesa() {
+	const btnCerrar = document.querySelector('.ocultarMesa');	
+
+    if (btnCerrar.style.display === "none") {
+        btnCerrar.style.display = "flex";
+        btnCerrar.style.visibility = "visible";
+    } else {
+        btnCerrar.style.display = "none";
+        btnCerrar.style.visibility = "hidden";
+    }
+}
+
+function mostrarMesa(){
+	const btnCerrar = document.querySelector('.ocultarMesa');	
+
+    if (btnCerrar.style.display === "visible") {
+		btnCerrar.style.display = "none";
+        btnCerrar.style.visibility = "hidden";
+
+    } else {
+		btnCerrar.style.display = "flex";
+        btnCerrar.style.visibility = "visible";
+    }
 }
 
 
@@ -143,3 +182,6 @@ function dragElement(elmnt) {
 		document.onmousemove = null;
 	}
 }
+
+/* Ocultar mesa del plano */
+

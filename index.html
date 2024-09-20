@@ -12,9 +12,10 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
     <!-- Link local a la libreria de estilos de win98 para cubrirme en caso que se caiga el CDN. -->
-    <!-- <link rel="stylesheet" href="local98css.css"> -->
+    <link rel="stylesheet" href="local98css.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/x-icon" href="faviconMiBar.png">    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
   <div>    
@@ -23,11 +24,11 @@
       <div class="title-bar-controls">
         <button aria-label="Close" onclick="location.href='./index.html'";></button>
       </div>          
-    </div>
-    
+    </div>    
     <div class="formWindow">
       <div class="popUpfunc">
-        <!-- Pop up dinamico -->    
+        <!-- Pop up dinamico --> 
+ 
       </div>
       <div class="window" style="width: 320px">
         <div class="title-bar">
@@ -58,7 +59,7 @@
         <div class="status-bar">
           <p class="status-bar-field">Press F1 for help</p>
           <p class="status-bar-field">Slide 1</p>
-          <p class="status-bar-field cpu">CPU Usage: 14%</p>
+          <p class="status-bar-field cpu"><img src="0.0.ico" alt="" class="imgCpu">CPU Usage: 14%</p>
         </div>        
       </div> 
   </div>
@@ -70,7 +71,7 @@
       <p class="status-bar-field">JavaScript Comision #59955</p>
     </div>
   </footer>
-    <script src="extras.js"></script>
+  <script src="extras.js"></script>
     <script src="login.js"></script>
     <script src="main.js"></script>
 </body>

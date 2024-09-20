@@ -1,8 +1,40 @@
-* {
+:root {
+    --text-color: #222222;
+    --surface: #c0c0c0;
+    --button-highlight: #ffffff;
+    --button-face: #dfdfdf;
+    --button-shadow: #808080;
+    --window-frame: #0a0a0a;
+    --dialog-blue: #000080;
+    --dialog-blue-light: #1084d0;
+    --dialog-gray: #808080;
+    --dialog-gray-light: #b5b5b5;
+    --link-blue: #0000ff;
+  
+
+    --checkbox-total-width-precalc: var(--checkbox-width) +
+      var(--radio-label-spacing);
+    --checkbox-total-width: calc(var(--checkbox-total-width-precalc));
+    --checkbox-left: calc(-1 * var(--checkbox-total-width-precalc));
+    --checkmark-width: 7px;
+    --checkmark-top: 3px;
+    --checkmark-left: 3px;
+
+    --border-width: 1px;
+    --border-raised-outer: inset -1px -1px var(--window-frame),
+      inset 1px 1px var(--button-highlight);
+    --border-raised-inner: inset -2px -2px var(--button-shadow),
+      inset 2px 2px var(--button-face);
+    --border-sunken-outer: inset -1px -1px var(--button-highlight),
+      inset 1px 1px var(--window-frame);
+    --border-sunken-inner: inset -2px -2px var(--button-face),
+      inset 2px 2px var(--button-shadow);
+}
+
+* {    
     margin: 0;
     padding: 0;
     list-style: none;    
-/*     cursor: url(/Test2.png), default; */
 }
 
 body  {
@@ -98,6 +130,8 @@ footer {
     flex-direction: row;    
 }
 
+
+
 .errorLogin {
     display: flex;
     flex-direction: row;
@@ -191,6 +225,7 @@ height: 1.8rem;
     margin: 4px 0px 0px 40px;
 }
 
+
 .rubroDropdown {
     margin: 10px 0px 33px 20px;
 }
@@ -234,12 +269,30 @@ height: 1.8rem;
 /* Pop dinamico en PLANO */
 
 .popupDinamico {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
-    margin: 0 auto;
-    align-items: center;
-    flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
+
+.popUpclose {
+        background-color: #c0c0c0;
+        align-items: center;
+        width: 35rem;
+        position: relative;
+        top: 35%;    
+        z-index: 9;
+        box-shadow: -4px 2px 28px 2px rgba(192,192,192,0.75);
+        --animate-duration: 0.1s;
+        transform: translateY(-160%);
+}
+
 
 /* PLANO */
 
@@ -247,6 +300,8 @@ height: 1.8rem;
     display: flex;
     flex-direction: row;
     justify-content: center;    
+    margin: 0;
+    padding: 0;
 }
 
 .salon-flex {
@@ -317,7 +372,7 @@ height: 1.8rem;
 
     .filtrar {
         padding: 0.2rem;
-        margin-left: 2.2rem;
+        margin-left: 1.5rem;
     }
 
 /* Panel de menu */
@@ -361,6 +416,19 @@ height: 1.8rem;
     max-height: 41rem;
     min-width: 35em;
     margin: 1rem;
+}
+
+.restoreDB {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem 4rem 0 0;
+}
+
+.restaurarDBinput {
+    margin: 0.5rem;
+    width: 0;
+
 }
 
 /* Popup menu */
@@ -446,6 +514,8 @@ box-shadow: inset -1px -1px 3px rgba(111,116,117,1);
         visibility: hidden;
     }
 
+    
+
     .addTable {   
         width: 25px;    
         z-index: 9;
@@ -454,6 +524,15 @@ box-shadow: inset -1px -1px 3px rgba(111,116,117,1);
         .addTable:active {
             filter: drop-shadow(-1px -1px 5px rgb(45, 228, 252))
         }
+
+    .restorePlane {
+        z-index: 9;
+        display: none;
+    }
+
+    .restorePlane:active {
+        filter: drop-shadow(-1px -1px 5px rgb(235, 39, 4))
+    }
 
 .btnLock {
     display: flex;
@@ -495,19 +574,35 @@ box-shadow: inset -1px -1px 3px rgba(111,116,117,1);
     
     }
 
-.gridMenu1 { grid-area: 1 / 1 / 3 / 2; }
-.gridMenu2 { grid-area: 1 / 2 / 2 / 3;}
+.gridMenu1 { grid-area: 1 / 1 / 3 / 2; 
+max-width: 300px;
+}
+.gridMenu2 { grid-area: 1 / 2 / 2 / 3;
+}
 .gridMenu3  { grid-area: 2 / 2 / 3 / 3; }
 .gridMenu4 { grid-area: 3 / 1 / 4 / 3; }
 
 .campoArticulos {
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
-    margin-top: 50px;
-    place-items: center;
-    place-self: center;    
+    margin-top: 50px;  
+    justify-content: space-evenly;
+    
+}
+
+.cargarForm {
+    margin-right: 4.4rem;
+}
+
+.fix {
+    margin-right: 2rem;
+}
+
+.centerMenuart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .campoArticulos .inputContainer {
@@ -517,6 +612,28 @@ box-shadow: inset -1px -1px 3px rgba(111,116,117,1);
 .borrar { 
     margin: 15px;
 } 
+
+.borrarEmpleado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem 0rem 0 0;
+}
+
+.actualizarEmpleado {
+    display: inline-block;
+    gap: 8px;
+    margin: 1rem 0rem 0 0;
+}
+
+.habilitarDel {
+    margin: 10px auto 0px 48px;
+}
+
+.habilitadDeleteEmp {
+    margin: 0.5rem;
+    width: 0;
+}
 
 .cargarTitle p {
     margin: 8px 0 4px 10px;    
@@ -562,6 +679,153 @@ details {
     overflow: scroll;
 }
 
+.restaurarDB {
+    width: fit-content;
+}
+
+.restoreField {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+
+}
+
+.cargarErrcontainer {
+    display: flex;
+    align-items: center; 
+    margin-left: 1.5rem;
+    margin-top: 0.2rem;
+    gap: 8px;
+}
+
+.cargarErr {
+    line-height: 21px; /* Adjusts vertical spacing of the text */
+    gap: 8px; /* Gap will not work unless it's a flex or grid container */
+    margin-top: 0.5rem
+}
+
+.cargarErr img {
+    vertical-align: middle; /* Aligns the image vertically with the text */
+    margin-right: 8px; /* Adds spacing between the image and the text */
+}
+
+/* Estilos facturacion */
+
+#facturacion-tab {
+    margin: 0;
+    padding: 0;
+    height: 350px;
+    min-width: 600px;
+    font-family: sans-serif;
+}
+
+#facturacion-tab .facturacion-title {
+    font-size: 18px;
+
+    font-weight: lighter;
+    margin: 1rem 1rem 1rem 0.5rem;
+}
+
+hr.solid {
+    border-top: 2px solid navy;
+    max-width: 95%;
+    margin-left: 0.4rem;
+  }
+
+.facturacion-header {
+    font-size: 15px;
+    margin: 0 0 0.1rem 0.4rem;
+    font-weight: bolder;
+}
+
+.facturacionContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.facturacion {
+    display: flex;
+    flex-direction: column;
+    min-width: 15rem;
+}
+
+.facturacion p {
+    font-size: 14px;
+    margin: 0.5rem 1rem 0.5rem 1rem;
+}
+
+.facturacion span {
+    color: brown;
+    font-weight: bold;
+    
+}
+
+.facturacion .hash {
+    color: rgb(230, 106, 4);
+    font-weight: bold;
+}
+
+/* Estilos empleados */
+
+#empleados-tab {
+    margin: 0;
+    padding: 0;
+    height: fit-content;
+    min-width: 600px;
+}
+
+.empleadosContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.arbolEmpleados {
+    height: 500px;
+    width: 200px;
+}
+
+.listaEmp {
+    margin-bottom: 0.3rem;
+}
+
+.formEditempleado {
+    margin: 1rem 2.5rem 0 0;
+}
+
+.editarEmpleado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 250px;
+}
+
+.cargarEmpleado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 250px;
+}
+
+.fieldEmp{
+    min-width: 250px;
+}
+
+.icoSize {
+    width: 25px;
+    height: 25px;
+}
+
+.labelContainer {
+    display: flex;
+    align-items: center; 
+    gap: 8px;
+}
+
+
+
 
 /* GRID Y Estilo de mesas */
 
@@ -581,7 +845,7 @@ details {
     }
 
 
-    .modeloMesa{ 
+    .modeloMesa { 
         background-color: rgb(111, 212, 111);
         color: black;
         font-weight: bold;
@@ -1488,4 +1752,203 @@ details {
     position:relative;
     align-items: center; }  
     
+    /* CSS Sweet Alert */
 
+    .swal2pop {
+/*         display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important; */
+        background: rgb(192,192,192);
+        background: linear-gradient(to left, rgba(16,132,208,1), rgba(0,0,128,1)) no-repeat, rgb(192,192,192);
+        background-size: 100% 10%;  /* The blue gradient bar height (10%) can be adjusted */
+        background-position: top;        
+        border: 1px solid white;
+        color: black ;
+        font: sans-serif ;
+        font-size: 0.8rem ;
+        border: solid 1px gray ;
+        border-radius: 0% ;
+        box-shadow: -4px 2px 38px 18px rgba(112, 108, 108, 0.75);
+        --animate-duration: 0.2s;
+        margin-bottom: 2rem;
+        padding: 20px 20px 20px 20px !important;
+        max-width: 250px;
+      }
+
+    .swal2-title {
+        color: black;
+        margin: auto 1rem !important;        
+      } 
+    
+    .swal2-image {
+        margin: 0 auto;
+    }
+
+      .swalBtn {
+        background-color: transparent;
+        color: black;
+        box-sizing: border-box;
+        border: none;
+        border-radius: 0;      
+        min-width: 75px;
+        min-height: 23px;
+        padding: 0 12px;
+        box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+        /* text-shadow: 1px 1px var(--text-color); */
+      }
+
+    .swal2-close {
+        border: none !important;
+        border-radius: 0% !important;
+        min-width: 5px !important;
+        max-width: 16px !important;
+        min-height: 5px !important;
+        max-height: 14px !important;
+        margin: 3px;
+        font-size: 20px;
+        color: black;
+        font-weight: lighter;
+        text-align: baseline !important;  
+        background-color: #c0c0c0;  
+    }    
+
+    .swal2-close:hover {
+        background-color: #c0c0c0;
+        color: black;
+        
+    }
+
+    .swal2-close::content {
+        margin-bottom: 10px !important;
+        transform: translateY(50%);
+    }
+
+    .swal2-modal {
+        background-color: #c0c0c0;
+        max-width: 250px;
+    }
+
+    .swal2-styled {
+        background-color: transparent;
+        color: black;
+        box-sizing: border-box;
+        border: none;
+        border-radius: 0;      
+        min-width: 75px;
+        min-height: 23px;
+        padding: 0 12px;
+        box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    }
+
+#swal2-select {
+        background-color: white;
+        color: black;
+        list-style: none;
+    }
+
+    .swal2-title {
+        font-size: 16px;
+        font-family: sans-serif;
+    }
+
+    .swal2-valMsg {
+        background-color: #c0c0c0;
+        color: black;
+        font-size: 12px;
+    }
+
+    .swal2close {
+        background-color: #c0c0c0;
+        min-width: 800px !important;
+    }
+
+
+    .closeEvent {
+        font-family: sans-serif;
+        font-size: 12px;
+    }
+
+    .closeeventBtn {
+        display: flex;
+        margin: 0.4rem auto;
+        justify-content: center;
+        gap: 4px;
+    }
+
+
+/* Tooltip */
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: none;
+}
+  
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #ffffe2;
+    color: black; /* The text color is now black */
+    text-align: center;
+    border-radius:5px;
+    padding: 5px 0;
+    border: 1px solid black; /* Add black border here */
+    position: absolute;
+    z-index: 9;
+    top: -5px;
+    left: 275%;
+    margin-left: -60px;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+.tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    right: 100%; /* Arrow to the left */
+    transform: translateY(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent #ffffe2 transparent transparent; /* Main arrow with color on the right */
+}
+
+.tooltip .tooltiptext::before {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    right: 100%; /* Shadow to the left */
+    transform: translateY(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent black transparent transparent; /* Shadow with color on the right */
+    z-index: -1;
+}
+
+.tooltip .tooltiptext {
+    opacity: 0;
+    transition: opacity 1s;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    opacity: 1;
+  }
+
+  .status-bar-field {
+    display: flex;
+    align-items: center;
+    line-height: 16px; /* Adjust this value based on the image height */
+}
+
+.status-bar-field img {
+    height: 16px; /* Match the image size */
+    margin-left: 5px; /* Optional spacing */
+    margin-top: 2px;
+    margin-right: 0;
+}
+
+
+.status-bar-field span {
+    margin-right: 1px; /* Optional: space between image and text */
+}

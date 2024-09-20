@@ -1,3 +1,9 @@
+/* Variables globales */
+
+let arrMesas = [];
+let meserosPorMesa = []; 
+let selectedUser = null; 
+
 /* ############# Traer Usuarios registrados desde index.html  ############# */
 
 cargarUsuarios() 
@@ -10,22 +16,100 @@ function usuarioIniciado() {
 	document.querySelector(
 		".usuarioActivo"
 	).textContent = `Usuario: ${nombreUsuario}`;
-	return nombreUsuario;
+
+    if (!nombreUsuario.rol) {
+
+        let comprobantesTab = document.querySelector('#comprobantes-tab');
+        let menuTab = document.querySelector('#menu-tab');
+        let empleadosTab = document.querySelector('#empleados-tab');
+
+        comprobantesTab.disabled = true;
+        menuTab.disabled = true;
+        empleadosTab.disable = true;
+    }
 }
+
+/* Guardar Mesas */
+
+function guardarMesas() {
+arrMesas;
+console.log(arrMesas);
+const saveTables = JSON.stringify(arrMesas)
+console.log(saveTables);
+localStorage.setItem("Plano",saveTables)
+}
+
+/* Cargar mesas */
+
+function cargarMesas() {  
+let getTables = localStorage.getItem("Plano");
+    arrMesas = getTables ? JSON.parse(getTables) : [];
+
+    console.log(arrMesas); 
+
+    for (let i = 0; i < arrMesas.length; i++) {
+
+        let arrLength = i + 1;
+        let target = document.querySelector("#plano");
+        let templateMesa = `<div class="modeloMesa" id="${arrLength}" onclick="abrirMesa(this)" draggable="true" ondragstart="drag(event)">MESA ${arrLength}</div>`;
+        let mesaExistente = target.querySelector(`.grilla${arrLength}`);
+
+        if (mesaExistente) {
+            mesaExistente.innerHTML += templateMesa;
+        } else {
+            popDinamico("Limite de mesas alcanzado.");
+            toggleVis("popUpform");
+            intervalo("popUpform");
+        }
+    }
+}
+cargarMesas()
+
+/* Guardar posicion de las mesas */
+
+function guardarEstructura() {
+    const elementoHtml = document.getElementById('plano');
+    const estructuraHtml = {
+        contenido: elementoHtml.innerHTML
+    };
+
+    const estructuraJSON = JSON.stringify(estructuraHtml);
+    localStorage.setItem('htmlContent', estructuraJSON);
+}
+
+/* Cargar posicion de las mesas */
+
+function cargarEstructura() {
+    const cargarEstructura = localStorage.getItem('htmlContent');
+
+if (cargarEstructura) {
+    const parseData = JSON.parse(cargarEstructura);
+    const targetElement = document.getElementById('plano');
+    targetElement.innerHTML = parseData.contenido;
+}
+}
+
+/* Resetear Plano */
+
+function resetPlano() {
+    localStorage.removeItem("Plano");
+    localStorage.removeItem("htmlContent");
+    location.reload()
+}
+
 
 usuarioIniciado()
 
-/* Array de mesas */
-
-const arrMesas = [];
-
 /* ############# Funcion para crear Mesa nueva ########## */
 
-function crearMesa() {
+async function crearMesa() {
 	let nuevaMesa = [];
 
 	let arrLength = arrMesas.length + 1;
 	arrMesas.push(nuevaMesa);
+    meserosPorMesa.push(null);
+    console.log(meserosPorMesa);
+    
 	console.log("creaste una nueva mesa.");
 	console.log("Numero de mesa creada: " + arrLength);
 	console.log(arrMesas);
@@ -50,17 +134,87 @@ function crearMesa() {
 		toggleVis("popUpform")
 		intervalo("popUpform")
 	}
+    guardarMesas() 
 	return arrLength;
-} crearMesa()
+}
 
+/* Elegir usuario al abrir mesa */
+
+async function elegirUsuario() { 
+
+	const inputOptions = usuariosRegistrados.reduce((options, usuarioObj) => {
+		options[usuarioObj.usuario] = usuarioObj.usuario;
+		return options;
+	}, {});
+
+	const { value: selectedUser } = await Swal.fire({
+
+		customClass: {
+			container: '...',
+			popup: 'swal2pop',
+			header: '...',
+			title: 'swal2-title',
+			closeButton: '...',
+			icon: '...',
+			image: '...',
+			htmlContainer: '...',
+			input: '...',
+			inputLabel: '...',
+			validationMessage: 'swal-valMsg',
+			actions: '...',
+			confirmButton: 'swalBtn',
+			denyButton: 'swalBtn',
+			cancelButton: 'swalBtn',
+			loader: '...',
+			footer: '....',
+			timerProgressBar: '....',
+		},
+
+		title: "Mozo:",
+		input: "select",
+		inputOptions: inputOptions,  
+		inputPlaceholder: "Selecciona un mozo",
+		showCancelButton: true,
+		inputValidator: (value) => {
+			return new Promise((resolve) => {
+				if (value) {
+					resolve();
+				} else {
+					resolve("Mozo no seleccionado"); 
+				}
+			});
+		}
+	});
+	return selectedUser;
+}
 
 /* #############  Funcion para abrir una mesa y agregar articulos a la mesa seleccionada ############# */
 
-function abrirMesa(mesa) {	
-    ocultarMesa();
+async function abrirMesa(mesa) {	
+
     let mesaSelec = parseInt(mesa.id);
     let eleccion = mesaSelec - 1;
     console.log("Ingresaste a la mesa " + (eleccion + 1));	
+
+    const mesaOcupada = arrMesas[eleccion] && arrMesas[eleccion].length > 0;  
+    
+        if (!meserosPorMesa[eleccion]) {
+        meserosPorMesa[eleccion] = await elegirUsuario();
+        if (!meserosPorMesa[eleccion]) {
+            return
+    }
+} 
+
+let mesaDiv = document.getElementById(mesa.id);
+
+if (!mesaOcupada) {
+    mesaDiv.style.backgroundColor = '#EF7D7D';
+    mesaDiv.style.borderColor = '#FF5E5E';
+} else {
+    mesaDiv.style.backgroundColor = 'rgb(111, 212, 111);';
+}
+
+mostrarMesa()
 
     renderMenu(eleccion, "Cafeteria");
 
@@ -79,88 +233,216 @@ function abrirMesa(mesa) {
 /* ############# Func. para renderizar el contenido de las mesas ############# */
 
 
-function renderMesa(eleccion) {
+async function renderMesa(eleccion) {
 
-	let mesaHeader = document.querySelector(".mesaHeader")
-	mesaHeader.innerHTML = `
-	 <div class="title-bar-text">SALON</div>
-                      <div class="title-bar-text">MESA #${eleccion + 1}</div>
-                      <div class="title-bar-text">MOZO: </div>
-                      <div class="title-bar-controls">
-                        <button aria-label="Close" class="escMesa" onclick="ocultarMesa()"></button>
-                      </div>
-	`
+    let mesaHeader = document.querySelector(".mesaHeader");
+    let numeroMesa = parseInt(eleccion) + 1;
+    mesaHeader.innerHTML = `
+        <div class="title-bar-text">SALON</div>
+        <div class="title-bar-text">MESA #${numeroMesa}</div>
+        <div class="title-bar-text">MOZO: ${meserosPorMesa[eleccion]} </div>
+        <div class="title-bar-controls">
+            <button aria-label="Close" class="escMesa" onclick="ocultarMesa()"></button>
+        </div>
+    `;
 
-	let contenidoArr = document.querySelector(".contenidoMesa");
-	let getData = arrMesas[eleccion];
-	console.log(getData)
-	contenidoArr.innerHTML = "";
-	let contenidoMesa = "";
+    let contenidoArr = document.querySelector(".contenidoMesa");
+    let getData = arrMesas[eleccion];
+    contenidoArr.innerHTML = "";
 
-	getData.forEach((obj) => {
-		contenidoMesa += `
-					<tr>
-						
-						<td>${obj.id}</td>
-						<td><li>${obj.articulo}</li> </td>
-						<td>${obj.cantidad}</td>
-						<td>${obj.precio}</td>                  
-						<td>${obj.precio * obj.cantidad}</td>   
-					</tr>
-		`;
-	});
-	contenidoArr.innerHTML = contenidoMesa;
+    let contenidoMesa = "";
+    getData.forEach((obj) => {
+        contenidoMesa += `
+            <tr>
+                <td>${obj.id}</td>
+                <td><li>${obj.articulo}</li></td>
+                <td>${obj.cantidad}</td>
+                <td>${obj.precio}</td>
+                <td>${obj.precio * obj.cantidad}</td>
+            </tr>
+        `;
+    });
+    contenidoArr.innerHTML = contenidoMesa;
 
-	let precioArt = 0;
-	arrMesas[eleccion].forEach((articulo) => {
-		precioArt += articulo.precio * articulo.cantidad		
-	})
-	console.log(precioArt)
+    let totalOriginal = 0;
+    arrMesas[eleccion].forEach((articulo) => {
+        totalOriginal += articulo.precio * articulo.cantidad;
+    });
 
-	let mesaTotal =  document.querySelector('.mesaTotal')
-	console.log(mesaTotal)
+    let totalDescontado = totalOriginal;
+    let porcentajeDescontado = 0;
 
-	mesaTotal.innerHTML = `<li><b>$${precioArt}</b></li>`;
-	resaltar()
+    if (getData.totalDescontado !== undefined && getData.totalOriginal !== undefined && getData.porcentajeDescontado !== undefined) {
+        porcentajeDescontado = getData.porcentajeDescontado;
+        totalDescontado = totalOriginal - (totalOriginal * (porcentajeDescontado / 100));
+        
+    }
 
-    setupButtonListeners(eleccion);
-};
+    let mesaTotal = document.querySelector('.mesaTotal');
+    mesaTotal.innerHTML = `
+        <li><b>Monto: $${totalOriginal.toFixed(2)}</b></li>
+        <li><b>Descuento: ${porcentajeDescontado}%</b></li>
+        <li><b>Total: $${totalDescontado.toFixed(2)}</b></li>
+    `;
 
-// Move the handler outside so we can refer to the same function when adding/removing listeners
-function handleButtonClick(event) {
-    let action = event.currentTarget.value;  // Get the button value (+ or -)
+    resaltar();
+    prepararBotones(eleccion);
+}
+
+function aplicarDescuento(eleccion, porcentajeDescontado) {
+    let mesaSeleccionada = arrMesas[eleccion];
+    let totalOriginal = mesaSeleccionada.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
+    let totalDescontado = totalOriginal - (totalOriginal * (porcentajeDescontado / 100));
+
+    mesaSeleccionada.totalDescontado = totalDescontado;
+    mesaSeleccionada.totalOriginal = totalOriginal;
+    mesaSeleccionada.porcentajeDescontado = porcentajeDescontado;
+
+    renderMesa(eleccion);
+}
+
+/* ############## Conseguir el objeto-evento ############# */
+
+function escucharEvento(event) {
+    let action = event.currentTarget.value;
     console.log("Button pressed: " + action);
     const eleccion = event.currentTarget.dataset.eleccion; 
-    console.log(eleccion) // Assume eleccion is set as a data attribute on the button
+    console.log(eleccion)
     modCantidades(action, eleccion);
 }
 
-function setupButtonListeners(eleccion) {
+
+/* ############## limpiar listeners ############# */
+
+function prepararBotones(eleccion) {
     let btnValue = document.querySelectorAll('.panelBtn');
     btnValue.forEach(btn => {
         btn.dataset.eleccion = eleccion;
 
-        btn.removeEventListener('click', handleButtonClick);
+        btn.removeEventListener('click', escucharEvento);
         
-        btn.addEventListener('click', handleButtonClick);
+        btn.addEventListener('click', escucharEvento);
     });
 }
 
-// Function to handle adding or decreasing item quantity
-function modCantidades(action, eleccion) {
+
+/* ############## funcion para modificar valores en la mesa ############# */
+
+
+async function modCantidades(action, eleccion, mesa) {
     let mesaTotal =  document.querySelector('.mesaTotal')
+
+    const mesas = Array.from(document.querySelectorAll('.modeloMesa'));
+
+    mesas.sort((a, b) => {
+        
+        return parseInt(a.id) - parseInt(b.id);
+    });
+
+    const mesaDiv = mesas[eleccion];
+
+    if (action === "mozo") {
+        const nuevoMozo = await elegirUsuario();
+        if (nuevoMozo) {
+            meserosPorMesa[eleccion] = nuevoMozo;
+            renderMesa(eleccion); 
+        }
+        return;
+    }
+
+    if (action === "desc") {     
+
+        const { value: porcentajeDescontado } = await Swal.fire({
+            title: 'Ingresa un porcentaje a descontar (0-100)',
+            input: 'number',
+            inputAttributes: {
+                min: 0,
+                max: 100,
+                step: 1
+            },
+            inputValue: "",
+            confirmButtonText: 'Apply',
+            showCancelButton: true,
+            cancelButtonText: 'Cancel',
+            inputValidator: (value) => {
+                if (value === '' || isNaN(value) || value < 0 || value > 100) {
+                    return 'Ingresa un porcentaje a descontar.';
+                }
+            }
+        });
+
+        if (porcentajeDescontado === undefined) {
+            return;
+        }
+
+        aplicarDescuento(eleccion, porcentajeDescontado);
+        console.log(mesaTotal)            
+
+        let total = mesaSeleccionada.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
+        let discountAmount = (porcentajeDescontado / 100) * total;
+        let totalDescontado = total - discountAmount;
+        mesaSeleccionada.totalDescontado = totalDescontado;
+        mesaSeleccionada.totalOriginal = total;
+        mesaSeleccionada.porcentajeDescontado = porcentajeDescontado;
+
+        console.log(`Discount applied: ${porcentajeDescontado}%`);
+        console.log(`Original total: $${total.toFixed(2)}`);
+        console.log(`Discounted total: $${totalDescontado.toFixed(2)}`);
+
+        renderMesa(eleccion); 
+    }  
+
+    if (action === "anular") {
+        arrMesas[eleccion] = [];
+        meserosPorMesa[eleccion] = ""
+        mesaDiv.style.backgroundColor = 'rgb(111, 212, 111)';
+        mesaDiv.style.borderColor = 'rgb(111, 212, 111)';
+    }
+
+    if (action === "factB") {        
+        mesasFactB.push(arrMesas[eleccion])
+        totalFactB = sumTotal(mesasFactB);
+        console.log("Total ventas Fact B: " + totalFactB);
+        console.log("Total ventas Fiscal: " + totalFiscal);
+        totalSales = totalFactB + totalFiscal;
+        console.log("Ventas totales: " + totalSales);
+        mesaDiv.style.backgroundColor = 'rgb(111, 212, 111)';
+        mesaDiv.style.borderColor = 'rgb(111, 212, 111)';
+        arrMesas[eleccion] = [];
+        meserosPorMesa[eleccion] = ""
+        ocultarMesa()
+        renderFacturacion()
+    }
+
+    if (action === "fiscal") {
+        mesasFiscal.push(arrMesas[eleccion])
+        totalFiscal = sumTotal(mesasFiscal);
+        console.log("Total ventas Fact B: " + totalFactB);
+        console.log("Total ventas Fiscal: " + totalFiscal);
+        totalSales = totalFactB + totalFiscal;
+        console.log("Ventas totales: " + totalSales);
+        mesaDiv.style.backgroundColor = 'rgb(111, 212, 111)';
+        mesaDiv.style.borderColor = 'rgb(111, 212, 111)';
+        arrMesas[eleccion] = [];
+        meserosPorMesa[eleccion] = ""
+        ocultarMesa()
+        renderFacturacion()
+    }
+
     if (!artResaltado) {
         console.log("No item highlighted!");
         return;
     }
 
-    // Find the highlighted item in the current table (mesa)
     const mesaSeleccionada = arrMesas[eleccion];
     const itemIndex = mesaSeleccionada.findIndex(item => item.articulo.trim() === artResaltado);
 
     if (itemIndex !== -1) {
+        resaltarUltArt(artResaltado);
         if (action === "+") {
             mesaSeleccionada[itemIndex].cantidad += 1; 
+            resaltar(mesaSeleccionada[itemIndex])
+          
         } else if (action === "-") {
             if (mesaSeleccionada[itemIndex].cantidad > 0) {
                 mesaSeleccionada[itemIndex].cantidad -= 1; 
@@ -170,63 +452,62 @@ function modCantidades(action, eleccion) {
             } 
             } else if (action === "borrar") {
                 mesaSeleccionada.splice(itemIndex, 1);
-            } else if (action === "anular") {
-                arrMesas[eleccion] = [];
-            }  else if (action === "trans") {
+            } else if (action === "trans") {
+                
                 const itemIndex = mesaSeleccionada.findIndex(item => item.articulo.trim() === artResaltado);
                 if (itemIndex !== -1) {
-                    const mesaDestino = parseInt(prompt("Ingresa el numero de mesa a transferir:"), 10) - 1;
-                    
+
+                    const { value: destino} = await Swal.fire({
+                        title: 'Ingresa numero de mesa destino:',
+                        input: 'number',
+                        inputAttributes: {
+                            min: 0,
+                            max: arrMesas.length,
+                            step: 1
+                        },
+                        inputValue: "",
+                        confirmButtonText: 'Apply',
+                        showCancelButton: true,
+                        cancelButtonText: 'Cancel',
+                        inputValidator: (value) => {
+                            if (value === '' || isNaN(value) || value < 1 || value > arrMesas.length) {
+                                return 'Ingresa un numero valido.';
+                            }
+                        }
+                    });
+                    const mesaDestino = destino - 1;                    
                     
                     if (isNaN(mesaDestino) || mesaDestino < 0 || mesaDestino >= arrMesas.length) {
                         console.log("Numero de mesa invalido.");
                         return;
-                    }
-        
-                    const moverArticulo = mesaSeleccionada.splice(itemIndex, 1)[0];
-                    
+                    }        
+                    const moverArticulo = mesaSeleccionada.splice(itemIndex, 1)[0];                    
                     arrMesas[mesaDestino].push(moverArticulo);
+                    renderMesa(eleccion)
                 } 
-            } else if (action === "desc") {
-                let discountPercentage;
-                do {
-                    discountPercentage = parseFloat(prompt("Enter the discount percentage (0-100):"));
-                } while (isNaN(discountPercentage) || discountPercentage < 0 || discountPercentage > 100);
-
-                console.log(mesaTotal)
-            
-         
-                let total = mesaSeleccionada.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
-                let discountAmount = (discountPercentage / 100) * total;
-                let discountedTotal = total - discountAmount;
-    
-                console.log(`Discount applied: ${discountPercentage}%`);
-                console.log(`Original total: $${total.toFixed(2)}`);
-                console.log(`Discounted total: $${discountedTotal.toFixed(2)}`);
-                mesaTotal.innerHTML = `<li><b>$${discountedTotal}</b></li>`;
-                renderMesa(eleccion); // Re-render to update the discounted total in the DOM
-    
             }
-            renderMesa(eleccion); // Re-render to update the discounted total in the DOM
-            // Update the DOM after modification
-            
-        } else {
-            console.log("Item not found in the table.");
-        }
+        } 
         if (action === "trans") {
-            renderMesa(mesaDestino);
+            renderMesa(destino);
         }
-    
-        // Re-render the table to reflect the updated quantities
-        renderMesa(eleccion);
-    
-    }            
+        renderMesa(eleccion);    
+        resaltar(artResaltado);        
+    }          
 
+function sumTotal(mesasArray) {
+    let total = 0;
+    mesasArray.forEach(mesa => {
+        mesa.forEach(item => {
+            total += item.precio; 
+        });
+    });
+    return total;
+}
 
 
 /* ############## Funcion para cargar el menu ############# */
 
-function renderMenu(eleccion, selectedRubro) {
+async function renderMenu(eleccion, selectedRubro) {
     /* Vaciamos el contenedor */
     artMenu.innerHTML = "";
 
@@ -254,14 +535,40 @@ function renderMenu(eleccion, selectedRubro) {
                 } else {
                     arrMesas[eleccion].push({ ...artIngresado, cantidad: 1 });
                 }
-
+                let selectAuto = arrMesas[eleccion].slice(-1)
+                console.log(selectAuto);
+                
                 console.log(`Artículo ${artIngresado.articulo} agregado a la mesa ${eleccion + 1}`);
                 renderMesa(eleccion);
+                resaltarUltArt(arrMesas[eleccion]);
             }
         };
     });
 }
 
+function removerUltResaltar() {
+    const allItems = document.querySelectorAll('li');
+    allItems.forEach(item => {
+        item.classList.remove('highlighted');
+    });
+}
+
+function resaltarUltArt(mesa) {
+    if (mesa.length > 0) {
+        const ultArt = mesa[mesa.length - 1];
+        const liTags = document.querySelectorAll('li');
+
+        removerUltResaltar();
+
+        liTags.forEach(item => {
+            if (item.textContent.includes(ultArt.articulo)) {
+                item.classList.add('highlighted');
+                artResaltado = item.textContent.trim();
+                console.log("Último objeto resaltado:", item.textContent);
+            }
+        });
+    }
+}
 
 /* Funcion para bloquear y desbloquear el plano */
 
@@ -269,7 +576,8 @@ let bloquearPlano = document.querySelector(".lock");
 
 function cambiarCandado() {
 	bloquearPlano.addEventListener("click", () => {
-
+        console.log("Abri el candado, move las mesas y cerralo para guardar la posicion.");
+        
         const lockText = document.querySelector('.estadoCandadotxt');
         const lockFixedsize = document.querySelector('.lock');
 		let estadoCandado = bloquearPlano.src;
@@ -278,10 +586,9 @@ function cambiarCandado() {
 		let mesasVisibles = document.querySelectorAll('[class^="grilla"]');
 		const sumarMesa = document.querySelector(".addTable");
         const sumarMesaTxt = document.querySelector(".btnPlus p")
-        const btnMargin = document.querySelector(".btnLock")
+        const restaurarPlano = document.querySelector(".restorePlane")
 
 		if (estadoCandado.includes("Close")) {
-/* 			console.log("Esta cerrado"); */
 			candadoPlano = document.querySelector(".lock").src = "Open.png";
             lockFixedsize.style.width = "23px";
             lockFixedsize.style.height = "23px";
@@ -289,13 +596,12 @@ function cambiarCandado() {
             sumarMesa.style.width = "25px"
             sumarMesaTxt.style.visibility = "visible";
 			sumarMesa.style.visibility = "visible";
+            restaurarPlano.style.display = "block";
             lockText.innerHTML = "Bloquear plano"
 			mesasVisibles.forEach((mesa) => {
 				mesa.style.visibility = "visible";
 			});
-/* 			console.log("asi que lo abrimos."); */
 		} else if (estadoCandado.includes("Open")) {
-		/* 	console.log("Esta unlocked"); */
 			candadoPlano = document.querySelector(".lock").src = "Close.png";
             lockFixedsize.style.width = "19px";
             lockFixedsize.style.height = "23px";
@@ -303,13 +609,15 @@ function cambiarCandado() {
             sumarMesa.style.width = "25px"  
             sumarMesaTxt.style.visibility = "hidden";
 			sumarMesa.style.visibility = "hidden";
+            restaurarPlano.style.display = "none";
             lockText.innerHTML = "Desbloquear plano"
 			mesasVisibles.forEach((mesa) => {
 				mesa.style.visibility = "hidden";
 			});
-	/* 		console.log("Asi que lo cerramos"); */
+            guardarEstructura();
 		}
 	});
+
 }
 
 /* Funciones de Drag
@@ -401,7 +709,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 let artResaltado = null;
 
-function resaltar() {
+function resaltar(articulo) {
 
     const liTags = document.querySelectorAll('li');
 
@@ -424,21 +732,18 @@ function resaltar() {
         item.addEventListener('click', seleccionarLi);		
     });
 
+    const objAresaltar = Array.from(liTags).find(item => item.textContent.trim() === articulo);
+    
+    if (objAresaltar) {
+        objAresaltar.classList.add('highlighted');
+        artResaltado = articulo;
+        console.log("Objeto seleccionado:", articulo);
+    }
 }
-
 
 document.addEventListener('DOMContentLoaded', () => {    
 resaltar();
 arbolMenu();
+cargarEstructura()
+usuarioIniciado()
 });
-
-/* Funcion a borrar. */
-function recorrerMesas() {
-	console.log(`Las mesas disponibles son: `);
-	arrMesas.forEach((arr) => {
-		console.log(arr);
-	});
-	return arrMesas;
-}
-
-
