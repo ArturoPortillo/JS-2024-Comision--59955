@@ -657,7 +657,6 @@ function cambiarCandado() {
         const lockFixedsize = document.querySelector('.lock');
 		let estadoCandado = bloquearPlano.src;
 
-		/*Selector de classes que "empiezan con" https://www.w3schools.com/cssref/sel_attr_begin.php */
 		let mesasVisibles = document.querySelectorAll('[class^="grilla"]');
 		const sumarMesa = document.querySelector(".addTable");
         const sumarMesaTxt = document.querySelector(".btnPlus p")

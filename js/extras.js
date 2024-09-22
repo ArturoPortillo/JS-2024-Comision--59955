@@ -99,24 +99,24 @@ function cargarComprobantes() {
     let loadingMsg = document.querySelector('#comprobantes-tab')
     console.log(loadingMsg);
 
-    let imgIndex = Math.floor(Math.random() * 2) + 1; // Generates 1 or 2
+    let imgIndex = Math.floor(Math.random() * 2) + 1; 
     console.log(imgIndex);
-    let boomIndex = Math.floor(Math.random() * 3) + 1; // Generates 1 or 2
+    let boomIndex = Math.floor(Math.random() * 3) + 1;
     console.log(imgIndex);
-    let boomIndex2 = Math.floor(Math.random() * 3) + 1; // Generates 1 or 2
+    let boomIndex2 = Math.floor(Math.random() * 3) + 1; 
     console.log(imgIndex);
-    let boomIndex3 = Math.floor(Math.random() * 3) + 1; // Generates 1 or 2
+    let boomIndex3 = Math.floor(Math.random() * 3) + 1; 
     console.log(imgIndex);
-    let boomIndex4 = Math.floor(Math.random() * 3) + 1; // Generates 1 or 2
+    let boomIndex4 = Math.floor(Math.random() * 3) + 1;
     console.log(imgIndex);
-    let cmdErr = Math.floor(Math.random() * 4) + 1; // Generates 1 or 2
+    let cmdErr = Math.floor(Math.random() * 4) + 1;
     console.log(imgIndex);
-    let cmdErr2 = Math.floor(Math.random() * 4) + 1; // Generates 1 or 2
+    let cmdErr2 = Math.floor(Math.random() * 4) + 1;
     console.log(imgIndex);
-    let colorSwitch = Math.floor(Math.random() * 3) + 1; // Generates 1 or 2
+    let colorSwitch = Math.floor(Math.random() * 3) + 1; 
     console.log(imgIndex);
-    let colorSwitch2 = Math.floor(Math.random() * 3) + 1; // Generates 1 or 2
-    let colorSwitch4 = Math.floor(Math.random() * 4) + 1; // Generates 1 or 2
+    let colorSwitch2 = Math.floor(Math.random() * 3) + 1;
+    let colorSwitch4 = Math.floor(Math.random() * 4) + 1;
     console.log(imgIndex);
     let switchTotext = `<p style="font-family:deadcrt;" class="fontColor${colorSwitch2}"><b>CREADO POR ARTURO PORTILLO</b></p>`
 
