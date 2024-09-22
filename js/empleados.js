@@ -10,8 +10,7 @@ function arbolEmpleados() {
             <ul>
     `;
     
-    usuariosRegistrados.forEach(usuario => {
-        console.log(usuario.usuario);        
+    usuariosRegistrados.forEach(usuario => {    
         nuevoArbol += `<li onclick="editarEmpleado()">${usuario.usuario}</li>`;
     });
 
@@ -26,7 +25,6 @@ function arbolEmpleados() {
 arbolEmpleados();
 
 let actualizarEmpleado = document.querySelector('.actualizarEmpleado')
-console.log(actualizarEmpleado);
 
 actualizarEmpleado.addEventListener('click',editarEmpleado)
 
@@ -34,20 +32,16 @@ function editarEmpleado() {
     let editarEmpleadoInput = document.querySelector('.editEmpleado');
     let editarContrasenaInput = document.querySelector('.editContrasena');
     let editarRolSelect = document.querySelector('#editarRolSelect');
-    let resForm = document.querySelector('.formEditempleado');
+    let resForm = document.querySelector('.formcargarEmpleado');
 
     function actInput(datoText) {
-        console.log('actInput called with:', datoText);
 
         const dato = usuariosRegistrados.find(target => target.usuario.trim() === datoText.trim());
-        console.log("Esto es un dato:", dato);
-
         if (dato) {
-            console.log('User found:', dato);
 
             editarEmpleadoInput.value = dato.usuario;
             editarContrasenaInput.value = dato.contrasena;
-            editarRolSelect.value = dato.rol.toLowerCase(); ;
+            editarRolSelect.value = dato.rol;
 
             editarEmpleadoInput.dataset.originalUsuario = dato.usuario;
             editarContrasenaInput.dataset.originalContrasena = dato.contrasena;
@@ -102,13 +96,14 @@ function cargarEmpleado() {
     let nuevoRol = document.querySelector('.asignarRol').selectedOptions[0].value;
     console.log(nuevoRol)
 
+    let cargarErr = document.querySelector('.cargarempErr');
+
     if (nuevoEmpleado == ""  || isNaN(nuevaContrasena) || nuevoRol == "") {
-/*         cargarErr.innerHTML = `
+        cargarErr.innerHTML = `
                 <div class="cargarErr">
-                    <img src="exclIcon.png" alt="" srcset="" class="icoSize">Ingresa datos válidos.
+                    <img src="img/exclIcon.png" alt="" srcset="" class="icoSize">Ingresa datos válidos.
                 </div>
-        ` */
-        alert("TEST")
+        `
         return;
     } else { 
         const usuario = {
@@ -119,12 +114,12 @@ function cargarEmpleado() {
         
         usuariosRegistrados.push(usuario);
         console.table(usuariosRegistrados);
-        alert("Usuario cargado exitosamente.")
-/*         cargarErr.innerHTML = `
+        cargarErr.innerHTML = `
                 <div class="cargarErr">
-                    <img src="check-0.png" alt="" srcset="" class="icoSize">Producto cargado con exito.
+                    <img src="img/check-0.png" alt="" srcset="" class="icoSize">Empleado registrado.
                 </div>
-        ` */
+        `
+        guardarUsuarios()
         arbolEmpleados()
         document.querySelector('.formcargarEmpleado').onsubmit = e => {
             e.preventDefault();
@@ -158,6 +153,8 @@ function habilitarDeleteEmpleado() {
 function borrarEmpleado(){
 
     let editarEmpleadoInput = document.querySelector('.editEmpleado');
+    let editarContrasenaInput = document.querySelector('.editContrasena');
+    let editarRolSelect = document.querySelector('#editarRolSelect');
     let checkStats = document.querySelector('.checkEmp')
     let habilitarDelEmpleado = document.querySelector('.habilitarDeleteEmp')
     console.log(checkStats);
@@ -176,6 +173,10 @@ function borrarEmpleado(){
         console.log("Articulo borrado.");
         checkStats.checked = false;
         habilitarDelEmpleado.disabled = true;
+        editarEmpleadoInput.value = ""
+        editarContrasenaInput.value = ""
+        editarRolSelect.value = ""
+        guardarUsuarios()
         arbolEmpleados()
     }
     fetchData()

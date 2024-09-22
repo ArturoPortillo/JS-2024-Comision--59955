@@ -1,3 +1,5 @@
+
+
 /* #############  PopUp dinamico ############# */
 
 function popDinamico(texto) {
@@ -22,8 +24,45 @@ function popDinamico(texto) {
     </div>
 	`
 	dragElement(document.getElementById("mydiv"));
+	let btnCerrar = document.querySelectorAll('.cancelarRegistro');
+    btnCerrar.forEach(btn => {
+        btn.addEventListener("click", function() {
+            toggleVis('popUpform');
+        });
+    });
 }
 
+/* Tutorial */
+
+function tutorial() {
+	let popupDinamico = document.querySelector('.popupDinamico')
+	popupDinamico.innerHTML = `
+          <div class="popUpform animate__animated animate__zoomIn" draggable="true" ondragstart="drag(event)" id="mydiv">
+            <div class="window">
+              <div class="title-bar" id="mydivheader">
+                <span class="labelContainer">
+                  <img src="img/favicon2.png" alt="" class="innerFavicon">
+                  <div class="title-bar-text" style="white-space: nowrap">MiBar - Sistema de gestión Gastronomica</div>
+                </span>
+                <div class="title-bar-controls">
+                  <button aria-label="Close" style="transform:translateX(-25%)" class="cancelarRegistro"></button>
+                </div>
+              </div>
+              <img src="img/Tutorial.png" alt="" class="tutorialImg">
+            </div>
+          </div>
+    </div>
+	`
+	dragElement(document.getElementById("mydiv"));
+	popupDinamico
+	toggleVis("popUpform")
+	let btnCerrar = document.querySelectorAll('.cancelarRegistro');
+    btnCerrar.forEach(btn => {
+        btn.addEventListener("click", function() {
+            toggleVis('popUpform');
+        });
+    });
+}
 
 /* Tests del cursor */
 
@@ -46,14 +85,58 @@ function usoCPU() {
     let imageIndex = Math.floor(CpuUsage / 10);
 	
     randomCPU.forEach((cpu) => {		
-		cpu.innerHTML = `<img src="${imageIndex}.0.ico" alt=""> CPU Usage: ${CpuUsage}%`;
+		cpu.innerHTML = `<img src="img/${imageIndex}.0.ico" alt=""> CPU Usage: ${CpuUsage}%`;
 
     });
 }
 setInterval(usoCPU, 3000)
 
+/* Test */
 
-/* Funcion popUp */
+let comprobantesInterval; 
+
+function cargarComprobantes() {
+    let loadingMsg = document.querySelector('#comprobantes-tab')
+    console.log(loadingMsg);
+
+    let imgIndex = Math.floor(Math.random() * 2) + 1; // Generates 1 or 2
+    console.log(imgIndex);
+    let boomIndex = Math.floor(Math.random() * 3) + 1; // Generates 1 or 2
+    console.log(imgIndex);
+    let boomIndex2 = Math.floor(Math.random() * 3) + 1; // Generates 1 or 2
+    console.log(imgIndex);
+    let boomIndex3 = Math.floor(Math.random() * 3) + 1; // Generates 1 or 2
+    console.log(imgIndex);
+    let boomIndex4 = Math.floor(Math.random() * 3) + 1; // Generates 1 or 2
+    console.log(imgIndex);
+    let cmdErr = Math.floor(Math.random() * 4) + 1; // Generates 1 or 2
+    console.log(imgIndex);
+    let cmdErr2 = Math.floor(Math.random() * 4) + 1; // Generates 1 or 2
+    console.log(imgIndex);
+    let colorSwitch = Math.floor(Math.random() * 3) + 1; // Generates 1 or 2
+    console.log(imgIndex);
+    let colorSwitch2 = Math.floor(Math.random() * 3) + 1; // Generates 1 or 2
+    let colorSwitch4 = Math.floor(Math.random() * 4) + 1; // Generates 1 or 2
+    console.log(imgIndex);
+    let switchTotext = `<p style="font-family:deadcrt;" class="fontColor${colorSwitch2}"><b>CREADO POR ARTURO PORTILLO</b></p>`
+
+
+    loadingMsg.innerHTML = `
+            <img src="img/${boomIndex}.ico" alt="" class="boomImg">
+
+            <img src="img/cmd${cmdErr}.ico" alt="" style="margin-left:10rem;">
+            <label for="" class="labelContainer" style="flex-direction:column;">
+            <img src="img/${boomIndex2}.ico" alt="" style="margin-left:10rem;">
+              <img src="img/err${imgIndex}.ico" alt="" class="glitchedImg">
+              <img src="img/cmd${cmdErr2}.ico" alt="" style="margin-right:10rem;">
+              <p style="font-family:deadcrt;" class="fontColor${colorSwitch4}"><b>ERROR AL CARGAR CONTENIDO.<img src="img/${boomIndex4}.ico" alt="" class="boomImg"></b></p>
+              <div>
+                <p style="font-family:deadcrt;" class="fontColor${colorSwitch2}"><b>CONTACTE CON EL ADMINISTRADOR.</b></p>
+              </div>
+            </label>
+            <img src="img/${boomIndex3}.ico" alt="">
+    `
+}
 
 /* Hacer visible/invisible nuestra ventana de registro(codigo reciclable) */
 
@@ -79,34 +162,29 @@ function intervalo(clase) {
 	setTimeout(() => toggleVis(clase), 1000);
 }
 
-function closeWindow() {
-        showModal();
-    };
 
+/* Ejecutar tutorial/legend */
 
-function showModal() {
-    document.querySelector('.popupDinamico').style.display = 'flex';
+function help() {
+	tutorial()
 }
 
-function closeModal() {
-    document.querySelector('.popupDinamico').style.display = 'none';
-}
+window.onkeydown = (evt) => {
+    switch (evt.keyCode) {
+      case 112:
+        evt.preventDefault();
+        help()
+        break;
+      default:
+        return;
+    }
+  };
 
-document.getElementById("okButton").addEventListener("click", function() {
-
- window.onbeforeunload = null;  
-    window.close();
-});
-
-
-document.getElementById("closeButton").addEventListener("click", function(e) {
-    e.preventDefault();
-    closeWindow(); 
-});
+  
+/* Ocultar mesa del plano */
 
 const btnCerrar = document.querySelector('.ocultarMesa');
 btnCerrar.style.display = "none";
-
 
 function ocultarMesa() {
 	const btnCerrar = document.querySelector('.ocultarMesa');	
@@ -133,8 +211,8 @@ function mostrarMesa(){
     }
 }
 
-
 /* Draggear ventana */
+
 /* Fuente: https://www.w3schools.com/HOWTO/tryit.asp?filename=tryhow_js_draggable */
 //Make the DIV element draggagle:
 dragElement(document.getElementById("mydiv"));
@@ -183,5 +261,4 @@ function dragElement(elmnt) {
 	}
 }
 
-/* Ocultar mesa del plano */
 

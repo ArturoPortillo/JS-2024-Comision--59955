@@ -58,8 +58,8 @@ let getTables = localStorage.getItem("Plano");
             mesaExistente.innerHTML += templateMesa;
         } else {
             popDinamico("Limite de mesas alcanzado.");
-            toggleVis("popUpform");
-            intervalo("popUpform");
+            toggleVis("popUpdinamico");
+            intervalo("popUpdinamico");
         }
     }
 }
@@ -86,10 +86,79 @@ if (cargarEstructura) {
     const parseData = JSON.parse(cargarEstructura);
     const targetElement = document.getElementById('plano');
     targetElement.innerHTML = parseData.contenido;
-}
+
+        arrMesas = []; 
+        meserosPorMesa = [];
+        const mesas = targetElement.querySelectorAll('.modeloMesa');
+
+        mesas.forEach((mesa) => {
+            arrMesas.push([]);
+            meserosPorMesa.push(null);
+        });
+    }
 }
 
 /* Resetear Plano */
+
+function confirmarReset() {
+    Swal.fire({
+        title: false,
+        html: `
+          <div class="popUpform animate__animated animate__zoomIn" draggable="true" ondragstart="drag(event)" id="mydiv">
+            <div style="display: flex; flex-direction: row;">
+              <div class="title-bar" id="mydivheader">
+                <div class="title-bar-text innerHeader" style="margin:0 12rem 0 0;padding:0;">
+                  <img src="img/favicon2.png" alt="" class="innerFavicon">
+                  MiBar - Sistema de gestión Gastronomica
+                </div>
+                <div class="title-bar-controls">
+                  <button type="button" aria-label="Close" class="cancelarRegistro" style="height:16px;width:14px;margin-top:3px;"></button>
+                </div>
+              </div>
+            </div>
+            <fieldset class="popUpset">
+              <div class="popUp">
+                <img src="img/LOGO MIBAR.png" alt="" class="logoMibarpop">
+                <div style="text-align: center;">
+                  <div class="popForm">
+                    <p class="popupText" style="width:15rem; white-space: nowrap">Seguro que quieres reiniciar el plano?</p>
+                    <p class="popupText"> Esta acción no se puede deshacer.</p>
+                  </div>
+                  <div style="margin-top:1rem;">
+                    <button id="confirmBtn" class="swalcustomconfirm">OK</button>
+                    <button id="cancelBtn" class="swalcustomcancel">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        `,
+        showCancelButton: false,
+        showConfirmButton: false,
+        customClass: {
+            popup: 'swal2pop2'
+        },
+        didOpen: () => {
+          dragElement(document.getElementById('mydiv'));
+
+          document.getElementById('confirmBtn').addEventListener('click', function() {
+            resetPlano();
+          });
+
+          document.getElementById('cancelBtn').addEventListener('click', function() {
+            Swal.close();
+          });
+
+          let btnCerrar = document.querySelectorAll('.cancelarRegistro');
+          btnCerrar.forEach(btn => {
+            btn.addEventListener('click', () => {
+              Swal.close(); 
+            });
+          });
+        }
+    });
+}
+
 
 function resetPlano() {
     localStorage.removeItem("Plano");
@@ -104,6 +173,13 @@ usuarioIniciado()
 
 async function crearMesa() {
 	let nuevaMesa = [];
+
+    if (arrMesas.length >= 63) {
+        popDinamico("Limite de mesas alcanzado.");
+        toggleVis("popUpform");
+        intervalo("popUpform");
+        return;
+    }
 
 	let arrLength = arrMesas.length + 1;
 	arrMesas.push(nuevaMesa);
@@ -616,7 +692,6 @@ function cambiarCandado() {
             guardarEstructura();
 		}
 	});
-
 }
 
 /* Funciones de Drag
@@ -685,6 +760,7 @@ document.addEventListener("DOMContentLoaded", function () {
     empleadosTab.style.display = 'none';
 	} else if (tabName === 'comprobantes-tab') {
     comprobantesTab.style.display = 'block';
+    setInterval(cargarComprobantes, 2000)
     salonTab.style.display = 'none';
     facturacionTab.style.display = 'none';
     menuTab.style.display = 'none';

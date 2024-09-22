@@ -11,19 +11,28 @@ function restaurarDB() {
 	fetch('https://66ebf35e2b6cf2b89c5c91f8.mockapi.io/dataBaseapi')
     .then((response) => response.json())
     .then((data) => {
+
+        let backup = document.querySelector('.backupmsg')
     
         datosMenu.length = 0;
         datosMenu.push(...data)
         console.log("Listado de menú recuperado.");
         arbolMenu()
         renderMenu()
+        backup.innerHTML = `
+        <div class="backupmsg">
+            <img src="img/check-0.png" alt="" srcset="" class="icoSize">Menú original recuperado.
+        </div>
+`
 
 	}).catch ((error) => {
-		console.error('No se pudo conectar a la base de datos.', error);
+        backup.innerHTML = `
+        <div class="backupmsg">
+            <img src="img/exclIcon" alt="" srcset="" class="icoSize">No se puede conectar a la base de datos.
+        </div>
+`
 	});
 }
-
-
 
 
 
@@ -106,6 +115,25 @@ const datosMenu = [
     { articulo: "Bloody Mary", precio: 6700, id: 70, rubro: "Tragos" }
 ];
 
+/* Guardar Menú  y descargar Menu*/
+
+function guardarMenu() {
+	const menuJson = JSON.stringify(datosMenu)
+	localStorage.setItem("menu", menuJson);
+}
+
+function descargarMenu() {
+
+	if (localStorage.hasOwnProperty('menu')) {
+	let menu = localStorage.getItem("menu");
+	menu = JSON.parse(menu);
+	datosMenu.splice(0, datosMenu.length, ...menu);
+	console.log(datosMenu);
+    }
+} descargarMenu()
+
+
+
 
 let articulo;
 let precio = 0;
@@ -134,7 +162,7 @@ function cargarMenu() {
 		if (nuevoArticulo == ""  || isNaN(nuevoPrecio) || asignarRubro == "") {
             cargarErr.innerHTML = `
                     <div class="cargarErr">
-                        <img src="exclIcon.png" alt="" srcset="" class="icoSize">Ingresa datos válidos.
+                        <img src="img/exclIcon.png" alt="" srcset="" class="icoSize">Ingresa datos válidos.
                     </div>
             `
 			return;
@@ -151,9 +179,10 @@ function cargarMenu() {
 			console.table(datosMenu);
 			cargarErr.innerHTML = `
                     <div class="cargarErr">
-                        <img src="check-0.png" alt="" srcset="" class="icoSize">Producto cargado con exito.
+                        <img src="img/check-0.png" alt="" srcset="" class="icoSize">Producto cargado con exito.
                     </div>
             `
+            guardarMenu()
 			arbolMenu()
 			
 			document.querySelector('.cargarForm').onsubmit = e => {
@@ -282,6 +311,7 @@ function editarArticulo() {
                 datosMenu[itemIndex].articulo = editarArt.value;
                 datosMenu[itemIndex].precio = parseFloat(editarPrecio.value) || 0;
                 datosMenu[itemIndex].rubro = editarRubro.value;
+                guardarMenu()
 
                 console.log("Artículo actualizado:");
                 console.table(datosMenu);
@@ -291,8 +321,8 @@ function editarArticulo() {
             editarArt.value = '';
             editarPrecio.value = '';
             editarRubro.value = '';
-
             arbolMenu();
+
         };
     }
 }
@@ -341,6 +371,7 @@ function borrarArt(){
         console.log("Articulo borrado.");
         checkStats.checked = false;    
         habilitarDel.disabled = true;
+        guardarMenu()
         arbolMenu()
         renderMenu()
     }

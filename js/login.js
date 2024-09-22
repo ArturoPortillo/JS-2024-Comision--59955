@@ -23,6 +23,8 @@ const usuariosRegistrados = [
 	{ usuario: "admin", contrasena: "admin", idEmpleado: 0, rol: "admin" },
 ];
 
+/* Descargar el admin si lo borramos */
+
 async function fetchData() {
 	fetch('https://66ebf35e2b6cf2b89c5c91f8.mockapi.io/UsuariosAPI')
   .then((response) => response.json())
@@ -41,6 +43,11 @@ async function fetchData() {
 	}).catch ((error) => {
 		console.error('No se pudo conectar a la base de datos.', error);
 	});
+}
+
+function guardarUsuarios() {
+	const userJson = JSON.stringify(usuariosRegistrados)
+	localStorage.setItem("usuario", userJson);
 }
 
 
@@ -62,18 +69,11 @@ cargarUsuarios()
 function popUp() {
 	
 	let popUp = document.querySelector('.popUpfunc')
-	/* Se generaba un bug que nos hacia "draggear" un div dentro de nuestro Input por error al tratar de sombrear el texto, lo solucione con el atributo: ondragstart="return false;" ondrop="return false;"
-	Sin embargo, no se puede sombrear con el Mouse dentro del Input, solo se puede sombrear con el atajo Shift + flecha Izquierda
-	Fuente: https://stackoverflow.com/questions/704564/disable-drag-and-drop-on-html-elements */
-
-	/* Para evitar bugs en el campo de inputs limpiamos el input al darle click con  onfocus="this.value=''" para vaciarlo al darle click
-	Fuente: https://www.w3schools.com/howto/howto_html_clear_input.asp
-	*/
 	popUp.innerHTML = `
 	<div class="popUpform animate__animated animate__zoomIn" draggable="true" ondragstart="drag(event)" id="mydiv">
         <div style="display: flex; flex-direction: row;">
 				<div class="title-bar" id="mydivheader">            
-					<div class="title-bar-text innerHeader" style="margin:0 12rem 0 0;padding:0;"> <img src="favicon2.png" alt="" class="innerFavicon">MiBar - Sistema de gestión Gastronomica</div>
+					<div class="title-bar-text innerHeader" style="margin:0 12rem 0 0;padding:0;"> <img src="img/favicon2.png" alt="" class="innerFavicon">MiBar - Sistema de gestión Gastronomica</div>
 				<div class="title-bar-controls">
 					<button type="button" aria-label="Close" class="cancelarRegistro" style="height:16px;width:14px;margin-top:3px;"></button>
 				</div> 
@@ -81,7 +81,7 @@ function popUp() {
     </div>
 	<fieldset class="popUpset" >
         <div class="popUp">
-        <img src="LOGO MIBAR.png" alt="" class="logoMibarpop">
+        <img src="img/LOGO MIBAR.png" alt="" class="logoMibarpop">
         <div class="popForm">
             <div class="field-row-stacked">
 				<label>Nuevo usuario:</label>
@@ -118,27 +118,6 @@ function popUp() {
 
 
 function registroUsuario() {
-	/*  COMENTARIO SOBRE VALIDACIONES:  
-    
-    ########## NOTAS PARA EL FUTURO LECTOR #################
-
-    Agregamos validaciones a nuestra funcion de registro:
-
-        - Usamos .toLowerCase() para transformar el texto a minusculas y evitar errores al identificar el usuario
-        - Usamos la Expresion Regular (/\s+/g, '') con el metodo .replace
-
-        Para que quede registrado, una expresion regular se forma dentro de "/ /" y luego tenemos distintos patrones que podemos aplicar dentro de la expresion regular, uno es /s o "/s+" donde /s busca un espacio en blanco(uno por uno) dentro de nuestra linea de texto y /s+ busca todos los espacios en blanco consecutivos.
-
-            Ejemplo: 
-
-                var str = '  A B  C   D EF ';
-                console.log(str.replace(/\s/g, '#'));  // ##A#B##C###D#EF# /// UNO POR UNO.
-                console.log(str.replace(/\s+/g, '#')); // #A#B#C#D#EF# /// ESPACIOS CONSECUTIVOS, MAS 'RAPIDO'.
-
-        Luego de nuestra expresion /\s+/ continuamos con un "modificador" Glogal "g" que busca todos los resultados que concuerden con lo que buscamos, haciendo que en este caso /s+ no se detenga en el primer resultado.
-
-        Dejando nuestra RegEx asi (/\s+/g) luego usando el metodo de string .replace declaramos que reemplazamos todos los espacios en blanco por un espacio vacio: (/\s+/g, '') como en el ejemplo anterior los reemplazabamos por un # ahora lo reemplazamos por un espacio vacio << '' >>, recortando nuestro texto totalmente, evitando que el usuario agregue espacios en blanco al campo de usuario o contraseña.
-    */
 
 	/* Obtenemos los datos de usuario */
 	let inputNuevousuario = document.querySelector(".newUserfield");
@@ -158,7 +137,7 @@ function registroUsuario() {
 	if (nuevoUsuario === "" || contrasenaUsuario === "")  {
 		let errorSignup = document.querySelector('.signupMsg')
 		console.log(errorSignup)
-		let registroError = `<div class="signUpicon"><img src="exclIcon.png" alt="!!" class="iconErrorlog"><p>Campo vacio.</p></div>`
+		let registroError = `<div class="signUpicon"><img src="img/exclIcon.png" alt="!!" class="iconErrorlog"><p>Campo vacio.</p></div>`
 		errorSignup.innerHTML = registroError;
 		return
 	}
@@ -169,7 +148,7 @@ function registroUsuario() {
 	if (validarNombre)  {
 		let errorSignup = document.querySelector('.signupMsg')
 		console.log(errorSignup)
-		let registroError = `<div class="signUpicon"><img src="exclIcon.png" alt="!!" class="iconErrorlog"><p>Usuario ya registrado!</p></div>`
+		let registroError = `<div class="signUpicon"><img src="img/exclIcon.png" alt="!!" class="iconErrorlog"><p>Usuario ya registrado!</p></div>`
 		errorSignup.innerHTML = registroError;
 		return
 	}
@@ -191,9 +170,8 @@ function registroUsuario() {
 		let errorSignup = document.querySelector('.signupMsg')
 		let registroError = `<div class="signUpicon"><img src="check-0.png" alt="!!" class="iconErrorlog"><p>Usuario registrado con exito</p></div>`
 		errorSignup.innerHTML = registroError;
-		
-			const userJson = JSON.stringify(usuariosRegistrados)
-			localStorage.setItem("usuario", userJson);
+
+		guardarUsuarios()		
 
 		intervalo("popUpform").then(()=>{
 			Swal.fire({
@@ -221,8 +199,6 @@ function registroUsuario() {
 				
 				
 				title: "Usuario registrado con exito!",
-		/* 		text: "That thing is still around?", */
-		/* 		imageUrl: "/LOGO MIBAR.png", */
 				imageUrl: "/check-0.png",
 				imageWidth: 60,	
 				imageHeight: 40,
@@ -244,13 +220,13 @@ function registroUsuario() {
 	} else if (contieneNumeros) {
 		let errorSignup = document.querySelector('.signupMsg')
 		console.log(errorSignup)
-		let registroError = `<div class="signUpicon"><img src="exclIcon.png" alt="!!" class="iconErrorlog"><p>Usuario no debe contener numeros.</p></div>`
+		let registroError = `<div class="signUpicon"><img src="img/exclIcon.png" alt="!!" class="iconErrorlog"><p>Usuario no debe contener numeros.</p></div>`
 		errorSignup.innerHTML = registroError;
 		return;
 	} else if (isNaN(inputNuevapass)) {
 		let errorSignup = document.querySelector('.signupMsg')
 		console.log(errorSignup)
-		let registroError = `<div class="signUpicon"><img src="exclIcon.png" alt="!!" class="iconErrorlog"><p>PIN debe ser un valor numerico.</p></div>`
+		let registroError = `<div class="signUpicon"><img src="img/exclIcon.png" alt="!!" class="iconErrorlog"><p>PIN debe ser un valor numerico.</p></div>`
 		errorSignup.innerHTML = registroError;
 	} 
 
@@ -284,23 +260,22 @@ function inicioSesion() {
 			localStorage.setItem("usuarioActivo", inputUsuario);
 			console.log("el usuario activo es: " + usuarioActivo);
 			let errorLogin = document.querySelector('.errorLogin')
-			let mensajeError = `<div class="errorLogin"><img src="/check-0.png" alt="!!" class="iconErrorlog"><p>Ingresaste correctamente.</p></div>`
+			let mensajeError = `<div class="errorLogin"><img src="img/check-0.png" alt="" class="iconErrorlog"><p>Ingresaste correctamente.</p></div>`
 			errorLogin.innerHTML = mensajeError;
 			window.location.href = "platform.html";
-/* 			validarDatos = true; */
 			return;
 		} if(validarExistencia) {
 			let errorLogin = document.querySelector('.errorLogin')
-			let mensajeError = `<div class="errorLogin"><img src="exclIcon.png" alt="!!" class="iconErrorlog"><p>Datos de usuario incorrecto.</p></div>`
+			let mensajeError = `<div class="errorLogin"><img src="img/exclIcon.png" alt="" class="iconErrorlog"><p>Datos de usuario incorrecto.</p></div>`
 			errorLogin.innerHTML = mensajeError;
 			return;
 		}  else if (inputUsuario == '' && inputPass == '') {
 			let errorLogin = document.querySelector('.errorLogin')
-			let mensajeError = `<div class="errorLogin"><img src="exclIcon.png" alt="!!" class="iconErrorlog"><p>Ingresa un usuario.</p></div>`
+			let mensajeError = `<div class="errorLogin"><img src="img/exclIcon.png" alt="" class="iconErrorlog"><p>Ingresa un usuario.</p></div>`
 			errorLogin.innerHTML = mensajeError;
 		} else {
 			let errorLogin = document.querySelector('.errorLogin')
-			let mensajeError = `<div class="errorLogin"><img src="exclIcon.png" alt="!!" class="iconErrorlog"><p>Usuario no encontrado</p></div>`
+			let mensajeError = `<div class="errorLogin"><img src="img/exclIcon.png" alt="" class="iconErrorlog"><p>Usuario no encontrado</p></div>`
 			errorLogin.innerHTML = mensajeError;
 		}
 	});
