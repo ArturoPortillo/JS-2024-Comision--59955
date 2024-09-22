@@ -835,16 +835,30 @@ hr.solid {
     gap: 8px;
 }
 
-.comprobantesMock {
-    margin: 1rem;
-}
-
 /* Estilo comprobantes */
+
+
 
 .tutorialImg {
     height: 48rem;
     width: 60rem;
 }
+
+
+#comprobantes-tab{
+    height: 20rem;
+    width: 30rem;
+    margin-left: 2rem;
+    margin-top: 1rem;
+}
+
+.comprobantesMock {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    height: 25vh;
+  }
 
 
 

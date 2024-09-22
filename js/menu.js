@@ -207,7 +207,6 @@ async function arbolMenu() {
 
     const rubros = [...new Set(datosMenu.map((menu) => menu.rubro))].sort((a, b) => ordenFijo.indexOf(a) - ordenFijo.indexOf(b));	
 
-	console.log(rubros)
     let nuevoArbol = "" 
 
     ordenFijo.forEach((rubro, index) => {
@@ -231,7 +230,6 @@ async function arbolMenu() {
 
 
 let actualizarArticulo = document.querySelector('.actualizarArticulo')
-console.log(actualizarArticulo);
 
 actualizarArticulo.addEventListener('click',editarArticulo)
 

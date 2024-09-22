@@ -750,7 +750,7 @@ document.addEventListener("DOMContentLoaded", function () {
     empleadosTab.style.display = 'none';
 	} else if (tabName === 'comprobantes-tab') {
     comprobantesTab.style.display = 'block';
-    setInterval(cargarComprobantes, 2000)
+    setInterval(cargarComprobantes, 800)
     salonTab.style.display = 'none';
     facturacionTab.style.display = 'none';
     menuTab.style.display = 'none';
