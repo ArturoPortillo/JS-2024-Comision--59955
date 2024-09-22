@@ -664,7 +664,7 @@ function cambiarCandado() {
         const restaurarPlano = document.querySelector(".restorePlane")
 
 		if (estadoCandado.includes("Close")) {
-			candadoPlano = document.querySelector(".lock").src = "Open.png";
+			candadoPlano = document.querySelector(".lock").src = "img/Open.png";
             lockFixedsize.style.width = "23px";
             lockFixedsize.style.height = "23px";
             sumarMesa.style.height = "25px";
@@ -677,7 +677,7 @@ function cambiarCandado() {
 				mesa.style.visibility = "visible";
 			});
 		} else if (estadoCandado.includes("Open")) {
-			candadoPlano = document.querySelector(".lock").src = "Close.png";
+			candadoPlano = document.querySelector(".lock").src = "img/Close.png";
             lockFixedsize.style.width = "19px";
             lockFixedsize.style.height = "23px";
             sumarMesa.style.height = "25px";
