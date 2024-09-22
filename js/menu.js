@@ -6,6 +6,7 @@ function Producto(id, articulo, precio) {
 	this.precio = precio;
 }
 
+/* funcion para restaurar el menu si lo modificamos/borramos */
 
 function restaurarDB() {
 	fetch('https://66ebf35e2b6cf2b89c5c91f8.mockapi.io/dataBaseapi')
@@ -115,7 +116,7 @@ const datosMenu = [
     { articulo: "Bloody Mary", precio: 6700, id: 70, rubro: "Tragos" }
 ];
 
-/* Guardar Menú  y descargar Menu*/
+/* Guardar Menú  y cargar Menu*/
 
 function guardarMenu() {
 	const menuJson = JSON.stringify(datosMenu)

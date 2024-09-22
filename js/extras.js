@@ -211,6 +211,16 @@ function mostrarMesa(){
     }
 }
 
+/* Hora */
+
+const paginaActual = window.location.href; 
+
+function fechaSistema() {
+	const date = new Date();	
+		document.querySelector(".fecha").textContent = `Fecha: ${date.toLocaleDateString()} | Hora: ${date.toLocaleTimeString()};`;	
+}
+
+
 /* Draggear ventana */
 
 /* Fuente: https://www.w3schools.com/HOWTO/tryit.asp?filename=tryhow_js_draggable */

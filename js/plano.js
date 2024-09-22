@@ -712,15 +712,6 @@ function drop(ev) {
 	ev.target.appendChild(document.getElementById(data));
 }
 
-/* TEST */
-
-const paginaActual = window.location.href; 
-
-function fechaSistema() {
-	const date = new Date();	
-		document.querySelector(".fecha").textContent = `Fecha: ${date.toLocaleDateString()} | Hora: ${date.toLocaleTimeString()};`;	
-}
-
 setInterval(fechaSistema, 1000)
 
 /* FUNCIONES DE PESTAÑAS */
