@@ -168,7 +168,7 @@ function registroUsuario() {
 		console.log(nuevoEmpleado);
 		console.table(usuariosRegistrados);
 		let errorSignup = document.querySelector('.signupMsg')
-		let registroError = `<div class="signUpicon"><img src="check-0.png" alt="!!" class="iconErrorlog"><p>Usuario registrado con exito</p></div>`
+		let registroError = `<div class="signUpicon"><img src="img/check-0.png" alt="!!" class="iconErrorlog"><p>Usuario registrado con exito</p></div>`
 		errorSignup.innerHTML = registroError;
 
 		guardarUsuarios()		
@@ -199,7 +199,7 @@ function registroUsuario() {
 				
 				
 				title: "Usuario registrado con exito!",
-				imageUrl: "/check-0.png",
+				imageUrl: "img/check-0.png",
 				imageWidth: 60,	
 				imageHeight: 40,
 				imageAlt: "Custom image",
