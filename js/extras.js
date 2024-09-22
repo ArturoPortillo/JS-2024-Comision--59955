@@ -48,7 +48,7 @@ function tutorial() {
                   <button aria-label="Close" style="transform:translateX(-25%)" class="cancelarRegistro"></button>
                 </div>
               </div>
-              <img src="/img/tutorial.png" alt="" class="tutorialImg">
+              <img src="img/tutorial.png" alt="" class="tutorialImg">
             </div>
           </div>
     </div>
