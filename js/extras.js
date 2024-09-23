@@ -99,10 +99,10 @@ function cargarComprobantes() {
     let loadingMsg = document.querySelector('#comprobantes-tab')
 
     let imgIndex = Math.floor(Math.random() * 2) + 1; 
-/*     let boomIndex = Math.floor(Math.random() * 3) + 1;
+    let boomIndex = Math.floor(Math.random() * 3) + 1;
     let boomIndex2 = Math.floor(Math.random() * 3) + 1; 
     let boomIndex3 = Math.floor(Math.random() * 3) + 1; 
-    let boomIndex4 = Math.floor(Math.random() * 3) + 1; */
+    let boomIndex4 = Math.floor(Math.random() * 3) + 1;
     let cmdErr = Math.floor(Math.random() * 4) + 1;
     let cmdErr2 = Math.floor(Math.random() * 4) + 1;
     let colorSwitch = Math.floor(Math.random() * 3) + 1; 

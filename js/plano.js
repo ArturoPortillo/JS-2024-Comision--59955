@@ -194,13 +194,6 @@ async function crearMesa() {
 
 	let mesaExistente = target.querySelector(`.grilla${arrLength}`);
 
-	/* condicional con Operarador ternario 
-
-    mesaExistente = true
-		? (mesaExistente.innerHTML += templateMesa)
-		: alert("No se pueden crear más mesas, has llegado al limite del plano.");
-    */
-
 	if (mesaExistente) {
 		mesaExistente.innerHTML += templateMesa;
 	} else {
@@ -744,7 +737,9 @@ document.addEventListener("DOMContentLoaded", function () {
     empleadosTab.style.display = 'none';
 	} else if (tabName === 'comprobantes-tab') {
     comprobantesTab.style.display = 'block';
-    setInterval(cargarComprobantes, 800)
+    setTimeout(() => {
+        comprobantesInterval = setInterval(cargarComprobantes, 300);
+    }, 3000);
     salonTab.style.display = 'none';
     facturacionTab.style.display = 'none';
     menuTab.style.display = 'none';

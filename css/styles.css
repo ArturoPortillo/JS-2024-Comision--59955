@@ -259,11 +259,11 @@ height: 1.8rem;
 }
 
 .tab-content {
-    display: none;  /* Hide all tab content by default */
+    display: none;  
 }
 
 #salon-tab {
-    display: block; /* Show the Salon tab by default */        
+    display: block;    
     }
 
     .glitchedImg {
@@ -275,7 +275,7 @@ height: 1.8rem;
     .boomImg {
         background: radial-gradient(circle, rgba(0, 0, 0, 0.8) 10%, transparent 40%);
         padding: 10px;
-        border-radius: 10%; /* Same rounded edges */
+        border-radius: 10%; 
     }
 
     .fontColor1 {
@@ -712,14 +712,14 @@ details {
 }
 
 .cargarErr {
-    line-height: 21px; /* Adjusts vertical spacing of the text */
-    gap: 8px; /* Gap will not work unless it's a flex or grid container */
+    line-height: 21px;
+    gap: 8px; 
     margin-top: 0.5rem
 }
 
 .cargarErr img {
-    vertical-align: middle; /* Aligns the image vertically with the text */
-    margin-right: 8px; /* Adds spacing between the image and the text */
+    vertical-align: middle;
+    margin-right: 8px;
 }
 
 /* Estilos facturacion */
@@ -848,15 +848,14 @@ hr.solid {
 #comprobantes-tab{
     height: 10rem;
     width: 30rem;
-    margin-left: 2rem;
-    margin-top: 1rem;
+    margin-top: 2rem;
 }
 
 .comprobantesMock {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 25vh;
+    height: 15vh;
   }
 
 
@@ -1801,7 +1800,7 @@ hr.solid {
         align-items: center !important; */
         background: rgb(192,192,192);
         background: linear-gradient(to left, rgba(16,132,208,1), rgba(0,0,128,1)) no-repeat, rgb(192,192,192);
-        background-size: 100% 10%;  /* The blue gradient bar height (10%) can be adjusted */
+        background-size: 100% 10%;
         background-position: top;        
         border: 1px solid white;
         color: black ;
@@ -1941,11 +1940,11 @@ hr.solid {
     visibility: hidden;
     width: 120px;
     background-color: #ffffe2;
-    color: black; /* The text color is now black */
+    color: black; 
     text-align: center;
     border-radius:5px;
     padding: 5px 0;
-    border: 1px solid black; /* Add black border here */
+    border: 1px solid black; 
     position: absolute;
     z-index: 9;
     top: -5px;
@@ -1960,22 +1959,22 @@ hr.solid {
     content: " ";
     position: absolute;
     top: 50%;
-    right: 100%; /* Arrow to the left */
+    right: 100%; 
     transform: translateY(-50%);
     border-width: 5px;
     border-style: solid;
-    border-color: transparent #ffffe2 transparent transparent; /* Main arrow with color on the right */
+    border-color: transparent #ffffe2 transparent transparent;
 }
 
 .tooltip .tooltiptext::before {
     content: " ";
     position: absolute;
     top: 50%;
-    right: 100%; /* Shadow to the left */
+    right: 100%;
     transform: translateY(-50%);
     border-width: 6px;
     border-style: solid;
-    border-color: transparent black transparent transparent; /* Shadow with color on the right */
+    border-color: transparent black transparent transparent;
     z-index: -1;
 }
 
@@ -1991,17 +1990,17 @@ hr.solid {
   .status-bar-field {
     display: flex;
     align-items: center;
-    line-height: 16px; /* Adjust this value based on the image height */
+    line-height: 16px; 
 }
 
 .status-bar-field img {
-    height: 16px; /* Match the image size */
-    margin-left: 5px; /* Optional spacing */
+    height: 16px;
+    margin-left: 5px;
     margin-top: 2px;
     margin-right: 0;
 }
 
 
 .status-bar-field span {
-    margin-right: 1px; /* Optional: space between image and text */
+    margin-right: 1px; 
 }
