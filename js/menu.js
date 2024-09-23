@@ -252,7 +252,6 @@ function editarArticulo() {
             editarPrecio.value = item.precio;
             editarRubro.value = item.rubro;
 
-
             editarArt.dataset.originalArticulo = item.articulo;
             editarPrecio.dataset.originalPrecio = item.precio;
             editarRubro.dataset.originalRubro = item.rubro;

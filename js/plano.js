@@ -165,8 +165,6 @@ function resetPlano() {
     localStorage.removeItem("htmlContent");
     location.reload()
 }
-
-
 usuarioIniciado()
 
 /* ############# Funcion para crear Mesa nueva ########## */
@@ -460,10 +458,6 @@ async function modCantidades(action, eleccion, mesa) {
         mesaSeleccionada.totalOriginal = total;
         mesaSeleccionada.porcentajeDescontado = porcentajeDescontado;
 
-        console.log(`Discount applied: ${porcentajeDescontado}%`);
-        console.log(`Original total: $${total.toFixed(2)}`);
-        console.log(`Discounted total: $${totalDescontado.toFixed(2)}`);
-
         renderMesa(eleccion); 
     }  
 
@@ -505,7 +499,7 @@ async function modCantidades(action, eleccion, mesa) {
     }
 
     if (!artResaltado) {
-        console.log("No item highlighted!");
+        console.log("Ningun articulo resaltado.");
         return;
     }
 

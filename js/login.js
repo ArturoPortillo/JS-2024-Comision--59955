@@ -37,8 +37,6 @@ async function fetchData() {
 		usuariosRegistrados.push(usuariosExternos[0]);
 		console.log("El admin siempre presente.");
 		arbolEmpleados(); 
-	  } else {
-		console.log("Test");
 	  }
 	}).catch ((error) => {
 		console.error('No se pudo conectar a la base de datos.', error);
