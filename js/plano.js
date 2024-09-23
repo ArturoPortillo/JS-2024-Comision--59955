@@ -427,9 +427,9 @@ async function modCantidades(action, eleccion, mesa) {
                 step: 1
             },
             inputValue: "",
-            confirmButtonText: 'Apply',
+            confirmButtonText: 'Aplicar',
             showCancelButton: true,
-            cancelButtonText: 'Cancel',
+            cancelButtonText: 'Cancelar',
             inputValidator: (value) => {
                 if (value === '' || isNaN(value) || value < 0 || value > 100) {
                     return 'Ingresa un porcentaje a descontar.';
