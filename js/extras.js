@@ -69,7 +69,7 @@ function tutorial() {
 let style = document.createElement('style');
 style.innerHTML = `
     body, button {
-        cursor: url('/img/windows98.cur'), default;
+        cursor: url('./img/windows98.cur'), default;
     }
 `;
 document.head.appendChild(style);
