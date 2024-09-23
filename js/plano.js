@@ -528,9 +528,9 @@ async function modCantidades(action, eleccion, mesa) {
                             step: 1
                         },
                         inputValue: "",
-                        confirmButtonText: 'Apply',
+                        confirmButtonText: 'Aplicar',
                         showCancelButton: true,
-                        cancelButtonText: 'Cancel',
+                        cancelButtonText: 'Cancelar',
                         inputValidator: (value) => {
                             if (value === '' || isNaN(value) || value < 1 || value > arrMesas.length) {
                                 return 'Ingresa un numero valido.';
