@@ -110,21 +110,31 @@ function cargarComprobantes() {
     let colorSwitch4 = Math.floor(Math.random() * 4) + 1;
 
     loadingMsg.innerHTML = `
-<!--             <img src="img/${boomIndex}.ico" alt="" class="boomImg"> -->
-
-<!--             <img src="img/cmd${cmdErr}.ico" alt="" style="margin-left:10rem;"> -->
             <label for="" class="labelContainer" style="flex-direction:column;">
-<!--             <img src="img/${boomIndex2}.ico" alt="" style="margin-left:10rem;"> -->
               <img src="img/err${imgIndex}.ico" alt="" class="glitchedImg">
-<!--               <img src="img/cmd${cmdErr2}.ico" alt="" style="margin-right:10rem;"> -->
-              <p style="font-family:deadcrt;" class="fontColor${colorSwitch4}"><b>ERROR AL CARGAR CONTENIDO.<!-- <img src="img/${boomIndex4}.ico" alt="" class="boomImg"> --></b></p>
+              <p style="font-family:deadcrt;" class="fontColor${colorSwitch4}"><b>ERROR AL CARGAR CONTENIDO.</b></p>
               <div>
                 <p style="font-family:deadcrt;" class="fontColor${colorSwitch2}"><b>CONTACTE CON EL ADMINISTRADOR.</b></p>
               </div>
             </label>
-<!--             <img src="img/${boomIndex3}.ico" alt=""> -->
     `
 }
+
+/* loadingMsg.innerHTML = `
+<img src="img/${boomIndex}.ico" alt="" class="boomImg">
+
+<img src="img/cmd${cmdErr}.ico" alt="" style="margin-left:10rem;">
+<label for="" class="labelContainer" style="flex-direction:column;">
+<img src="img/${boomIndex2}.ico" alt="" style="margin-left:10rem;">
+  <img src="img/err${imgIndex}.ico" alt="" class="glitchedImg">
+  <img src="img/cmd${cmdErr2}.ico" alt="" style="margin-right:10rem;">
+  <p style="font-family:deadcrt;" class="fontColor${colorSwitch4}"><b>ERROR AL CARGAR CONTENIDO.<!-- <img src="img/${boomIndex4}.ico" alt="" class="boomImg"> --></b></p>
+  <div>
+    <p style="font-family:deadcrt;" class="fontColor${colorSwitch2}"><b>CONTACTE CON EL ADMINISTRADOR.</b></p>
+  </div>
+</label>
+<img src="img/${boomIndex3}.ico" alt="">
+` */
 
 /* Hacer visible/invisible nuestra ventana de registro(codigo reciclable) */
 
